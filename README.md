@@ -16,7 +16,7 @@ https://hughxusu.gitee.io/py_lesson
 
 ## 课程目标
 
-学会 python 语言及相关的机器学习库。
+学习 python 语言及相关知识。
 
 ## 课程内容
 
@@ -26,5 +26,4 @@ https://hughxusu.gitee.io/py_lesson
 * 学习 python 语言的基本语法和高级特性。
 * 学习面向对象编程的思想。
 * 学习 python 的标准库库，如：文件操作等。
-* Python机器学习库 Numpy，Sk-learn等。
 
