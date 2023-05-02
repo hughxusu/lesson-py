@@ -12,7 +12,7 @@
 https://hughxusu.github.io/lesson-py/#/
 ```
 
-**[代码仓库](https://gitee.com/hughxusu/py_lesson)**
+**[代码仓库](https://github.com/hughxusu/lesson-py)**
 
 ## 课程目标
 
