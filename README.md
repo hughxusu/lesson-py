@@ -9,7 +9,7 @@
 **本站网址**
 
 ```
-https://hughxusu.gitee.io/py_lesson
+https://hughxusu.github.io/lesson-py/#/
 ```
 
 **[代码仓库](https://gitee.com/hughxusu/py_lesson)**
