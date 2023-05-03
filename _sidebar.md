@@ -1,11 +1,8 @@
 
 
 * 引言
-  * [了解程序员的工作](intro/web)
   * [认识Python](intro/history)
   * [搭建Python的开发环境](intro/env)
-  * [程序员的自我修养](intro/experience)
-
 * Python语言
   * [从变量开始](grammar/var)
   * [程序的执行原理](grammar/principle)
@@ -35,7 +32,6 @@
     * [with语句与上下文管理器](grammar/other/two)
     * [生成器与拷贝](grammar/other/three)
 
-  
 * 附录
   * [运算符](others/oper)
 
