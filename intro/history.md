@@ -94,3 +94,4 @@ Python（蟒蛇）
 3. 深度学习、数据分析等工作利器。
 4. 对于数学专业可以完全代替 Matlab 工具。
 
+<img src="https://s1.ax1x.com/2023/03/05/ppEslNR.png" style="zoom: 25%;" />
