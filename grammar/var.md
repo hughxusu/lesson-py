@@ -155,7 +155,7 @@ print(money)
 ### Python的数据类型
 
 ```mermaid
-graph 
+graph
 数据类型-->number
 数据类型-->a
 数据类型-->序列类型
