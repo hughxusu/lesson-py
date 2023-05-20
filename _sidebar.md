@@ -28,12 +28,12 @@
     * [异常、模块和包](f-class/4-异常)
     * [面向对象版学员管理系统](f-class/5-系统)
   * 其他高级特性
-    * [装饰器](grammar/other/one)
-    * [with语句与上下文管理器](grammar/other/two)
-    * [生成器与拷贝](grammar/other/three)
+    * [装饰器](g-other/1-装饰)
+    * [with语句与上下文管理器](g-other/2-上下文)
+    * [生成器与拷贝](g-other/3-拷贝)
 
 * 附录
-  * [运算符](others/oper)
+  * [运算符](h-ps/1-运算符)
 
 - **链接** 
 [<img src="https://static.runoob.com/images/favicon.ico" alt="Code" style="zoom: 60%;" />菜鸟教程](https://www.runoob.com/)
