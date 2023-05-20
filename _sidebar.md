@@ -1,11 +1,11 @@
 
 
 * 引言
-  * [认识Python](intro/history)
-  * [搭建Python的开发环境](intro/env)
+  * [认识Python](introduce/1-认识)
+  * [搭建Python的开发环境](introduce/2-环境)
 * Python语言
-  * [从变量开始](grammar/var)
-  * [程序的执行原理](grammar/principle)
+  * [从变量开始](basic/1-变量)
+  * [程序的执行原理](basic/2-原理)
   * [流程控制](grammar/flow/index)
     * [条件控制](grammar/flow/if)
     * [循环控制](grammar/flow/for)
