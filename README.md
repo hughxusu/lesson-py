@@ -8,9 +8,7 @@
 
 **本站网址**
 
-```
 https://hughxusu.github.io/lesson-py/#/
-```
 
 **[代码仓库](https://github.com/hughxusu/lesson-py)**
 
