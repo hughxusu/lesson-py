@@ -6,7 +6,7 @@
 
 <img src="https://www.ncut.edu.cn/images/logo-dh.png"  />
 
-# Python 语言
+# Python 编程语言
 
 **授课教师：徐夙** 
 
