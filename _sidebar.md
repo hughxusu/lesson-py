@@ -5,6 +5,7 @@
   * [搭建Python的开发环境](a-introduce/2-环境)
 * Python语言
   * [从变量开始](b-basic/1-变量)
+  * [数据类型](b-basic/2-数据类型)
   * [程序的执行原理](b-basic/2-原理)
   * [流程控制](c-flow/index)
     * [条件控制](c-flow/1-条件)
