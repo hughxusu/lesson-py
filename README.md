@@ -1,11 +1,5 @@
 # Python 编程语言
 
-> 理学院 数学系
-
-**授课教师**
-
-徐夙 hughxusu@ncut.edu.cn
-
 **本站网址**  https://hughxusu.github.io/lesson-py/#/
 
 **[代码仓库](https://github.com/hughxusu/lesson-py)**
