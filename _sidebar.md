@@ -1,9 +1,7 @@
 
-
-* 引言
-  * [认识Python](a-introduce/1-认识)
-  * [搭建Python的开发环境](a-introduce/2-环境)
 * Python语言
+  * [认识Python](base/1-认识)
+  * [搭建Python的开发环境](base/2-环境)
   * [从变量开始](b-basic/1-变量)
   * [数据类型](b-basic/2-类型)
   * [变量的运算](b-basic/3-运算)
