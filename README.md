@@ -17,3 +17,10 @@
 * 学习面向对象编程的思想。
 * 学习 python 的标准库库，如：文件操作等。
 
+## 参考资料
+
+* [菜鸟教程](https://www.runoob.com/)
+* [习题网站](https://pynative.com/python-exercises-with-solutions/)
+* [Python官方网站](https://www.python.org/)
+* [Python中文手册](https://docs.python.org/zh-cn/3.9/)
+
