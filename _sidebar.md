@@ -31,7 +31,4 @@
 
 * 附录
   * [运算符](h-ps/1-运算符)
-
-- **链接** 
-[<img src="https://static.runoob.com/images/favicon.ico" alt="Code" style="zoom: 60%;" />菜鸟教程](https://www.runoob.com/)
-[习题网站](https://pynative.com/python-exercises-with-solutions/)
+    
