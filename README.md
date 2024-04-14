@@ -19,8 +19,15 @@
 
 ## 参考资料
 
-* [菜鸟教程](https://www.runoob.com/)（本教程部引用部分图片）
+### 学习网站
+
+* [菜鸟教程](https://www.runoob.com/)
 * [习题网站](https://pynative.com/python-exercises-with-solutions/)
 * [Python官方网站](https://www.python.org/)
 * [Python中文手册](https://docs.python.org/zh-cn/3.9/)
+
+### 参考书
+
+* [Python编程（第3版）](https://book.douban.com/subject/36365320/)
+* [Python工匠](https://book.douban.com/subject/35723705/)
 
