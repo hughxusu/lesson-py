@@ -11,7 +11,6 @@
   * [流程控制](c-flow/index)
     * [循环控制](c-flow/2-循环)
   * [序列类型](d-type/index)
-    
     * [字典与集合](d-type/4-字典)
     * [相似操作](d-type/6-操作)
   * [函数](e-function/index)
