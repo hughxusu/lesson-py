@@ -1,4 +1,4 @@
-# Python 编程语言
+# Python编程语言
 
 **本站网址**  https://hughxusu.github.io/lesson-py/#/
 
@@ -6,7 +6,7 @@
 
 ## 课程目标
 
-学习 python 编程语言。
+学习Python编程语言。
 
 ## 课程内容
 
