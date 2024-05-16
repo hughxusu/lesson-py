@@ -220,7 +220,7 @@ arr2 = np.array([1, 2, 3.14])
 print(arr2.dtype)
 ```
 
-## Numpy的基本属性
+### Numpy的基本属性
 
 数组属性反映了数组本身固有的信息，常用的属性如下表：
 
@@ -232,7 +232,7 @@ print(arr2.dtype)
 | `dtype`  |  数组元素的类型  |
 
 ```python
-x = np.random.randint(10, size=(3, 5))
+x = np.arange(15).reshape(3, 5)
 y = np.arange(10)
 
 # 数组的维度
@@ -252,13 +252,30 @@ print(y.size)
 >
 > Numpy中的数据在内存中都是一维连续存储的，`shape`属性只是标注数据的形状。
 
-## 数据访问
+## 数据操作
+
+### 修改形状
+
+使用`reshape`函数可以修改数组的形状。
+
+```python
+x = np.arange(10)
+print(x.ndim)
+
+w = x.reshape(2, 5)
+print(w.ndim)
+
+x.reshape(10, -1) # -1会根据数据数量和行数自动计算合适的列数。
+x.reshape(2, -1) 
+x.reshape(3, -1) 
+```
+
+### 数据访问
 
 使用索引访问数据
 
 ```python
-
-x = np.random.randint(10, size=(3, 5))
+x = np.arange(15).reshape(3, 5)
 y = np.arange(10)
 
 # 访问一维数组
@@ -301,11 +318,51 @@ print(col.shape)
 
 > [!attention]
 >
-> 1. 对列数据进行切片，切片后数组的形状为`(3,)`。Numpy中不特殊指定，切片数据都会以行向量存储。
-> 2. 数组切片操作保存到新变量中，数据是引用类型。
+> 1. 对列数据进行切片，切片后数组的形状为`(3,)`，切片后的数据都会以行向量存储。
+> 2. 数组切片操作保存到新变量中是引用数据。`reshape`也是引用数据。
 
 ```python
+sub_x = x[:2, :3]
+print(sub_x)
+sub_x[0, 0] = 100
+print(sub_x)
+print(x)
+x[0, 0] = 0
+print(x)
+print(sub_x)
 ```
+
+数据拷贝
+
+```python
+sub_x = x[:2, :3].copy()
+sub_x[0, 0] = 100
+print(sub_x)
+print(x)
+```
+
+### 数组合并
+
+`concatenate`可以用于数组间的链接
+
+```python
+x = np.array([1, 2, 3])
+y = np.array([3, 2, 1])
+np.concatenate([x, y])
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+np.concatenate([a, a])  # 垂直方向进行拼接
+np.concatenate([a, a], axis=1) # 水平方向进行拼接
+
+np.concatenate([a, y]) # 向量和矩阵不能直接拼接
+np.concatenate([a, y.reshape(1, -1)]) # 需要修改y的形状
+```
+
+
+
+
+
+
 
 
 
@@ -328,30 +385,6 @@ b=np.array(a)
 ```
 
 ## 基本操作
-
-
-
-### 修改形状
-
-`arr.reshape(shape)` 返回一个具有相同数据域，但shape不一样的视图。行、列不进行互换。
-
-```python
-stock_change.reshape([5, 4])
-stock_change.reshape([-1,10])  # -1: 表示通过待计算
-```
-
-`arr.resize(shape)` 修改数组本身的形状。行、列不进行互换。
-
-```python
-stock_change.resize([5, 4])
-stock_change
-```
-
-`arr.T` 获得数组的转置，将数组的行、列进行互换。
-
-```python
-stock_change.T
-```
 
 ### 修改类型
 
