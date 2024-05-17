@@ -31,6 +31,5 @@
   * [Numpy](e-usage/2-numpy.md)
   * [matplotlib](e-usage/3-matplotlib.md)
 
-* 附录
-  * [运算符](h-ps/1-运算符)
+* [附录](附录.md)
     

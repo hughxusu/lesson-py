@@ -111,10 +111,10 @@ Numpy中创建数组的函数一般都包含`shape`和`dtype`两个参数：
 
 > [!warning]
 >
-> `ndarray`是Numpy的数组类型，习惯称为数组，但其支持多维数据：
+> `ndarray`是Numpy的数组类型，习惯统称为数组，但其支持多个维度：
 >
-> * 行向量或列向量在Numpy中称为数组。
-> * 矩阵在Numpy中也称数组。
+> * 行向量或列向量在Numpy中，可以用一维数组表示。
+> * 矩阵在Numpy中，可以用二维数组表示。
 
 4. `np.arange`用于生成一个一维数组，类似于Python内置的`range`函数。
 
@@ -318,7 +318,7 @@ print(col.shape)
 
 > [!attention]
 >
-> 1. 对列数据进行切片，切片后数组的形状为`(3,)`，切片后的数据都会以行向量存储。
+> 1. 对列数据进行切片，切片后数组的形状为`(length,)`，切片后的数据都会以行向量存储。
 > 2. 数组切片操作保存到新变量中是引用数据。`reshape`也是引用数据。
 
 ```python
@@ -355,34 +355,210 @@ np.concatenate([a, a])  # 垂直方向进行拼接
 np.concatenate([a, a], axis=1) # 水平方向进行拼接
 
 np.concatenate([a, y]) # 向量和矩阵不能直接拼接
-np.concatenate([a, y.reshape(1, -1)]) # 需要修改y的形状
+w = np.concatenate([a, y.reshape(1, -1)]) # 需要修改y的形状
 ```
 
-
-
-
-
-
-
-
-
-
-
-### 测试 Numpy 的速度
+> [!attention]
+>
+> `concatenate`合并后的数组不是引用数据，是将数据拷贝后生成新的数组，修改原数组或新数组中的数据彼此间不受影响。
+>
+> 判断操作是不是引用操作主要看操作结果是否是原数组的子集，如果是子集一般为引用操作，如果不是子集一般为拷贝操作。
 
 ```python
-import random
-import time
-import numpy as np
-a = []
-for i in range(100000000):
-    a.append(random.random())
-
-%time sum1=sum(a)
-
-b=np.array(a)
-%time sum2=np.sum(b)
+w[0, 0] = 100
+print(w)
+print(x)
 ```
+
+`vstack`将数组在垂直方向拼接，`hstack`将数组在水平方向进行合并。这两个方法支持，矩阵和向量间的操作，但要求数据对齐。
+
+```python
+np.vstack([a, y])
+b = np.full((2, 2), 100)
+np.hstack([a, b])
+
+np.hstack([a, y]) # 报错，数据在水平方向没有对齐。
+```
+
+### 数据分割
+
+`split`函数可以对数组进行分割。
+
+```python
+x = np.arange(10)
+x1, x2, x3 = np.split(x, [3, 7]) # 第二个参数为分割点，参数形式必须是数组。
+w1, w2 = np.split(x, [5])
+
+x1[0] = 100
+print(x1)
+print(x)
+
+a = np.arange(16).reshape(4, 4)
+a1, a2 = np.split(a, [2])  # 在水平方向上分割矩阵
+a1, a2, a3 = np.split(a, [2, 3], axis=1) # 在垂直方向上进行分割
+```
+
+`vsplit`在垂直方向进行分割，`hsplit`在水平方向上进行分割。
+
+```python
+upper, lower = np.vsplit(a, [2])
+left, right = np.hsplit(a, [2])
+
+# 获取最后一列，并转换为一维数组
+x, y = np.hsplit(a, [-1])
+y = y[:, 0] 
+```
+
+## 矩阵运算
+
+### 通用函数
+
+> [!tip]
+>
+> 给定一个向量长度为一百万，让向量中每个数都乘以2。
+
+Python语言自身的处理方法
+
+```python
+n = 1000000
+l = [i for i in range(n)]
+
+# 使用for循环处理，并计时
+%%time
+double = []
+for i in l:
+    double.append(2 * i)
+    
+# 使用列表生成式
+%%time
+double = [2 * i for i in l]
+```
+
+使用Numpy的处理方法
+
+```python
+import numpy as np
+
+l = np.arange(n)
+
+%%time
+double = np.array(2 * i for i in l)
+
+%%time
+double = 2 * l # Numpy支持向量与常数的运算操作
+```
+
+Numpy中将数组作为向量和矩阵进行运算称为通用函数（Universal Function），通用函数的主要目的是对NumPy数组中的值执行更快的重复操作。
+
+通用函数常见的运算符操作
+
+```python
+x = np.arange(1, 16).reshape(3, 5)
+
+x + 1
+x - 1
+x * 2
+x / 2
+x // 2
+x ** 2
+x % 2
+1 / x
+```
+
+> [!warning]
+>
+> 这里虽然使用的数学符号，但是调用的是Numpy的函数，Numpy重写了这些符号的操作函数，方便程序员使用。
+>
+> [符号操作重写的方法](附录.md)
+
+通用函数常见的数学函数
+
+```python
+np.abs(x)
+np.sin(x)
+np.cos(x)
+np.tan(x)
+np.exp(x)
+np.power(3, x) # 等价于x ** 3
+np.log(x) # 已e为底的对数
+np.log2(x)
+np.log10(x)
+```
+
+### 矩阵运算
+
+Numpy中矩阵间运算符的操作，相当于矩阵对应位置元素的运算。
+
+```python
+a = np.arange(4).reshape(2, 2)
+b = np.full((2, 2), 10)
+
+a + b
+a - b
+a * b
+a / b
+```
+
+数学定义的矩阵运算
+
+```python
+a.dot(b) # 矩阵乘法
+a.T # 矩阵的转置
+```
+
+矩阵求逆。计算函数在`np.linalg`为Numpy线性代数工具包。
+
+```python
+inv_a = np.linalg.inv(a)
+
+a.dot(inv_a) # 原局长和逆矩阵矩阵乘法得到单位阵
+inv_a.dot(a)
+```
+
+> [!attention]
+>
+> 1. 矩阵间的符号运算，要求两个矩阵的形状相同或满足广播机制。
+> 2. 矩阵间的数学运算，要求矩阵满足数学运算的条件。
+
+伪逆矩阵
+
+```python
+x = np.arange(16).reshape(2, 8)
+inv_x = np.linalg.inv(x) # 直接求逆矩阵不满足数学条件，报错
+
+pinv_x = np.linalg.pinv(x)
+x.dot(pinv_x)
+```
+
+除此之外矩阵的数学运算还包括，求内积、求范数等，可以查阅Numpy手册。
+
+### 向量和矩阵间的运算
+
+Numpy中向量和矩阵的运算，相当于向量和矩阵的每一行对应位置的元素进行运算
+
+```python
+v = np.array([1, 2])
+v + a
+v * a
+```
+
+`tile`向量的堆叠
+
+```python
+np.tile(v, (2, 1)) # 水平方向上堆叠2次，垂直方向闪堆叠1次。
+np.tile(v, (2, 2))
+
+np.tile(v, (2, 1)) + a # 与v+a操作相同
+```
+
+向量和矩阵的数学运算
+
+> [!warning]
+>
+> Numpy中矩阵间运算和矩阵与向量的运算需要注意两个条件：
+>
+> 1. 两个数组的形状是否满足对齐运算条件。
+> 2. 两个数组的形状是否满足数学运算条件。
 
 ## 基本操作
 
@@ -477,22 +653,7 @@ arr1+arr2
 
 ![](https://s1.ax1x.com/2023/05/22/p9oc4tx.png)
 
-## 矩阵运算
 
-```python
-a = np.array([[80, 86],
-              [82, 80],
-              [85, 78],
-              [90, 90],
-              [86, 82],
-              [82, 90],
-              [78, 80],
-              [92, 94]])
-b = np.array([[0.7], [0.3]])
 
-np.matmul(a, b)
-np.dot(a,b)
-```
 
-二者都是矩阵乘法。 np.matmul中禁止矩阵与标量的乘法。 在矢量乘矢量的内积运算中，np.matmul与np.dot没有区别。
 
