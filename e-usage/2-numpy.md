@@ -49,7 +49,7 @@ arr[5] = 100
 arr[5] = 'learning numpy'
 ```
 
-<img src="../_images/libs/array_vs_list.png" style="zoom:85%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/array_vs_list.png" style="zoom:85%;" />
 
 * Numpy专门针对`ndarray`的操作和运算进行了设计，所以数组存取和计算性能远优于Python列表，数组越大Numpy的优势就越明显。
 * Numpy内置了并行运算功能，会自动做并行计算。

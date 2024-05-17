@@ -1,106 +1,112 @@
 # Matplotlib
 
-- 是专门用于开发2D图表（包括3D图表）
-- 以渐进、交互式方式实现数据可视化
+[Matplotlib](https://matplotlib.org/)是建立在Numpy数组基础上的多平台数据可视化程序库，可以绘制2D和3D的图像。
 
 ## 基本操作
 
 导入模块
 
 ```python
-import matplotlib.pyplot as plt
+import matplotlib as mpl # 使用高级功能时导入完成包
+import matplotlib.pyplot as plt # 常用的绘图工具
 ```
 
 绘制图像
 
-1. 创建画布
+1. 组织要绘制的数据x和y。
+1. 创建画布，可省略。
 
 `plt.figure(figsize=(), dpi=) `  figsize: 指定图的长宽；dpi: 图像的清晰度
 
 2. 绘制图像
 
-`plt.plot(x, y) ` x 轴坐标（数组），y 轴坐标（数组）x轴和y轴数据必须一致
+`plt.plot(x, y) `x轴坐标（数组），y轴坐标（数组）x轴和y轴数据必须一致
 
 3. 显示图像
 
 `plt.show()`
 
-绘制一条直线
+绘制曲线
 
 ```python
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(10, 10), dpi=80)
-plt.plot([1, 2, 3, 4, 5, 6 ,7], [11,12,13,14,15,16,17])
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.plot(x, y)
 plt.show()
 ```
 
 ### Matplotlib图像结构
 
-![](https://s1.ax1x.com/2023/05/15/p9ggozq.jpg)
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/anatomy.png" style="zoom:50%;" />
 
 ## 绘制单幅图像
 
-> [!tip]
->
-> 画出某城市11点到12点1小时内每分钟的温度变化折线图，温度范围在15度~18度
-
-1. 准备数据并画出初始折线图
+1. 一幅图像中绘制多条曲线。
 
 ```python
-import matplotlib.pyplot as plt
-import random
-
-x = range(60)
-y_beijing = [random.uniform(5, 10) for i in x]
-
-plt.figure(figsize=(20, 8), dpi=80)
-plt.plot(x, y_beijing)
+plt.plot(x, y)
+plt.plot(x, cosy)
 plt.show()
 ```
 
-2. 解决中文显示问题
+2. 修改曲线的样式
 
 ```python
-plt.rcParams['font.sans-serif']=['Arial Unicode MS']
-plt.rcParams['axes.unicode_minus']=False
+plt.plot(x, cosy, color='r', linestyle='--')
 ```
 
-3. 添加自定义 x，y 刻度
+[可以选择的颜色](https://matplotlib.org/stable/users/explain/colors/colors.html#colors-def)和[可以选择的线条样式](https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html)
 
-`plt.xticks(x, labels)` x 要显示的刻度值，labels x轴刻度标签
-
-`plt.yticks(y, labels)` x 要显示的刻度值，labels x轴刻度标签
+3. 设置坐标范围
 
 ```python
-x_ticks_label = ["11点{}分".format(i) for i in x]
-y_ticks = range(40)
+plt.xlim(-5, 15)
+plt.ylim(0, 1.5)
 
-plt.xticks(x[::5], x_ticks_label[::5])
-plt.yticks(y_ticks[::5])
+# 使用axis条件坐标范围
+plt.axis([-1, 11, -2, 2])
 ```
 
-4. 添加网格显示
-
-`plt.grid(flag, **kwargs)` flag 是否显示网格，**kwargs 配置网格样式
+4. 添加标签
 
 ```python
-plt.grid(True, linestyle='--', alpha=0.5)
+plt.xlabel('x axis')
+plt.ylabel('y value')
 ```
 
-> [!note]
->
-> linestyle 通常用于设置曲线样式： `-` 实线，`--` 虚线，`-.` 点划线，`: ` 点虚线
-
-5. 添加描述信息
+解决中文显示问题
 
 ```python
-plt.xlabel("时间")
-plt.ylabel("温度")
-plt.title("中午11点0分到12点之间的温度变化图示", fontsize=20) # 通过fontsize参数可以修改图像中字体的大小
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
+plt.rcParams['axes.unicode_minus'] = False
 ```
 
-6. 图像保存
+5. 添加图示
+
+```python
+plt.plot(x, y, label='sin(x)')
+plt.plot(x, cosy, color='r', linestyle='--', label='cos(x)')
+plt.legend() # 绘图前要显示调用图示显示
+```
+
+[`plt.legend(loc)`中的`loc`可以调整图例的位置](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html#matplotlib.pyplot.legend)
+
+6. 添加标题
+
+```python
+plt.title('sin & cos')
+```
+
+7. 添加网格显示
+
+```python
+plt.grid(True, linestyle='--', alpha=0.5) # alphab表示网格线透明度
+```
+
+8. 图像保存
 
 ```python
 plt.savefig("test.png") # 保存图片到指定路径
@@ -108,123 +114,46 @@ plt.savefig("test.png") # 保存图片到指定路径
 
 > [!warning]
 >
-> `plt.show()` 会释放 figure 资源，如果在显示图像之后保存图片将只能保存空图片。
+> `plt.show()` 会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
 
-7. 绘制多条曲线
+## 散点图
 
-```python
-y_shanghai = [random.uniform(18, 20) for i in x]
-plt.plot(x, y_shanghai, color='r', linestyle='--')
-```
-
-> [!note]
->
-> color 通常用于设置线条颜色：r 红色，g 绿色，b 蓝色，w 白色，c 青色，m 洋红，y 黄色，k 黑色
-
-8. 显示图例
+1. 绘制散点图
 
 ```python
-plt.plot(x, y_shanghai, label="上海")
-plt.plot(x, y_beijing, color='r', linestyle='--', label="北京")
+import matplotlib.pyplot as plt
 
-plt.legend(loc="center") # 显示图例
-```
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
 
-`plt.legend(loc)` loc 表示图例显示的位置：best，upper right，upper left，lower left，lower right，right，center left，center right，
-
-lower center，upper center，center
-
-## 绘制多幅图像
-
-在同一画布上绘制多幅图像
-
-`plt.subplots(rows, cols, figsize, dpi)`  nrows, ncols：设置有几行几列坐标系，返回 fig 和 axes
-
-```python
-x = range(60)
-y_beijing = [random.uniform(5, 10) for i in x]
-y_shanghai = [random.uniform(18, 20) for i in x]
-
-fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(20, 8), dpi=100)
-
-axes[0].plot(x, y_beijing, label="北京")
-axes[1].plot(x, y_shanghai, color="r", linestyle="--", label="上海")
-
-x_ticks_label = ["11点{}分".format(i) for i in x]
-y_ticks = range(40)
-
-axes[0].set_xticks(x[::5])
-axes[0].set_yticks(y_ticks[::5])
-axes[0].set_xticklabels(x_ticks_label[::5])
-axes[1].set_xticks(x[::5])
-axes[1].set_yticks(y_ticks[::5])
-axes[1].set_xticklabels(x_ticks_label[::5])
-
-axes[0].grid(True, linestyle="--", alpha=0.5)
-axes[1].grid(True, linestyle="--", alpha=0.5)
-
-axes[0].set_xlabel("时间")
-axes[0].set_ylabel("温度")
-axes[0].set_title("中午11点--12点某城市温度变化图", fontsize=20)
-axes[1].set_xlabel("时间")
-axes[1].set_ylabel("温度")
-axes[1].set_title("中午11点--12点某城市温度变化图", fontsize=20)
-
-axes[0].legend(loc=0)
-axes[1].legend(loc=0)
-
+plt.scatter(x, y) # 绘制散点图的函数
 plt.show()
 ```
 
-> [!warning]
->
-> 设置标题等方法不同：`set_xtick` `set_yticks` `set_xticklabels` `set_xlabel` `set_ylabel` `set_title`
-
-优化图例设置
+2. 绘制不同数据的散点图
 
 ```python
-for one in axes:
-    one.set_xticks(x[::5])
-    one.set_yticks(y_ticks[::5])
-   	one.set_xticklabels(x_ticks_label[::5])
-    one.grid(True, linestyle="--", alpha=0.5)
-    one.set_xlabel("时间")
-    one.set_ylabel("温度")
-    one.set_title("中午11点--12点某城市温度变化图", fontsize=20)
-    one.legend(loc=0)
+cosy = np.cos(x)
+plt.scatter(x, cosy, color='r')
 ```
 
-## 绘制其它类型图形
-
-### 散点图
+散点图绘制特征数据
 
 ```python
-x = [225.98, 247.07, 253.14, 457.85, 241.58, 301.01,  20.67, 288.64,
-       163.56, 120.06, 207.83, 342.75, 147.9 ,  53.06, 224.72,  29.51,
-        21.61, 483.21, 245.25, 399.25, 343.35]
-y = [196.63, 203.88, 210.75, 372.74, 202.41, 247.61,  24.9 , 239.34,
-       140.32, 104.15, 176.84, 288.23, 128.79,  49.64, 191.74,  33.1 ,
-        30.74, 400.02, 205.35, 330.64, 283.45]
+# 简单模拟
+x = np.random.normal(0, 1, 100)
+y = np.random.normal(0, 1, 100)
 
-plt.figure(figsize=(20, 8), dpi=80)
 plt.scatter(x, y)
 plt.show()
-```
 
-### 柱状图
+# 模拟均匀分布
+x = np.random.normal(0, 1, 10000)
+y = np.random.normal(0, 1, 10000)
 
-```python
-movie_name = ['雷神3：诸神黄昏','正义联盟','东方快车谋杀案','寻梦环游记','全球风暴','降魔传','追捕','七十七天','密战','狂兽','其它']
-x = range(len(movie_name))
-y = [73853,57767,22354,15969,14839,8725,8716,8318,7916,6764,52222]
-
-plt.figure(figsize=(20, 8), dpi=80)
-
-plt.bar(x, y, width=0.5, color=['b','r','g','y','c','m','y','k','c','g','b'])
-plt.xticks(x, movie_name)
-plt.grid(linestyle="--", alpha=0.5)
-plt.title("电影票房收入对比")
-
+plt.scatter(x, y, alpha=0.1)
 plt.show()
 ```
+
+
 
