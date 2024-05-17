@@ -553,105 +553,257 @@ np.tile(v, (2, 1)) + a # 与v+a操作相同
 
 向量和矩阵的数学运算
 
+```python
+v.dot(a)
+a.dot(v) # Numpy可以自动转换向量形式与矩阵进行运算
+```
+
 > [!warning]
+>
+> 向量和矩阵运算时，无论是行向量还是列向量都表示成一维向量，Numpy会自动进行行向量和列向量的转换。
 >
 > Numpy中矩阵间运算和矩阵与向量的运算需要注意两个条件：
 >
 > 1. 两个数组的形状是否满足对齐运算条件。
 > 2. 两个数组的形状是否满足数学运算条件。
 
-## 基本操作
+### 聚合运算
 
-### 修改类型
-
-`arr.astype(type)` 修改数据类型，type 数据类型。
-
-### 数组去重
-
-`np.unique()`
-
-```
-temp = np.array([[1, 2, 3, 4],[3, 4, 5, 6]])
-np.unique(temp)
-```
-
-## 数组运算
-
-### 逻辑运算
+Numpy中的聚合函数用于计算数组的统计值等，Numpy中的聚合函数可以直接作用于数组。
 
 ```python
-score = np.random.randint(40, 100, (4, 5))
-score
-
-test_score > 60
-
-score[score > 60] = 1
-score
+big_array = np.random.random(1000000)
+%timeit sum(big_array)
+%timeit np.sum(big_array)
 ```
 
-### 通用判断函数
+Numpy聚合操作方式
 
 ```python
-np.all(score[0:2, :] > 60) # 判断前向量是否都大于 60
-np.any(score[0:2, :] > 80) # 判断前向量是否有值大于 80
+np.min(big_array)
+np.max(big_array)
+
+# 部分聚合操作可以通过向量直接调用
+big_array.min()
+big_array.max()
+big_array.sum()
+
+# 聚合运算默认是对整个数组进行计算
+x = np.arange(16).reshape(4, 4)
+np.sum(x)
+
+# 指定方向的求和
+np.sum(x, axis=0) # 在水平方向进行压缩
+np.sum(x, axis=1) # 在垂直方向进行压缩，计算结果仍未一维向量。
 ```
 
-### 三元运算
+Numpy中常用聚合操作
 
 ```python
-temp = score[:, :]
-np.where(temp > 60, 1, 0) # 变量大于 60 设置为 1， 否则设置为0
+np.prod(x+1) # 将所有数相乘
+np.mean(x) # 求均值
+np.median(x) # 求中位数
+np.percentile(big_array, q=50) # 大于50%数的值
+np.percentile(big_array, q=100) # 求最大值
 
-temp = score[:, :]
-np.where(np.logical_and(temp > 60, temp < 90), 1, 0) # 逻辑与
-
-temp = score[:, :]
-np.where(np.logical_or(temp > 90, temp < 60), 1, 0) # 逻辑或
+# 对百分位点进行统计
+for percent in [0, 25, 50, 75, 100]:
+    print(np.percentile(big_array, q=percent))
+    
+np.var(big_array) # 求方差
+np.std(big_array) # 求标准差
 ```
 
-### 统计运算
+#### `arg`函数
 
-- min(a, axis) 最小值
-- max(a, axis) 最大值
-- median(a, axis) 中位数
-- mean(a, axis, dtype) 均值
-- std(a, axis, dtype) 标准差
-- var(a, axis, dtype) 方差
-
-axis = 0 代表按照列统计； axis = 1代表按照行统计。
+用于获得聚合值的索引
 
 ```python
-print(np.max(temp, axis=0))
-print(np.min(temp, axis=0))
-print(np.std(temp, axis=0))
-print(np.mean(temp, axis=0))
+x = np.random.normal(0, 1, size=1000000)
+np.argmin(x) # 获得最小值位置索引
+np.argmax(x) # 获得最大值位置索引
 ```
 
-## 数组间运算
+### 数组排序
 
-### 数组与数的运算
+数组排序
 
 ```python
-arr = np.array([[1, 2, 3, 2, 1, 4], [5, 6, 1, 2, 3, 1]])
-arr + 1
-arr / 2
+x = np.arange(16)
+np.random.shuffle(x) # 将数组打乱
+
+z = np.sort(x) # 排序后返回新数组，x顺序不变
+x.sort() # 对x自身排序
 ```
 
-### 广播机制
-
-数组在进行矢量化运算时，要求数组的形状是相等的。当形状不相等的数组执行算术运算的时候，就会出现广播机制，该机制会对数组进行扩展，使数组的shape属性值一样，这样，就可以进行矢量化运算了。下面通过一个例子进行说明：
+矩阵排序
 
 ```python
-arr1 = np.array([[0],[1],[2],[3]])
-arr1.shape
+x = np.random.randint(10, size=(4, 4))
 
-arr2 = np.array([1,2,3])
-arr2.shape
-
-arr1+arr2
+np.sort(x) # 对每一行数据进行排序
+np.sort(x, axis=0) # 沿着水平方向进行排序
 ```
 
-![](https://s1.ax1x.com/2023/05/22/p9oc4tx.png)
+排序中的索引
+
+```python
+x = np.arange(16)
+np.random.shuffle(x)
+
+np.argsort(x) # 返回排序后数字的索引值，对矩阵同样成立
+```
+
+对数据以某一值进行分割
+
+```python
+np.partition(x, 3)  # 以3为锚点将数据分割为两部分
+np.argpartition(x, 3) # 返回分割的索引
+```
+
+### Fancy Indexing
+
+传递一个索引数组来一次性获得多个数组元素。
+
+向量的索引
+
+```python
+import numpy as np
+x = np.arange(16)
+
+# 指定特定元素的索引
+index = [3, 5, 8]
+x[index]
+
+# 根据原数组索引生成二维矩阵
+index = np.array([[0, 2], [1, 3]])
+x[index]
+```
+
+矩阵的索引
+
+```python
+w = x.reshape(4, -1)
+
+row = np.array([0, 1, 2])
+col = np.array([1, 2, 3])
+w[row, col]
+w[0, col]
+w[:2, col]
+```
+
+布尔索引
+
+```python
+col = [True, False, True, True]
+w[1:3, col]
+```
+
+### 布尔运算
+
+与通用运算类似，得到一个全部是布尔值的数组。支持的运算主要是比较运算。
+
+```python
+import numpy as np
+x = np.arange(16)
+
+x < 3
+x > 3
+x <= 3
+x >= 3
+x == 3
+x != 3
+2 * x == 24 - 4 * x
+
+w = x.reshape(4, -1)
+w < 6
+```
+
+布尔运算的应用
+
+```python
+np.sum(x <= 3)  # 统计小于3数据的数量
+np.count_nonzero(x <= 3)  # 统计0元素
+```
+
+1.  `any`判断数组是否有True值。
+
+```python
+np.any(x == 0) # 是否存等于0的元素
+np.any(x < 0) # 是否存在小于0的元素
+```
+
+2. `all`判断数组中所有的元素都为True.
+
+```python
+np.all(x >= 0) # 全部元素都大于等于0
+np.all(x > 0) # 全部元素大于0
+```
+
+矩阵运算中的应用
+
+```python
+np.sum(w % 2 == 0) # 判断矩阵中有多少偶数
+np.sum(w % 2 == 0, axis=1) # 计算每一列有多少偶数
+np.all(w > 0, axis=1) # 判断在列方向上是否全部大于0
+```
+
+与或非运算
+
+```python
+np.sum((w > 3) & (w < 10)) # 与运算
+np.sum((w % 2 == 0) | (w > 10)) # 或运算
+np.sum(~(w == 0)) # 非运算
+```
+
+布尔索引的应用
+
+```python
+x[x < 5] # 索引小于5的值
+x[x % 2 == 0] # 所有的偶数值
+w[w[:, 3] % 3 == 0, :] # w最后一列可以被3整除的行构成的数组。
+```
+
+## 练习
+
+使用Nump完成下面函数
+
+> [!tip]
+>
+> 编写一个函数计算两个向量的欧式距离，两个向量为： `x = [5.0, 3.3, 1.4, 0.2]`、`y = [7.0, 3.2, 4.7, 1.4]`
+
+```python
+import numpy as np
+
+x = np.array([5.0, 3.3, 1.4, 0.2]) 
+y = np.array([7.0, 3.2, 4.7, 1.4])
+
+def distance(x1, x2):
+    return np.sqrt(np.sum((x1 - x2) ** 2))
+
+result = distance(x, y)
+print(result)
+```
+
+> [!tip]
+>
+> 编写一个函数计算明可夫斯基距离。
+
+```python
+def distance(x1, x2, p=2):
+    return np.sum(np.abs(x1 - x2) ** p) ** (1/p)
+
+result = distance(x, y, 1)
+print(result)
+result = distance(x, y)
+print(result)
+result = distance(x, y, 3)
+print(result)
+```
+
+
+
+
 
 
 
