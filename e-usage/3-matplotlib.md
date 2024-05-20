@@ -11,7 +11,7 @@ import matplotlib as mpl # 使用高级功能时导入完成包
 import matplotlib.pyplot as plt # 常用的绘图工具
 ```
 
-绘制图像
+图像绘制流程：
 
 1. 组织要绘制的数据x和y。
 1. 创建画布，可省略。
