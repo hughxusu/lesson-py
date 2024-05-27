@@ -1,7 +1,3 @@
-
-
-<img src="https://datatechlog.com/wp-content/uploads/2020/06/Pandas_logo.png" style="zoom: 33%;" />
-
 # Pandas
 
 - 2008年WesMcKinney开发出的库

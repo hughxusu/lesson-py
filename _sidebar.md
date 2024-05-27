@@ -30,6 +30,7 @@
   * [安装包与虚拟环境](e-usage/1-环境.md)
   * [Numpy](e-usage/2-numpy.md)
   * [matplotlib](e-usage/3-matplotlib.md)
+  * [pandas](e-usage/4-pandas.md)
 
 * [附录](附录.md)
     
