@@ -1,71 +1,58 @@
 # Pandas
 
-- 2008年WesMcKinney开发出的库
-- 专门用于数据挖掘的开源python库
-- 以Numpy为基础，借力Numpy模块在计算方面性能高的优势
-- 基于matplotlib，能够简便的画图
-- 独特的数据结构
+[Pandas](https://pandas.pydata.org/)是在Numpy基础上建立的数据处理库，为带各种标签的数据提供了高校的操作，这些操作数据库和类似于Excel中的部分功能。
 
-为什么使用Pandas
-
-* 增强图表可读性
-* 便捷的数据处理能力
-* 读取文件方便
-* 封装了Matplotlib、Numpy的画图和计算
+Pandas主要用于数据清理的相关任务。
 
 ## Pandas数据结构
 
-Pandas中一共有三种数据结构，分别为：Series、DataFrame。其中Series是一维数据结构，DataFrame是二维的表格型数据结构。
+Pandas中一共有三种数据结构，分别为：Series、DataFrame和Panel。
 
-### Series
+* Series是一维数据结构，
+* DataFrame是二维数据结构。
+* Panel是三维数据结构。
 
-Series是一个类似于一维数组的数据结构，它能够保存任何类型的数据，比如整数、字符串、浮点数等，主要由一组数据和与之相关的索引两部分构成。
+> [!warning]
+>
+> Panel数据结构很少使用，通常使用其他方式替代这种数据结构。
 
-`pd.Series(data, index, dtype)`
+### DataFrame数据结构
 
-* data：传入的数据，可以是ndarray、list等。
-* index：索引，必须是唯一的，且与数据的长度相等。如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
-* dtype：数据的类型。
+创建一个DataFrame的数据结构
 
 ```python
 import pandas as pd
 import numpy as np
 
-pd.Series(np.arange(10))
-pd.Series([6.7,5.6,3,10,2], index=[1,2,3,4,5])
+stock_day_rise = np.random.normal(0, 1, (10, 30)) # 模拟生成10支股票30天的涨跌数据
+stock_df = pd.DataFrame(stock_day_rise) 
 
-color_count = pd.Series({'red':100, 'blue':200, 'green': 500, 'yellow':1000})
-color_count
-
-color_count.index # 数据索引
-color_count.values # 数据
-color_count[2] # 获得数据
+print(type(stock_df)) # 查看数据结构
 ```
 
-### DataFrame
+DataFrame是一个类似于表格的数据结构，有行索引（index）和列索引（columns）。
 
-DataFrame是一个类似于二维数组或表格的对象，既有行索引，又有列索引
+<img src="../_images/libs/creating_dataframe1.png" style="zoom: 67%;" />
 
-* 行索引，表明不同行，横向索引，叫index，0轴，axis=0
-* 列索引，表名不同列，纵向索引，叫columns，1轴，axis=1
-
-![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/creating_dataframe1.png)
-
-`pd.DataFrame(data, index, columns)`
-
-* index：行标签。如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
-* columns：列标签。如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
+给DataFrame数据结构添加索引
 
 ```python
-score = np.random.randint(40, 100, (10, 5))
-score_df = pd.DataFrame(score)
+stock_code = ['股票' + str(i+1) for i in range(stock_day_rise.shape[0])]
+date = pd.date_range(start='2024-01-01', periods=stock_day_rise.shape[1], freq='B')
 
-subjects = ["语文", "数学", "英语", "政治", "体育"]
-stu = ['同学' + str(i) for i in range(score_df.shape[0])]
-data = pd.DataFrame(score, columns=subjects, index=stu)
+stock_df = pd.DataFrame(stock_day_rise, index=stock_code, columns=date)
 ```
 
+`pd.DataFrame(data, index, columns)`创建数据结构。
+
+* `index`行索引，`columns`列索引。
+* 如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
+
+`pd.date_range`创建一组日期数据，`start`开始时间，`periods`时间长度，`freq=B`跳过周末。
+
 DataFrame的属性
+
+* Numpy的属性`shape`、`dtypes`、`ndim`
 
 ```python
 data.shape 
@@ -91,6 +78,31 @@ df = pd.DataFrame({'month': [1, 4, 7, 10],
 
 df.set_index('month') # 将某一列修改为索引
 df.set_index(['year', 'month'])
+```
+
+### Series
+
+Series是一个类似于一维数组的数据结构，它能够保存任何类型的数据，比如整数、字符串、浮点数等，主要由一组数据和与之相关的索引两部分构成。
+
+`pd.Series(data, index, dtype)`
+
+* data：传入的数据，可以是ndarray、list等。
+* index：索引，必须是唯一的，且与数据的长度相等。如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
+* dtype：数据的类型。
+
+```python
+import pandas as pd
+import numpy as np
+
+pd.Series(np.arange(10))
+pd.Series([6.7,5.6,3,10,2], index=[1,2,3,4,5])
+
+color_count = pd.Series({'red':100, 'blue':200, 'green': 500, 'yellow':1000})
+color_count
+
+color_count.index # 数据索引
+color_count.values # 数据
+color_count[2] # 获得数据
 ```
 
 ## 基本数据操作
