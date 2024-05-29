@@ -1,8 +1,16 @@
 # Pandas
 
-[Pandas](https://pandas.pydata.org/)是在Numpy基础上建立的数据处理库，为带各种标签的数据提供了高校的操作，这些操作数据库和类似于Excel中的部分功能。
+[Pandas](https://pandas.pydata.org/)是在Numpy基础上建立的数据处理库，非常适合处理表格数据，例如电子表格或数据库表。
 
-Pandas主要用于数据清理的相关任务。
+Pandas主要用于数据分析和数据清理等相关任务。
+
+> [!warning]
+>
+> 在拥有16GB内存的计算机上，pandas可以轻松处理数百万行、数十个列的数据集。
+>
+> `int64`和`float64`：每个元素占8个字节。
+>
+> 内存 $ =\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}$
 
 ## Pandas数据结构
 
@@ -22,117 +30,257 @@ Pandas中一共有三种数据结构，分别为：Series、DataFrame和Panel。
 
 ```python
 import pandas as pd
-import numpy as np
 
-stock_day_rise = np.random.normal(0, 1, (10, 30)) # 模拟生成10支股票30天的涨跌数据
-stock_df = pd.DataFrame(stock_day_rise) 
-
+# 从网络读取数据
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
 print(type(stock_df)) # 查看数据结构
 ```
 
-DataFrame是一个类似于表格的数据结构，有行索引（index）和列索引（columns）。
+DataFrame是一个类似于表格的数据结构，可以保存任何类型数据（比如整数、字符串、浮点数等）。
 
-<img src="../_images/libs/creating_dataframe1.png" style="zoom: 67%;" />
-
-给DataFrame数据结构添加索引
-
-```python
-stock_code = ['股票' + str(i+1) for i in range(stock_day_rise.shape[0])]
-date = pd.date_range(start='2024-01-01', periods=stock_day_rise.shape[1], freq='B')
-
-stock_df = pd.DataFrame(stock_day_rise, index=stock_code, columns=date)
-```
-
-`pd.DataFrame(data, index, columns)`创建数据结构。
-
-* `index`行索引，`columns`列索引。
+* 有`index`行索引对应的轴为0，`columns`列索对应的轴为1。
 * 如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
 
-`pd.date_range`创建一组日期数据，`start`开始时间，`periods`时间长度，`freq=B`跳过周末。
+<img src="../_images/libs/creating_dataframe1.png" style="zoom:65%;" />
 
-DataFrame的属性
+的基本属性
 
 * Numpy的属性`shape`、`dtypes`、`ndim`
+* DataFrame属性：
+  * 获得索引`index`、`columns`
+  * `values`获得数据矩阵，返回数据类型是Numpy数组。
+  * `T`对DataFrame数据进行转置。
 
 ```python
-data.shape 
-data.index # DataFrame的行索引列表
-data.columns # DataFrame的列索引列表
-data.values # DataFrame数据
+print(data.shape)
+print(data.index)
+print(data.columns)
+print(type(data.values))
+data.values
 data.T
-data.head(5) # 显示前5行内容
-data.tail(5) # 显示后5行内容
+```
 
-stu = ["学生_" + str(i) for i in range(score_df.shape[0])]
-data.index = stu # 修改索引
+DataFrame的整体查询`head()`和`tail`可以查询头部和尾部的数据，默认是5条数据。
 
-# 重置索引
-data.reset_index()
-data.reset_index(drop=True) # 去掉圆索引
+```python
+data.head()
+data.tail(10)
+```
 
+#### DataFrame的索引
 
-# 使用字典创建数据
-df = pd.DataFrame({'month': [1, 4, 7, 10],
-                    'year': [2012, 2014, 2013, 2014],
-                    'sale':[55, 40, 84, 31]})
+索引包含`index`和`columns`用于数据查询，可以看作是一个**不可变数组**或有序集合，为任意类型数据。
 
-df.set_index('month') # 将某一列修改为索引
-df.set_index(['year', 'month'])
+```python
+print(type(players.index))
+print(type(players.columns))
+```
+
+1. 修改行列索引值。
+
+> [!attention]
+>
+> DataFrame修改`index`或`columns`的操作，不能修改单个值，只能整体全部修改。
+
+```python
+print(data.index[0])
+data.index[0] = 'Avery Bradley' # 报错不能修改单个值
+
+index = data.index.tolist() # 将index转换为list
+index[0] = 'Avery Bradley'
+data.index = index
+```
+
+2. `index`的设置与重置。设置与重置的操作只针对`index`，`columns`没有该操作。
+
+`set_index`可以将某一列数据设置为索引。同时可以设置多重索引。
+
+```python
+players = data.set_index('Name') # 将球员的名字设置为索引
+print(players.index)
+
+players = data.set_index(['Name', 'Team'])
+print(players.index)
+```
+
+> [!warning]
+>
+> 设置多个索引的操作将数据变为了基于MutiIndex的DataFrame数据结构。
+
+`reset_index`将原来的索引删除或变为一列数据。
+
+```python
+data = players.reset_index() # 将原来索引变为一列数据
+temp = players.reset_index(drop=True) # 删除原来索引
 ```
 
 ### Series
 
-Series是一个类似于一维数组的数据结构，它能够保存任何类型的数据，比如整数、字符串、浮点数等，主要由一组数据和与之相关的索引两部分构成。
+Series是一维标记数组，只有行索引没有列索引，够保存任何类型的数据。
 
-`pd.Series(data, index, dtype)`
-
-* data：传入的数据，可以是ndarray、list等。
-* index：索引，必须是唯一的，且与数据的长度相等。如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
-* dtype：数据的类型。
+从DataFrame中获取一个Series数据
 
 ```python
-import pandas as pd
-import numpy as np
+players = data.set_index('Name')
+salary = players['Salary']
 
-pd.Series(np.arange(10))
-pd.Series([6.7,5.6,3,10,2], index=[1,2,3,4,5])
-
-color_count = pd.Series({'red':100, 'blue':200, 'green': 500, 'yellow':1000})
-color_count
-
-color_count.index # 数据索引
-color_count.values # 数据
-color_count[2] # 获得数据
+print(type(salary))
+print(salary.index)
+print(salary.columns)
 ```
+
+### 创建数据
+
+#### 创建Series数据
+
+`pd.Series(data, index=index)`
+
+* `data`：传入的数据，参数支持多种数据类型，包括ndarray、list、dict等。
+* `index`：可选参数，与数据的长度相等，默认会自动创建一个从0-N的整数索引。
+
+```python
+pd.Series([2, 4, 6])
+pd.Series(5, index=[100, 200, 300])
+pd.Series(np.arange(10))
+population_dict = {
+    'California': 38332521,
+    'Texas': 26448193,
+    'New York': 19651127,
+    'Florida': 19552860,
+    'Illinois': 12882135
+}
+population = pd.Series(population_dict)
+```
+
+#### 创建DataFrame数据
+
+`pd.DataFrame(data, index=index, columns=index)`，`data`支持多种数据类型，`indes`和`columns`为可选参数。
+
+```python
+# 通过单个Series对象创建
+pd.DataFrame(population, columns=['population'])
+
+# 通过字典列表创建
+data = [{'a': i, 'b': 2 * i} for i in range(3)]
+pd.DataFrame(data)
+
+# 通过Series对象字典创建。
+area_dict = {
+    'California': 423967, 
+    'Texas': 695662, 
+    'New York': 141297,
+    'Florida': 170312, 
+    'Illinois': 149995
+}
+area = pd.Series(area_dict)
+pd.DataFrame({'population': population, 'area': area})
+
+# 通过NumPy二维数组创建。
+pd.DataFrame(np.random.rand(3, 2), columns=['foo', 'bar'], index=['a', 'b', 'c'])
+```
+
+## 数据取值与修改
+
+### 读取数据
+
+DataFramed数据有三种获取方式
+
+1. 直接使用行列索引<span style="color: #ff4d4f;">（注意：索引方式为先列后行，与Numpy相反）</span>，直接索引支持切片操作。
+
+```python
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
+players = data.set_index('Name')
+
+players['Salary'] # 获取一列数据，返回Series数据类型
+players[['Salary', 'Team', 'Number']] # 获取多列数据，返回DataFramed数据类型
+players['Salary']['Avery Bradley']
+
+players['Avery Bradley'] # 直接获取一行数据报错
+
+players['Salary'][0:6]
+players[0:3][0:6]
+```
+
+> [!attention]
+>
+> 直接索引不支持Numpy类似的操作
+
+```python
+# 下列操作报错
+players[2, 2]
+players[0:2, 1:3]
+```
+
+2. 结合`loc`和`iloc`使用索引，可以先行后列进行索引，支持切片操作。
+
+* `loc`通过名字取值。
+
+```python
+players.loc['Avery Bradley', 'Salary']
+players.loc['Avery Bradley': 'R.J. Hunter']
+players.loc['Avery Bradley': 'R.J. Hunter', ['Salary', 'Team', 'Number']]
+```
+
+* `iloc`通过下标进行取值（与Numpy用法相似）。
+
+```python
+players.iloc[0, 0]
+players.iloc[0: 10, 0:2]
+```
+
+3. 混合索引，`loc`、`iloc`和直接索引。
+
+```python
+# 使用loc和iloc混合索引数据
+players.iloc[0: 10].loc[:, ['Salary', 'Team', 'Number']]
+
+# iloc和直接索引
+players.iloc[0: 10]['Salary']
+players.iloc[0: 10][['Salary', 'Team', 'Number']]
+
+# 注意：只获取前两行数据不会获取前十行前两列数据
+players.iloc[0: 10][0:2]
+```
+
+> [!attention]
+>
+> 老版本中存在`ix`索引，在新版本中已经弃用。
+
+Series数据读取与DataFramed类似也支持`loc`和`iloc`
+
+> [!warning]
+>
+> 可以把Series对象看成一种特殊的Python字典。
+
+```python
+salary = players['Salary']
+salary['Avery Bradley']
+
+salary.iloc[10]
+salary.iloc[0:5]
+```
+
+### 修改数据
+
+DataFramed可以通过索引的方式修改数据
+
+```python
+players.loc['Avery Bradley', 'Salary'] = 1000
+```
+
+> [!attention]
+>
+> 
+
+### 数据排序
+
+
+
+
 
 ## 基本数据操作
 
-读取示例数据
-
-```python
-data = pd.read_csv("./data/stock_day.csv")
-data = data.drop(["ma5","ma10","ma20","v_ma5","v_ma10","v_ma20"], axis=1)
-```
-
 ### 索引操作
-
-Numpy当中我们已经讲过使用索引选取序列和切片选择，pandas也支持类似的操作，也可以直接使用列名、行名
-
-称，甚至组合使用。
-
-```python
-data['open']['2018-02-27'] # 直接使用行列索引名字的方式（先列后行）
-```
-
-切片索引
-
-```python
-data.loc['2018-02-27':'2018-02-22', 'open'] # 使用loc:只能指定行列索引的名字
-data.iloc[:3, :5]
-
-data.loc[data.index[0:4], ['open', 'close', 'high', 'low']]
-data.iloc[0:4, data.columns.get_indexer(['open', 'close', 'high', 'low'])]
-```
 
 赋值操作
 
