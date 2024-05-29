@@ -3,9 +3,9 @@
   * [认识Python](a-base/1-认识)
   * [搭建Python的开发环境](a-base/2-环境)
   * [从变量开始](a-base/3-变量)
-  * [最简单的数据类型](a-base/4-类型)
+  * [简单数据类型](a-base/4-类型)
   * [字符串](a-base/5-字符)
-  * [程序的执行原理](a-base/6-原理)
+  * [程序执行原理](a-base/6-原理)
   * [条件控制](a-base/7-条件)
   * [列表与元组](a-base/8-列表)
   * [循环控制](a-base/9-循环)
@@ -14,7 +14,7 @@
   * 函数
     * [认识函数](b-def/1-基础)
     * [参数和返回值](b-def/2-参数)
-    * [Python中的特殊函数](b-def/3-特殊)
+    * [几种特殊函数](b-def/3-特殊)
     * [实践案例](b-def/4-用户)
   * 面向对象
     * [基本语法](c-class/1-基础)
@@ -29,7 +29,8 @@
 * Python常用库
   * [安装包与虚拟环境](e-usage/1-环境.md)
   * [Numpy](e-usage/2-numpy.md)
-  * [matplotlib](e-usage/3-matplotlib.md)
+  * [Matplotlib](e-usage/3-matplotlib.md)
+  * [Pandas](e-usage/4-pandas.md)
 
 * [附录](附录.md)
     
