@@ -12,10 +12,13 @@
 
 * 了解Python在互联网行业中的应用。
 * 了解计算机程序的基本运行原理。
-* 安装Python开发环境与开发工具。
-* 学习Python基本语法和高级特性。
+* 安装Python开发工具并配置开发环境。
+* 学习Python语法和数据类型。
 * 学习面向对象编程的思想。
+* 学习Python语言的高级应用。
 * 学习Python的标准库库，如：文件操作等。
+* 学习Python语言包的安装与虚拟环境的创建。
+* 学习Python语言用于数据处理常用软件包：Numpy、Matplotlib和Pandas。
 
 ## 参考资料
 
@@ -30,4 +33,5 @@
 
 * [Python编程（第3版）](https://book.douban.com/subject/36365320/)
 * [Python工匠](https://book.douban.com/subject/35723705/)
+* [Python数据科学手册](https://book.douban.com/subject/27667378/)
 
