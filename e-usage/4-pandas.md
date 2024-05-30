@@ -559,7 +559,7 @@ data.replace(to_replace='?', value=np.nan) # 替换部分值
 
 [测试数据集](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data)
 
-<img src="../_images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
 
 使用`replace(to_replace, value)`将标记替换为`np.nan`，按前面的步骤处理。
 
@@ -617,7 +617,7 @@ cut.value_counts()
 * `data`要生编码的数据，必须是标记矩阵。
 * `prefix`编码列前缀。
 
-<img src="../_images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
 
 ```python
 pd.get_dummies(cut, prefix='weight')
