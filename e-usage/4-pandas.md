@@ -1,8 +1,16 @@
 # Pandas
 
-[Pandas](https://pandas.pydata.org/)是在Numpy基础上建立的数据处理库，非常适合处理表格数据，例如电子表格或数据库表。
+[Pandas](https://pandas.pydata.org/)是在Numpy和Matplotlib基础上建立的数据处理库，非常适合处理表格数据，包括电子表格或数据库表等。
 
 Pandas主要用于数据分析和数据清理等相关任务。
+
+```mermaid
+graph LR
+a(原始数据\n保存于\n文件或数据库)--读取数据-->c
+c(Pandas\n操作\n数据清洗或筛选)-->d(预处理数据)
+d-->i(数据挖掘)
+d-->f(机器学习)
+```
 
 > [!warning]
 >
@@ -10,7 +18,9 @@ Pandas主要用于数据分析和数据清理等相关任务。
 >
 > `int64`和`float64`：每个元素占8个字节。
 >
-> 内存 $ =\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}$
+> 内存 $ =\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}$​
+
+[Pandas学习网站](https://www.geeksforgeeks.org/pandas-tutorial/?ref=outind)
 
 ## Pandas数据结构
 
@@ -179,7 +189,7 @@ pd.DataFrame({'population': population, 'area': area})
 pd.DataFrame(np.random.rand(3, 2), columns=['foo', 'bar'], index=['a', 'b', 'c'])
 ```
 
-## 数据取值与修改
+## 数据读取与修改
 
 ### 读取数据
 
@@ -298,147 +308,319 @@ players.sort_index()
 players.sort_index(ascending=False) 
 ```
 
-## 基本数据操作
+## Pandas的运算
 
-### 索引操作
+### 统计运算
 
-赋值操作
-
-```python
-data['close'] = 1
-data.close = 1
-```
-
-排序
+`describe`综合分析，能够自动得出多统计结果，包括count、mean、std、min、max等，count表示数据量（数据行数）
 
 ```python
-data.sort_values(by="open", ascending=True).head() # 指定排序方式
-data.sort_values(by=['open', 'high']) # 按照多个键进行排序
-data.sort_index() # 给索引进行排序
+import pandas as pd
+
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
+players = data.set_index('Name')
+
+players.describe()
 ```
 
-Series排序
+使用单个函数进行统计时，可以设置统计的坐标轴，还是按照默认列统计`axis=0`，如果要对行操作`axis=1`。
+
+1. 常见统计指标：`max`最大值、`var`方差、`std`标准差、`median`中位数。
 
 ```python
-data['p_change'].sort_values(ascending=True).head() # 只有一列
-data['p_change'].sort_index().head() # 对索引排序
+players.max() # 使用函数，当数据中有字符串时会报错
+
+# DataFrame数据统计
+players[['Age', 'Weight', 'Salary']].max() 
+
+# Series数据统计
+players['Salary'].max() 
+
+# 统计每一行的最大值，由于数据尺度不同，本组数据中每一行的最大值都是Salary
+players[['Age', 'Weight', 'Salary']].max(1) 
 ```
 
-## DataFrame运算
-
-算数运算
+2. 查找最大值的位置：`idxmax`最大值的位置，`idxmin`最小值的位置
 
 ```python
-# 加减法
-data['open'].add(1)
-data['open'].sub(1) 
+players['Salary'].idxmax()
 ```
 
-逻辑运算
+[Series的相关函数](https://pandas.pydata.org/docs/reference/series.html)和[DataFrame的相关函数](https://pandas.pydata.org/docs/reference/frame.html)
+
+### 逻辑运算
+
+逻辑运算主要用于数据的筛选。
+
+1. 使用比较运算符号进行筛选，包括`>`、`<`等。
 
 ```python
-data['open'] > 23
+players['Age'] > 25 # 返回Series数据类型，存储数据为标记数组。
 
-# 使用逻辑运算筛选数据
-data[data["open"] > 23].head()
-data[(data["open"] > 23) & (data["open"] < 24)].head()
+# 将年龄大于25的数据筛选出来，类似与Numpy中的布尔数组索引。
+players[players['Age'] > 25] 
 ```
 
-逻辑运算函数
+2. 使用`|`和`&`完成符号逻辑。
 
 ```python
-data.query("open<24 & open>23").head() # 查询结构
-data[data["open"].isin([23.53, 23.85])] # 判断数据是否存在
+# 筛选年龄在[25, 30]之间的数据
+players[(players['Age'] <= 30) & (players['Age'] >= 25)]
+
+# 也可以统计不同列的数据
+players[(players['Age'] <= 30) & (players['Weight'] >= 185)]
 ```
 
-## 统计运算
-
-综合分析: 能够直接得出很多统计结果`count`, `mean`, `std`, `min`, `max` 等
+3. `query`逻辑查询语句。可以替代逻辑运算符和比较运算符进行数据筛。
 
 ```python
-data.describe()
+# 与上的结果相同，语句更简洁
+players.query('Age <= 30 & Weight >= 185')
+
+# 将Number大于Age的球员数据筛选出来
+players.query('Number > Age')
 ```
 
-对于单个函数去进行统计的时候，坐标轴还是按照默认列“columns” (axis=0, default)，如果要对行“index” 需要指定(axis=1)
+4. `isin`判断是否存在某个值进行筛选。
 
 ```python
-data.max(0) # 最大值
-data.var(0) # 方差
-data.std(0) # 标准差
-data.median(0) # 中位数
+# Weight数据是否为185, 200, 205中的一个，返回Series的标记数组
+players['Weight'].isin([185, 200, 205]) 
 
-data.idxmax(0) # 求出最大值的位置
-data.idxmin(0) # 求出最小值的位置
+players[players['Weight'].isin([185, 200, 205])] # 筛选数据行
+
+# 只有一个数据也要传入数组
+players[players['Weight'].isin([185])] 
 ```
 
-自定义运算
+### 算数运算
+
+实现加、减、乘、除等算数运算，[常见算数运算函数](https://pandas.pydata.org/docs/reference/frame.html#binary-operator-functions)
 
 ```python
-data[['open', 'close']].apply(lambda x: x.max() - x.min(), axis=0)
+salary = players['Salary']
+
+# 两种函数运算结果相同
+players['new_salary'] = salary.add(1000)
+players['new_salary'] = salary + 1000
 ```
 
-## 文件读取
+### 自定义运算
 
-Pandas 支持多种文档的存储和读取
-
-<img src="https://pic2.zhimg.com/80/v2-da9199587b07a792a5af6e09aafd6899_1440w.webp" style="zoom:67%;" />
-
-### CSV 文件
+`apply`函数可以自定义算数运算
 
 ```python
-data = pd.read_csv("./data/stock_day.csv", usecols=['open', 'close']) # 读取指定列数据
-data[:10].to_csv("./data/test.csv", columns=['open']) # 保存数据到csv文件
-data[:10].to_csv("./data/test.csv", columns=['open'], index=False) # 保存数据删除索引
+# 自定义一个函数计算薪水的差距
+players[['Salary']].apply(lambda x: x.max() - x.min())
 ```
 
-### HDF5文件
+## 文件读写
 
-HDF5文件的读取和存储需要指定一个键，值为要存储的DataFrame
+Pandas支持复杂的文件读写操作，同时支持多种数据格式，如：CSV、json、Sql，HDF5等。
+
+[Pandas支持读写的文件类型](https://pandas.pydata.org/docs/user_guide/io.html#io-tools-text-csv-hdf5)
+
+使用Pandas很少手动创建数据，都是从其他环境中读取出来进行处理。
+
+1. CSV文件读写。CSV是一种表格文件，存储的数据格式与Excel文件类型。
+
+`read_csv(file, usecols=None)`从CSV中读取数据
+
+* `file`读取文件的路径。
+* `usecols`指定读取数据了列数，默认全部读取。
+
+[其他参数可以查阅文档](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv)
 
 ```python
-data.to_hdf('./test.h5', key='data') # 保存 HDF5格式 key存储标识符
-data.read_hdf('./test.h5', key='data') # 读取文件
+# 读取部分数据
+short_data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv", usecols=['Name', 'Age', 'Salary', 'Weight'])
 ```
 
-### JSON
+`to_csv(file, columns=None, header=True, index=True, mode='w')`将数据保存到文件当中。
 
-JSON是一种前后端的交互经常用到数据格式，是一种键值对形式。
+* `file`文件保存的路径。
+* `columns`保存指定的列，默认全部保存。
+* `header`是否写入索引值。
+* `index`是否保存行索引。
+* `mode`文件读写模式。`w`重新，`a`追加。
 
 ```python
-json_read.to_json("./data/test.json", orient='records', lines=True) # 保存文件 orient josn 的存储形式 line 是否为一个对象一行
-json_data = pd.read_json('./test.json') # 读取json文件
+short_data = short_data.iloc[0: 5]
+
+# 读取后的数据增加了一行
+short_data.to_csv('short_data.csv') 
+re_read = pd.read_csv('short_data.csv')
+
+# 不会将索引值变成单独一列。
+short_data.to_csv('short_data.csv', index=False)
+re_read = pd.read_csv('short_data.csv')
+
+# 直接追加数据追加后会多一行
+short_data.to_csv('short_data.csv', index=False, mode='a')
+re_read = pd.read_csv('short_data.csv')
+
+# 不写入索引行书正常
+short_data.to_csv('short_data.csv', index=False, mode='a', header=False)
+re_read = pd.read_csv('short_data.csv')
 ```
+
+> [!warning]
+>
+> `read_csv`调用的对象是Pandas库，`to_csv`调用的对象是Series和DataFramed。
+
+2. HDF5文件读写。HDF5文件是一种二进制文件，用于存储和组织大量数据的文件格式。
+
+`to_hdf(file, key, format=None)`保存为HDF5文件，
+
+* `file`文件保存的路径。
+
+* `key`必要参数，指定保存的数据页，类似与Excel中的sheet的概念。
+* `format`文件保存格式，通常选择为`tabel`，否则保存时可能会报错。
+
+```python
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv") 
+
+# 保存HDF5格式 key存储标识符，可以指定为任意一列，也可以指定为数据本身。
+data.to_hdf('data.h5', key='sheet1', format='table')
+```
+
+`read_hdf`读取HDF5文件。读取时需要指定key
+
+```python
+data = pd.read_hdf('data.h5', 'sheet1')
+```
+
+> [!warning]
+>
+> 首次hdf5文件时，需要安装pytables包。
 
 ## 缺失值处理
 
-```python
-movie = pd.read_csv("./data/IMDB-Movie-Data.csv")
+现实工作中的数据很少是干净整齐的，即使目前流行的数据集都会有数据缺失的现象。Pandas的提供了高效的缺失值处理函数，帮助用户处理缺失值问题。
 
-pd.notnull(movie) # 判断是否存在确实值
-pd.isnull(movie) 
+[IMDB电影数据](https://www.kaggle.com/damianpanek/sunday-eda/data)
+
+`notnull`和`isnull`用于判断数据中是否有缺失值，两个函数均为Pandas函数。
+
+* `notnull`数据不为缺失值返回`True`，`isnull`数据为缺失值返回`True`
+* 两个函数返回数据均为标记数组。
+
+```python
+import pandas as pd
+movie = pd.read_csv("IMDB-Movie-Data.csv")
+print(pd.isnull(movie)) 
+print(pd.notnull(movie))
+
+# 统计每一列缺失值的数量
+print(pd.isnull(movie).sum())
 ```
 
-缺失值处理
+### 存在缺失值
+
+数据中缺失值的类型为`np.nan`
+
+1. 删除有缺失值的样本数据。
 
 ```python
-data = movie.dropna() # 移除缺失值
-movie['Revenue (Millions)'].fillna(movie['Revenue (Millions)'].mean(), inplace=True) # 用平均值替换缺失值
+clear_movie = movie.dropna()
+
+movie.shape
+clear_movie.shape
+```
+
+2. 替换缺失数据。可以填充平均值或中位数，根据每一列的统计数据填充。
+
+使用`fillna(value, inplace=False)`函数来填充平均值。
+
+* `value`要填充的数值。
+* `inplace`是否替换原来的值，不替换会生成新一个新的列，数据类型为Series。
+
+```python
+# 使用中位数替换票房缺失值
+money = movie['Revenue (Millions)']
+median = money.median()
+money.fillna(median, inplace=True)
+movie['Revenue (Millions)'] = money
+print(pd.isnull(movie).sum())
+
+
+# 使用平均值替换评分确实值
+score = movie['Metascore']
+score.fillna(score.mean(), inplace=True)
+movie['Metascore'] = score
+print(pd.isnull(movie).sum())
 
 data.replace(to_replace='?', value=np.nan) # 替换部分值
 ```
 
-## 数据离散化
+### 有默认标记
 
-连续属性离散化的目的是为了简化数据结构，数据离散化技术可以用来减少给定连续属性值的个数。离散化方法经常作为数据挖掘的工具。
+有缺失值，不是默认`np.nan`类型，为其他的标记或符号。不能使用`fillna`和`dropna`。
+
+[测试数据集](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data)
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
+
+使用`replace(to_replace, value)`将标记替换为`np.nan`，按前面的步骤处理。
 
 ```python
-qcut = pd.qcut(p_change, 10) # 自行分组
-qcut.value_counts() # 计算到每个分组中的数据数目
+import pandas as pd
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data"
+data = pd.read_csv(url)
+print(pd.isnull(data).sum())
 
-bins = [-100, -7, -5, -3, 0, 3, 5, 7, 100]
-p_counts = pd.cut(p_change, bins) # 自己指定分组区间
+import numpy as np
+replace = data.replace(to_replace='?', value=np.nan)
+print(pd.isnull(replace).sum())
+```
 
-dummies = pd.get_dummies(p_counts, prefix="rise") # 生成 one-hot 编码
+## 数据离散化
+
+打印体重数据的直方图
+
+```python
+import pandas as pd
+
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
+players = data.set_index('Name')
+weight = players['Weight']
+weight.hist()
+```
+
+自然界中的绝大多数数据都属于正太分布。
+
+将连续的数据划分为离散区间，统计每条样本在离散区间上的属性值。
+
+`qcut(x, q)`对数据进行自动分组，返回一维标记数组。
+
+* `x`需要分组的数，必须是Series类型或一维数据。
+* `q`分组数量，自动决定分组范围。
+
+```python
+group = pd.qcut(weight, q=9)
+group.value_counts() # 统计每个分组次数
+```
+
+`cut(x, bins)`自定义分组，返回一维标记数组。
+
+* `x`需要分组的数，必须是Series类型或一维数据。
+* `bins`划分分组数据的列表。
+
+```python
+bins = [160, 180, 200, 220, 240, 260, 280, 300, 320]
+cut = pd.cut(weight, bins=bins)
+cut.value_counts()
+```
+
+`get_dummies(data, prefix=None)`生成one-hot编码。
+
+* `data`要生编码的数据，必须是标记矩阵。
+* `prefix`编码列前缀。
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
+
+```python
+pd.get_dummies(cut, prefix='weight')
 ```
 
 ## 数据合并
@@ -469,8 +651,6 @@ result = pd.merge(left, right, how='outer', on=['key1', 'key2']) # 外链接
 ```
 
 ## 案例
-
-数据来源：https://www.kaggle.com/damianpanek/sunday-eda/data
 
 > [!tip]
 >
@@ -538,4 +718,6 @@ for i in range(1000):
     
 temp_df.sum().sort_values(ascending=False).plot(kind="bar",figsize=(20,8),fontsize=20,colormap="cool")
 ```
+
+
 
