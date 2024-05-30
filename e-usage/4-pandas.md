@@ -589,18 +589,38 @@ weight.hist()
 
 自然界中的绝大多数数据都属于正太分布。
 
-
-
 将连续的数据划分为离散区间，统计每条样本在离散区间上的属性值。
 
+`qcut(x, q)`对数据进行自动分组，返回一维标记数组。
+
+* `x`需要分组的数，必须是Series类型或一维数据。
+* `q`分组数量，自动决定分组范围。
+
 ```python
-qcut = pd.qcut(p_change, 10) # 自行分组
-qcut.value_counts() # 计算到每个分组中的数据数目
+group = pd.qcut(weight, q=9)
+group.value_counts() # 统计每个分组次数
+```
 
-bins = [-100, -7, -5, -3, 0, 3, 5, 7, 100]
-p_counts = pd.cut(p_change, bins) # 自己指定分组区间
+`cut(x, bins)`自定义分组，返回一维标记数组。
 
-dummies = pd.get_dummies(p_counts, prefix="rise") # 生成 one-hot 编码
+* `x`需要分组的数，必须是Series类型或一维数据。
+* `bins`划分分组数据的列表。
+
+```python
+bins = [160, 180, 200, 220, 240, 260, 280, 300, 320]
+cut = pd.cut(weight, bins=bins)
+cut.value_counts()
+```
+
+`get_dummies(data, prefix=None)`生成one-hot编码。
+
+* `data`要生编码的数据，必须是标记矩阵。
+* `prefix`编码列前缀。
+
+<img src="../_images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
+
+```python
+pd.get_dummies(cut, prefix='weight')
 ```
 
 ## 数据合并
