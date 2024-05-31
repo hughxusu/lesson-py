@@ -676,7 +676,7 @@ right = pd.DataFrame({
 result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 
-<img src="../_images/libs/inner.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/inner.jpg" style="zoom:75%;" />
 
 左链接，以左表的键为主。
 
@@ -684,7 +684,7 @@ result = pd.merge(left, right, on=['key1', 'key2'])
 result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 ```
 
-<img src="../_images/libs/left.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/left.jpg" style="zoom:75%;" />
 
 右链接，以右表的键为主。
 
@@ -692,7 +692,7 @@ result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 ```
 
-<img src="../_images/libs/right.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/right.jpg" style="zoom:75%;" />
 
 外链接，取两表的并集。
 
@@ -700,13 +700,13 @@ result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ```
 
-<img src="../_images/libs/out.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/out.jpg" style="zoom:75%;" />
 
 ### 分组与聚合
 
 分组与聚合就是对某些标签或索引的局部进行累计分析。
 
-<img src="../_images/libs/pandas-groupby-split-apply-combine.svg" style="zoom:115%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/pandas-groupby-split-apply-combine.svg" style="zoom:115%;" />
 
 聚合计算的指标有多种，如`sum()`、`mean()`、`median()`、`min()`和`max()`等。
 
