@@ -623,101 +623,105 @@ cut.value_counts()
 pd.get_dummies(cut, prefix='weight')
 ```
 
-## 数据合并
+## 数据表操作
 
-将多张表中的数据合并后一起分析
+### 数据合并
 
-```python
-pd.concat([data, dummies], axis=1) # 按行索引
-```
+Pandas可以高效的将多张表的数据合并在一起进行数据分析。
 
-数据合并
+针对球员数据的体重生成的one-hot编码。
 
 ```python
-left = pd.DataFrame({'key1': ['K0', 'K0', 'K1', 'K2'],
-                        'key2': ['K0', 'K1', 'K0', 'K1'],
-                        'A': ['A0', 'A1', 'A2', 'A3'],
-                        'B': ['B0', 'B1', 'B2', 'B3']})
+import pandas as pd
 
-right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
-                        'key2': ['K0', 'K0', 'K0', 'K0'],
-                        'C': ['C0', 'C1', 'C2', 'C3'],
-                        'D': ['D0', 'D1', 'D2', 'D3']})
-
-result = pd.merge(left, right, on=['key1', 'key2']) # 内链接
-result = pd.merge(left, right, how='left', on=['key1', 'key2']) # 左链接
-result = pd.merge(left, right, how='right', on=['key1', 'key2']) # 右链接
-result = pd.merge(left, right, how='outer', on=['key1', 'key2']) # 外链接
+data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
+players = data.set_index('Name')
+weight = players['Weight']
+bins = [160, 180, 200, 220, 240, 260, 280, 300, 320]
+cut = pd.cut(weight, bins=bins)
+flags = pd.get_dummies(cut, prefix='weight')
 ```
 
-## 案例
-
-> [!tip]
->
-> 1. 我们想知道这些电影数据中评分的平均分，导演的人数等信息，我们应该怎么获取？
-> 2. 对于这一组电影数据，如果我们想rating，runtime的分布情况，应该如何呈现数据？
-> 3. 对于这一组电影数据，如果我们希望统计电影分类(genre)的情况，应该如何处理数据？
-
-读取数据
+1. `concat(objs, axis=0)`将多个数据进行合并。`objs`数据数组，`axis`合并方向，0垂直方向合并，1水平方向合并。
 
 ```python
-import pandas  as pd
-import numpy as np
-from matplotlib import pyplot as plt
-
-path = "./IMDB-Movie-Data.csv"
-df = pd.read_csv(path)
+pd.concat([players, flags], axis=1)
 ```
 
-案例 1
+2. `merge(left, right, how="inner", on=None)`使用类数据库的方式对数据表进行合并操作。
+
+* `left`左表数据，`right`右表数据。
+* `how`合并类型，默认方式是`inner`，包括：`left`、`right`、`out`等。
+* `on`用于链接表的索引数组。
 
 ```python
-df["Rating"].mean() # 得出评分的平均分
-np.unique(df["Director"]).shape[0] # 得出导演人数信息
+left = pd.DataFrame({
+    'key1': ['K0', 'K0', 'K1', 'K2'],
+    'key2': ['K0', 'K1', 'K0', 'K1'],
+    'A': ['A0', 'A1', 'A2', 'A3'],
+    'B': ['B0', 'B1', 'B2', 'B3']
+})
+
+right = pd.DataFrame({
+    'key1': ['K0', 'K1', 'K1', 'K2'],
+    'key2': ['K0', 'K0', 'K0', 'K0'],
+    'C': ['C0', 'C1', 'C2', 'C3'],
+    'D': ['D0', 'D1', 'D2', 'D3']
+})
 ```
 
-案例 2
+内链接，就是取交集。
 
 ```python
-# 绘制得分直方图
-plt.figure(figsize=(20,8),dpi=80)
-
-max_ = df["Rating"].max()
-min_ = df["Rating"].min()
-
-t1 = np.linspace(min_,max_,num=21)
-plt.xticks(t1)
-
-plt.grid()
-plt.hist(df["Rating"].values,bins=20)
-
-plt.show()
-
-# 绘制时间分布图
-plt.figure(figsize=(20,8),dpi=80)
-plt.hist(df["Runtime (Minutes)"].values,bins=20)
-
-max_ = df["Runtime (Minutes)"].max()
-min_ = df["Runtime (Minutes)"].min()
-
-t1 = np.linspace(min_,max_,num=21)
-plt.xticks(t1)
-plt.grid()
-
-plt.show()
+result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 
-案例 3
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/inner.jpg" style="zoom:75%;" />
+
+左链接，以左表的键为主。
 
 ```python
-temp_list = [i.split(",") for i in df["Genre"]]
-genre_list = np.unique([i for j in temp_list for i in j])
-
-for i in range(1000):
-    temp_df.loc[i, temp_list[i]]=1
-    
-temp_df.sum().sort_values(ascending=False).plot(kind="bar",figsize=(20,8),fontsize=20,colormap="cool")
+result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 ```
 
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/left.jpg" style="zoom:75%;" />
 
+右链接，以右表的键为主。
+
+```python
+result = pd.merge(left, right, how='right', on=['key1', 'key2'])
+```
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/right.jpg" style="zoom:75%;" />
+
+外链接，取两表的并集。
+
+```python
+result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
+```
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/out.jpg" style="zoom:75%;" />
+
+### 分组与聚合
+
+分组与聚合就是对某些标签或索引的局部进行累计分析。
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/pandas-groupby-split-apply-combine.svg" style="zoom:115%;" />
+
+聚合计算的指标有多种，如`sum()`、`mean()`、`median()`、`min()`和`max()`等。
+
+[星巴克零售店数据](https://www.kaggle.com/datasets/starbucks/store-locations/data)
+
+使用`groupby(by)`函数实现数据分组操作。`by`用于分组的一列或多列。
+
+```python
+import pandas as pd
+starbucks = pd.read_csv('directory.csv')
+
+# 以国家进行分组
+starbucks.groupby('Country').count()
+
+# 以国家和省份进行分组
+starbucks.groupby(['Country', 'State/Province']).count()
+```
 
