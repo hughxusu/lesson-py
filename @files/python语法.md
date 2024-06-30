@@ -2,8 +2,6 @@
 
 ## 变量和运算
 
-### 运算符
-
 ### 深拷贝和浅拷贝
 
 ```python
@@ -179,105 +177,6 @@ python setup.py sdist
 # 对dist包解压
 python setup.py install
 ```
-
-## 生成器与迭代器
-
-### 生成器
-
-在Python中，这种一边循环一边计算 的机制，称为生成器：generator。
-
-#### 列表生成器
-
-```python
-G = (x*2 for x in range(5))
-
-next(G) # 获取生成器的值
-```
-
-#### 生成器函数
-
-```python
-def fib(times):
-  n = 0
-  a, b = 0, 1
-  while n < times:
-    yield b
-    a, b = b, a + b
-    n += 1
-  
-  return 'done'
-
-F = fib(5)
-next(F)
-F.__next__() # 获得生成值
-
-for n in fib(5):
-  print(n)
-  
-g = fib(5)
-while True:
-  try:
-    x = next(g)
-    print("value:%d" % x)
-  except StopIteration as e:
-    print("生成器返回值:%s" % e.value)
-    break
-```
-
-#### `send`
-
-```python
-def gen():
-  i = 0
-  while i < 5:
-    temp = yield i # 下一次调用生成器是可以传入的值赋值给temp
-    print(temp)
-    i += 1
-    
-f = gen()
-# 直接开始调用send会报错
-f.send(None) # 第一次调用需要出入空值
-f.send('haha') # 向生成器传入‘haha’
-```
-
-### 可迭代对象
-
-迭代是访问集合元素的一种方式。迭代器是一个可以记住遍历的位置的对象。迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。
-
-可迭代对象（以直接作用于for循环的数据类）
-
-* 集合数据类型，如 list、tuple、dict、set、str等。
-* generator ，包括生成器和带yield的生成函数。
-
-```python
-from collections import Iterable
-
-# 判断对象是否可以迭代
-isinstance([], Iterable)
-```
-
-生成器不但可以作用于for循环，还可以被next()函数不断调用并返回下一个值，直到最后抛出StopIteration错误表示无法继续返回下一个值了。
-
-### 迭代器
-
-可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。使用 isinstance() 判断一个对象是否是为迭代器。
-
-```python
-from collections import Iterator
-
-# 迭代器对象
-isinstance((x for x in range(10)), Iterator)
-
-# 将数组转换为迭代器
-a = iter([1， 2， 3])
-isinstance(a, Iterator)
-```
-
-可迭代对象与迭代器：
-
-* 凡是可作用于for循环的对象都是Iterable类型；
-* 凡是可作用于next()函数的对象都是Iterator类型；
-* 集合数据类型如list、 dict、 str等是Iterable但不是Iterator，不过可以通过iter()函数获得一个Iterator对象。
 
 ## 元类
 
