@@ -7,48 +7,147 @@ graph LR
     a(问题定义)-->b(可行性研究)-->c(需求分析)-->d(概要设计)-->e(详细设计)-->f(编码和单元测试)-->g(综合测试)-->h(软件维护)
 ```
 
+软件测试级别：
 
+1. 单元测试（UT unit test），一般就类、函数、组件进行测试，是最底层的测试。
+
+2. 集成测试（IT system ingertaion test），将多个单元模块组合在一起，然后验证是否能正常工作。
+
+3. 系统测试（ST system test），由测试人员充当用户，对功能、性能、以及软件所运行的软硬件环境进行测试。
+
+   * 前期主要测试系统的功能是否满足需求。
+
+   * 后期主要测试系统运行的性能是否满足需求，以及系统在不同的软硬件环境中的兼容性等。
+
+4. 验收测试，由用户对软件进行测试
+
+   1. $\alpha$ 测试（内测 ）
+   2. $\beta$ 测试（公测）
+   3. UAT（user acceptance test）测试，由客户派出对于业务非常精通的人员来使用该软件，从而对功能进行测试。 
 
 软件测试金字塔模型
 
 <img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/end-to-end-testing-pyramid.webp" style="zoom:60%;" />
 
-## Python单元测试框架
+> [!attention]
+>
+> 底层的软件测试越充分，后期发现bug的概率越小。
 
-Unitest是Python自带的单元测试工具。
+## Unitest测试框架
+
+[Unitest](https://docs.python.org/zh-cn/3/library/unittest.html#)是Python自带的单元测试工具。
+
+在文件目录下创建`test_case`测试文件，测试文件一般以`test_`开头。
 
 ```python
 import unittest
 
-class MyTestCase(unittest.TestCase):
+class TestCase(unittest.TestCase):
+    def test_01(self):
+        print('case 01')
+
+    def test_02(self):
+        print('case 02')
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+1. 测试类需要继承`unittest.TestCase`框架。
+2. `test_01`、`test_02`、`test_03`是测试用例。
+3. `unittest.main()`运行本文件中的全部测试函数。
+
+> [!attention]
+>
+> 每个测试用例需要以`test_`字符串开头。
+
+测试用例（Test Case）用于验证函数在各种情况下都符合要求，良好的测试用例考虑到了函数在各种情况下的行为， 以及预期的结果。
+
+> [!warning]
+>
+> 软件测试工作的核心内容就是设计合理的测试用例。
+
+完整测试用例。
+
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):   # 所有test运行前运行一次
+        print('\n')
         print("setUpClass")
 
     @classmethod
     def tearDownClass(cls):  # 所有test运行后运行一次
         print("tearDownClass")
 
-    def setUp(self):  # 每个test运行前运行一次
-        print("setUp")
+    def setUp(self):
+        print('\n')
+        print('setUp')
 
-    def tearDown(self):  # 每个test运行后运行一次
-        print("tearDown")
+    def tearDown(self):
+        print('tearDown')
 
-    def test_01(self):  # 测试用例
-        print('test_01')
+    def test_01(self):
+        print('case 01')
 
     def test_02(self):
-        print('test_01')
-
+        print('case 02')
 
 if __name__ == '__main__':
     unittest.main()
 ```
 
-Unitest中的断言
+1. 在每个测试用例开始执行之前，可以使用`setUp`配置测试需要的环境，使用`tearDown`回收资源。
 
-断言是用于判断程序是否为预期的结果
+2. `setUpClass`和`tearDownClass`在所有测试用例开始和结束时执行一次。
+
+欧氏距离计算函数
+
+```python
+import math
+
+def distance(x1, x2):
+    if len(x1) != len(x2):
+        raise ValueError("x1和x2的长度不一致")
+
+    sum = 0
+    for i in range(len(x1)):
+        sum += (x1[i] - x2[i]) ** 2
+    return math.sqrt(sum)
+```
+
+设计单元测试，验证上述函数的正确性。
+
+```python
+import unittest
+from dictances import distance
+
+class DistanceCalculationTest(unittest.TestCase):
+    def setUp(self):
+        self.point1 = [1, 2, 3]
+        self.point2 = [4, 5, 6]
+        self.point5 = [1, 2]
+        self.point6 = [1, 2, 3, 4]
+
+    def test_01(self):
+        self.assertAlmostEqual(distance(self.point1, self.point2), 5.196152, places=6)
+
+    def test_02(self):
+        self.assertEqual(distance(self.point1, self.point1), 0)
+
+    def test_03(self):
+        with self.assertRaises(ValueError):
+            distance(self.point5, self.point6)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+`self.assertXXX`函数称为断言，断言是用于判断程序是否为预期的结果，不满足预期结果会抛出异常。
+
+常用断言函数
 
 | 方法                                                         | 检查对象           |
 | :----------------------------------------------------------- | :----------------- |
@@ -56,146 +155,12 @@ Unitest中的断言
 | [`assertNotEqual(a, b)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertNotEqual) | `a != b`           |
 | [`assertTrue(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertTrue) | `bool(x) is True`  |
 | [`assertFalse(x)`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertFalse) | `bool(x) is False` |
-
-```python
-class MyTestCase(unittest.TestCase):
-    def test_01(self): 
-        a = 10
-        b = 10
-        self.assertEqual(a, b)
-        self.assertNotEquals(a, b)
-
-    def test_02(self):
-        c = False
-        self.assertFalse(c)
-        self.assertTrue(c)
-```
+| [`assertAlmostEqual`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertAlmostEqual) | 近似相等           |
+| [`assertRaises`](https://docs.python.org/zh-cn/3/library/unittest.html#unittest.TestCase.assertRaises) | 报错               |
 
 
 
-## UnitTest
 
-```python
-#coding=utf-8
-import sys
-import os
-base_path = os.getcwd()
-import unittest
-sys.path.append(base_path)
-import unittest
-from Base.base_request import request
-url = "http://www.imooc.com"
-data = {
-    "username":"1111",
-    "password":"22222"
-}
-host = 'http://www.imooc.com'
 
-class TestCase01(unittest.TestCase): 
-    def setUp(self):
-        print("case开始执行")
-    
-    def tearDown(self):
-        print("case结束执行")
-    
-    @classmethod
-    def setUpClass(cls):
-        print("case类开始执行")
 
-    @classmethod
-    def tearDownClass(cls):
-        print("case类执行结束")
-
-    @unittest.skip("这个case不像执行") 
-    def test_01(self): # 按照case的字符顺序执行
-        TestCase01.a = 5
-        print("执行case01")
-        #res = requests.get(url=url,params=data).json()
-        data1 = {
-            "user":"11111"
-        }
-        self.assertDictEqual(data1, data) # 判断两个字典相等
-
-    @unittest.skip("这个case不像执行")
-    def test_02(self):
-        print("----------------》执行case02")
-        data1 = {
-            "username":"1111",
-            "password":"22222"
-        }
-        self.assertDictEqual(data1, data, msg="这两个字典不相等")
-
-    @unittest.skip("这个case不像执行")
-    def test_03(self):
-        print("执行case03")
-        flag = True
-        self.assertFalse(flag, msg="不等于True")
-
-    @unittest.skip("这个case不像执行")
-    def test_04(self):
-        print("执行case04")
-        flag = False
-        self.assertTrue(flag, msg="不等于False")
-
-    @unittest.skipIf(host !="http://www.imooc.com","这个case不执行")
-    def test_05(self):
-        print("执行case05")
-        flag = "111"
-        flag1 = "2222"
-        self.assertEqual(flag, flag1, msg="两个str不相等")
-
-    def test_06(self):
-        res = request.run_main('get', url,data)
-        print(res)
-
-    @unittest.skip("这个case不像执行")
-    def test_07(self):
-        
-        print("执行case07")
-        flag = "adfadfadfadfadsfaqeewr"
-        s = "fads"
-        self.assertIn(s, flag, msg="不包含")
-
-if __name__ == "__main__":
-    #unittest.main()
-    suite = unittest.TestSuite()
-    '''
-    suite.addTest(TestCase01('test_06'))
-    suite.addTest(TestCase01('test_04'))
-    suite.addTest(TestCase01('test_02'))
-    suite.addTest(TestCase01('test_05'))
-    suite.addTest(TestCase01('test_01'))
-    suite.addTest(TestCase01('test_07'))
-    '''
-    # 按照list顺序执行
-    tests = [TestCase01('test_06'),TestCase01('test_02'),TestCase01('test_03'),TestCase01('test_05'),TestCase01('test_01')]
-    suite.addTests(tests)
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
-```
-
-#### 批量添加测试用例
-
-```python
-import sys
-import os
-#sys.path.append("E:/www/ImoocInterface/")
-import unittest
-case_path = os.getcwd()+"/UnittestCase/"
-print(case_path)
-'''
-from UnittestCase.test_case01 import TestCase01
-from UnittestCase.test_case02 import TestCase02
-from UnittestCase.test_case03 import TestCase03
-case_01 = unittest.TestLoader().loadTestsFromTestCase(TestCase01)
-case_02 = unittest.TestLoader().loadTestsFromTestCase(TestCase02)
-case_03 = unittest.TestLoader().loadTestsFromTestCase(TestCase03)
-suote = unittest.TestSuite([case_01,case_02,case_03])
-unittest.TextTestRunner().run(suote)
-'''
-discover = unittest.defaultTestLoader.discover(case_path)
-unittest.TextTestRunner().run(discover)
-#print(discover)
-
-```
 
