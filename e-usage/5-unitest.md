@@ -1,5 +1,14 @@
 # 软件测试
 
+软件的生命周期
+
+```mermaid
+graph LR
+    a(问题定义)-->b(可行性研究)-->c(需求分析)-->d(概要设计)-->e(详细设计)-->f(编码和单元测试)-->g(综合测试)-->h(软件维护)
+```
+
+
+
 软件测试金字塔模型
 
 <img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/end-to-end-testing-pyramid.webp" style="zoom:60%;" />
