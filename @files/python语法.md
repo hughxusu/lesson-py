@@ -1,27 +1,5 @@
 # 语法基础
 
-## 变量和运算
-
-### 深拷贝和浅拷贝
-
-```python
-a = [11, 22, 33]
-b = a
-
-import copy
-c = copy.deepcopy(a)
-
-a = [11, 22, 33]
-b = [44, 55, 66]
-c = [a, b]
-d = copy.deepcopy(c) # 如果数据是引用会递归拷贝
-d = copy.copy(c) # 只对一层进行深拷贝
-
-c = (a, b)
-d = copy.deepcopy(c)
-d = copy.copy(c) # 如果拷贝的是不可变类型，则进行浅拷贝
-```
-
 ## 类
 
 ### 工厂方法
@@ -330,6 +308,35 @@ sys.getrefcount(a) # 查看引用计数
 ```
 
 ==重写`__del__`方法而没有调用父类方法会导致内存无法释放==
+
+## 文件操作
+
+### `with`操作
+
+with 上下文管理器，可以实现一些自动操作
+
+```python
+with open('./1.txt', 'wb') as f: # 打开文件f
+  f.write('hello flask') # 自动关闭f文件
+  
+# with自动操作需要实现如下方法，文件对象中即实现了如下方法
+class Foo:
+    def __enter__(self): # 进入with语句自动调用
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb): # 离开with语句后自动调用，可以捕获异常，exc表示异常参数
+        pass
+
+with Foo() as foo:
+    print('with操作')
+    
+    
+# with语句相当于try finally的结构
+try:
+  f = open('./1.txt', 'wb')
+finally:
+  f.close()
+```
 
 ## 内建属性、函数与库
 
