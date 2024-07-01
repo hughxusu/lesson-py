@@ -32,7 +32,7 @@
   * [Numpy](e-usage/2-numpy.md)
   * [Matplotlib](e-usage/3-matplotlib.md)
   * [Pandas](e-usage/4-pandas.md)
-  * [Pandas](e-usage/5-unitest.md)
+  * [软件测试](e-usage/5-unitest.md)
 
 * [附录](附录.md)
     
