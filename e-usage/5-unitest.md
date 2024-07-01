@@ -2,7 +2,7 @@
 
 软件测试金字塔模型
 
-<img src="../_images/libs/end-to-end-testing-pyramid.webp" style="zoom:60%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/end-to-end-testing-pyramid.webp" style="zoom:60%;" />
 
 ## Python单元测试框架
 
