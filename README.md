@@ -17,8 +17,9 @@
 * 学习面向对象编程的思想。
 * 学习Python语言的高级应用。
 * 学习Python的标准库库，如：文件操作等。
-* 学习Python语言包的安装与虚拟环境的创建。
+* 了解Python语言包的安装与虚拟环境的创建。
 * 学习Python语言用于数据处理常用软件包：Numpy、Matplotlib和Pandas。
+* 了解单元测试和unitest框架的使用
 
 ## 参考资料
 
