@@ -32,7 +32,9 @@
 
 ### 参考书
 
-* [Python编程（第3版）](https://book.douban.com/subject/36365320/)
-* [Python工匠](https://book.douban.com/subject/35723705/)
-* [Python数据科学手册](https://book.douban.com/subject/27667378/)
+| 书名                                                         | 图书馆索书号  |
+| ------------------------------------------------------------ | ------------- |
+| [Python编程（第3版）](https://book.douban.com/subject/36365320/) |               |
+| [Python工匠](https://book.douban.com/subject/35723705/)      | TP311.561/587 |
+| [Python数据科学手册](https://book.douban.com/subject/27667378/) | TP312/Y430    |
 
