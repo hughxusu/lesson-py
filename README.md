@@ -26,7 +26,8 @@
 ### 学习网站
 
 * [Python菜鸟教程](https://www.runoob.com/python3/python3-tutorial.html)
-* [习题网站](https://pynative.com/python-exercises-with-solutions/)
+* [习题网站 1](https://pynative.com/python-exercises-with-solutions/)
+* [习题网站 2](https://www.lintcode.com/problem/?typeId=8)
 * [Python官方网站](https://www.python.org/)
 * [Python中文手册](https://docs.python.org/zh-cn/3.9/)
 
