@@ -5,6 +5,12 @@
 * Numpy支持常见的数组和矩阵操作。
 * Numpy支持数值计算任务。
 
+安装Numpy
+
+```shell
+pip install numpy
+```
+
 ## Numpy的数据结构
 
 查看Numpy的安装版本
