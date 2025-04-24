@@ -2,6 +2,12 @@
 
 [Pandas](https://pandas.pydata.org/)是在Numpy和Matplotlib基础上建立的数据处理库，非常适合处理表格数据，包括电子表格或数据库表等。
 
+安装Pandas
+
+```shell
+pip install pandas
+```
+
 Pandas主要用于数据分析和数据清理等相关任务。
 
 ```mermaid
