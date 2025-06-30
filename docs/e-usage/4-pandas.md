@@ -57,7 +57,7 @@ DataFrame是一个类似于表格的数据结构，可以保存任何类型数�
 * 有`index`行索引对应的轴为0，`columns`列索对应的轴为1。
 * 如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/creating_dataframe1.png" style="zoom:65%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/creating_dataframe1.png" style="zoom:65%;" />
 
 DataFrame的基本属性
 
@@ -565,7 +565,7 @@ data.replace(to_replace='?', value=np.nan) # 替换部分值
 
 [测试数据集](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data)
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
 
 使用`replace(to_replace, value)`将标记替换为`np.nan`，按前面的步骤处理。
 
@@ -623,7 +623,7 @@ cut.value_counts()
 * `data`要生编码的数据，必须是标记矩阵。
 * `prefix`编码列前缀。
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/0*T5jaa2othYfXZX9W..png" style="zoom: 55%;" />
 
 ```python
 pd.get_dummies(cut, prefix='weight')
@@ -682,7 +682,7 @@ right = pd.DataFrame({
 result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/inner.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/inner.jpg" style="zoom:75%;" />
 
 左链接，以左表的键为主。
 
@@ -690,7 +690,7 @@ result = pd.merge(left, right, on=['key1', 'key2'])
 result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 ```
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/left.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/left.jpg" style="zoom:75%;" />
 
 右链接，以右表的键为主。
 
@@ -698,7 +698,7 @@ result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 ```
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/right.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/right.jpg" style="zoom:75%;" />
 
 外链接，取两表的并集。
 
@@ -706,13 +706,13 @@ result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ```
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/out.jpg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/out.jpg" style="zoom:75%;" />
 
 ### 分组与聚合
 
 分组与聚合就是对某些标签或索引的局部进行累计分析。
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/developing/_images/libs/pandas-groupby-split-apply-combine.svg" style="zoom:115%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/pandas-groupby-split-apply-combine.svg" style="zoom:115%;" />
 
 聚合计算的指标有多种，如`sum()`、`mean()`、`median()`、`min()`和`max()`等。
 
