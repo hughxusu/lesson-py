@@ -79,6 +79,7 @@ def most_active_director(movies):
 
     return max_director, max_count
 
+# 5. 统计所有电影的票房总和（Gross），并计算有票房数据的电影平均票房。
 def analyze_gross(movies):
     total_gross = 0
     count = 0
