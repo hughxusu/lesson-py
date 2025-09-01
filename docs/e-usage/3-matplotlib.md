@@ -35,8 +35,6 @@ import matplotlib.pyplot as plt # 常用的绘图工具
 绘制曲线
 
 ```python
-import matplotlib.pyplot as plt
-
 x = np.linspace(0, 10, 100)
 y = np.sin(x)
 
@@ -53,6 +51,7 @@ plt.show()
 1. 一幅图像中绘制多条曲线。
 
 ```python
+cosy = np.cos(x)
 plt.plot(x, y)
 plt.plot(x, cosy)
 plt.show()
@@ -121,6 +120,12 @@ plt.savefig("test.png") # 保存图片到指定路径
 > [!warning]
 >
 > `plt.show()` 会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
+
+9. 显示图像
+
+```python
+plt.show()
+```
 
 ## 散点图
 
