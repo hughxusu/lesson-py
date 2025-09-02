@@ -1,8 +1,6 @@
 # Matplotlib
 
-[Matplotlib](https://matplotlib.org/)是建立在Numpy数组基础上的多平台数据可视化程序库，可以绘制2D和3D的图像。
-
-安装Matplotlib
+[Matplotlib](https://matplotlib.org/)是建立在Numpy数组基础上的多平台数据可视化程序库，可以绘制2D和3D的图像。安装Matplotlib
 
 ```shell
 pip install matplotlib

@@ -1,30 +1,32 @@
 # Pandas
 
-[Pandas](https://pandas.pydata.org/)是在Numpy和Matplotlib基础上建立的数据处理库，非常适合处理表格数据，包括电子表格或数据库表等。
-
-安装Pandas
+[Pandas](https://pandas.pydata.org/)是在Numpy和Matplotlib基础上建立的数据处理库，主要用于数据分析和数据清理等相关任务，包括电子表格或数据库表等。安装Pandas
 
 ```shell
 pip install pandas
 ```
 
-Pandas主要用于数据分析和数据清理等相关任务。
-
 ```mermaid
 graph LR
-a(原始数据\n保存于\n文件或数据库)--读取数据-->c
-c(Pandas\n操作\n数据清洗或筛选)-->d(预处理数据)
+a(原始数据\n==>\n文件或数据库)--读取数据-->c
+c(Pandas\n数据清洗或筛选)-->d(预处理数据)
 d-->i(数据挖掘)
 d-->f(机器学习)
 ```
 
-> [!warning]
->
-> 在拥有16GB内存的计算机上，pandas可以轻松处理数百万行、数十个列的数据集。
->
-> `int64`和`float64`：每个元素占8个字节。
->
-> 内存 $ =\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}$​
+表格数据与Numpy数据的区别：
+
+* 每一列数据类型是一致的。
+* 数据类型可能包括数值、字符串等多种类型。
+* 有表头的概念。
+* 表格数据中可能包含异常值。
+
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/creating_dataframe1.png" style="zoom:65%;" />
+
+在拥有16GB内存的计算机上，pandas可以轻松处理数百万行、数十个列的数据集：
+
+* `int64`和`float64`：每个元素占8个字节。
+* 内存 $ =\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}$​
 
 [Pandas学习网站](https://www.geeksforgeeks.org/pandas-tutorial/?ref=outind)
 
@@ -48,16 +50,14 @@ Pandas中一共有三种数据结构，分别为：Series、DataFrame和Panel。
 import pandas as pd
 
 # 从网络读取数据
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
-print(type(stock_df)) # 查看数据结构
+players = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
+print(type(players))
 ```
 
 DataFrame是一个类似于表格的数据结构，可以保存任何类型数据（比如整数、字符串、浮点数等）。
 
 * 有`index`行索引对应的轴为0，`columns`列索对应的轴为1。
 * 如果没有传入索引参数，则默认会自动创建一个从0-N的整数索引。
-
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/creating_dataframe1.png" style="zoom:65%;" />
 
 DataFrame的基本属性
 
@@ -68,19 +68,19 @@ DataFrame的基本属性
   * `T`对DataFrame数据进行转置。
 
 ```python
-print(data.shape)
-print(data.index)
-print(data.columns)
-print(type(data.values))
-data.values
-data.T
+print(players.shape)
+print(players.index)
+print(players.columns)
+print(type(players.values))
+print(players.values)
+players.T
 ```
 
 DataFrame的整体查询`head()`和`tail`可以查询头部和尾部的数据，默认是5条数据。
 
 ```python
-data.head()
-data.tail(10)
+players.head()
+players.tail(10)
 ```
 
 #### DataFrame的索引
@@ -99,24 +99,23 @@ print(type(players.columns))
 > DataFrame修改`index`或`columns`的操作，不能修改单个值，只能整体全部修改。
 
 ```python
-print(data.index[0])
-data.index[0] = 'Avery Bradley' # 报错不能修改单个值
+print(players.index[0])
+players.index[0] = 'Avery Bradley' # 报错不能修改单个值
 
-index = data.index.tolist() # 将index转换为list
+index = players.index.tolist() # 将index转换为list
 index[0] = 'Avery Bradley'
-data.index = index
+players.index = index
+players
 ```
 
-2. `index`的设置与重置。设置与重置的操作只针对`index`，`columns`没有该操作。
-
-`set_index`可以将某一列数据设置为索引。同时可以设置多重索引。
+2. `index`的设置与重置。设置与重置的操作只针对`index`，`columns`没有该操作。`set_index`可以将某一列数据设置为索引。同时可以设置多重索引。
 
 ```python
-players = data.set_index('Name') # 将球员的名字设置为索引
-print(players.index)
+players_new = players.set_index('Name') # 将球员的名字设置为索引
+players_new
 
-players = data.set_index(['Name', 'Team'])
-print(players.index)
+players_new = players.set_index(['Name', 'Team'])
+players_new
 ```
 
 > [!warning]
@@ -126,15 +125,16 @@ print(players.index)
 `reset_index`将原来的索引删除或变为一列数据。
 
 ```python
-data = players.reset_index() # 将原来索引变为一列数据
-temp = players.reset_index(drop=True) # 删除原来索引
+players = players_new.reset_index() # 将原来索引变为一列数据
+players
+
+temp = players_new.reset_index(drop=True) # 删除原来索引
+temp
 ```
 
 ### Series
 
-Series是一维标记数组，只有行索引没有列索引，够保存任何类型的数据。
-
-从DataFrame中获取一个Series数据
+Series是一维标记数组，只有行索引没有列索引，够保存任何类型的数据。从DataFrame中获取一个Series数据
 
 ```python
 players = data.set_index('Name')
@@ -142,6 +142,12 @@ salary = players['Salary']
 
 print(type(salary))
 print(salary.index)
+print(salary.columns)
+```
+
+Series数据类型中没有`columns`属性
+
+```python
 print(salary.columns)
 ```
 
@@ -201,7 +207,7 @@ pd.DataFrame(np.random.rand(3, 2), columns=['foo', 'bar'], index=['a', 'b', 'c']
 
 DataFramed数据有三种获取方式
 
-1. 直接使用行列索引<span style="color: #ff4d4f;">（注意：索引方式为先列后行，与Numpy相反）</span>，直接索引支持切片操作。
+1. 直接使用行列索引，直接索引支持切片操作。
 
 ```python
 import pandas as pd
@@ -221,7 +227,7 @@ players[0:3][0:6]
 
 > [!attention]
 >
-> 直接索引不支持Numpy类似的操作
+> 索引方式为先列后行（与Numpy相反），直接索引不支持Numpy类似的操作。
 
 ```python
 # 下列操作报错
