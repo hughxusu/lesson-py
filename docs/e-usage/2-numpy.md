@@ -342,13 +342,13 @@ print(x.ndim)
 w = x.reshape(2, 5)
 print(w.ndim)
 
-x.reshape(10, -1) # -1会根据数据数量和行数自动计算合适的列数。
-print(x)
+w = x.reshape(10, -1) # -1会根据数据数量和行数自动计算合适的列数。
+print(w)
 
-x.reshape(2, -1) 
-print(x)
+w = x.reshape(2, -1) 
+print(w)
 
-x.reshape(3, -1) 
+w = x.reshape(3, -1) 
 print(x)
 ```
 
@@ -361,15 +361,13 @@ x = np.arange(15).reshape(3, 5)
 y = np.arange(10)
 print(x)
 print(y)
+
 # 访问一维数组
-y[0]
-print(y)
-y[-1]
-print(y)
+print(y[0])
+print(y[-1])
 
 # 访问二维数组
-x[2, 2] # 使用元组访问，等价于x[(2, 2)]，推荐
-print(x)
+print(x[2, 2]) # 使用元组访问，等价于x[(2, 2)]，推荐
 ```
 
 数组的切片
@@ -388,8 +386,10 @@ print(y[::-1])
 
 ```python
 print(x[:2, :3]) # 前两行前三列。
-print(x[:2, ::2]) 
-print(x[::-1, ::-1])
+print(x[:2, ::2])
+
+# 反转数组
+print(x[::-1, ::-1])  
 
 # 读取第一行
 print(x[0])
@@ -464,7 +464,8 @@ print(x)
 `vstack`将数组在垂直方向拼接，`hstack`将数组在水平方向进行合并。这两个方法支持，矩阵和向量间的操作，但要求数据对齐。
 
 ```python
-np.vstack([a, y])
+print(np.vstack([a, y]))
+
 b = np.full((2, 2), 100)
 print(b)
 print(np.hstack([a, b]))
@@ -762,7 +763,6 @@ print(np.argsort(x)) # 返回排序后数字的索引值，对矩阵同样成立
 向量的索引
 
 ```python
-import numpy as np
 x = np.arange(16)
 print(x)
 
