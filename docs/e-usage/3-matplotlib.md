@@ -11,7 +11,6 @@ pip install matplotlib
 导入模块
 
 ```python
-import matplotlib as mpl # 使用高级功能时导入完成包
 import matplotlib.pyplot as plt # 常用的绘图工具
 ```
 
@@ -146,17 +145,15 @@ cosy = np.cos(x)
 plt.scatter(x, cosy, color='r')
 ```
 
-散点图绘制特征数据
+散点图绘制特征数据，模拟正态分布
 
 ```python
-# 简单模拟
 x = np.random.normal(0, 1, 100)
 y = np.random.normal(0, 1, 100)
 
 plt.scatter(x, y)
 plt.show()
 
-# 模拟均匀分布
 x = np.random.normal(0, 1, 10000)
 y = np.random.normal(0, 1, 10000)
 
