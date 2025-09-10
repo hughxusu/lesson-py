@@ -34,7 +34,7 @@ d-->f(机器学习)
 
 Pandas中一共有三种数据结构，分别为：Series、DataFrame和Panel。
 
-* Series是一维数据结构，
+* Series是一维数据结构。
 * DataFrame是二维数据结构。
 * Panel是三维数据结构。
 
@@ -113,11 +113,11 @@ players
 2. `index`的设置与重置。设置与重置的操作只针对`index`，`columns`没有该操作。`set_index`可以将某一列数据设置为索引。同时可以设置多重索引。
 
 ```python
-players_new = players.set_index('Name') # 将球员的名字设置为索引
-players_new
+df = players.set_index('Name') # 将球员的名字设置为索引
+df
 
-players_new = players.set_index(['Name', 'Team'])
-players_new
+df = players.set_index(['Name', 'Team'])
+df
 ```
 
 > [!warning]
@@ -127,10 +127,10 @@ players_new
 `reset_index`将原来的索引删除或变为一列数据。
 
 ```python
-players = players_new.reset_index() # 将原来索引变为一列数据
+players = df.reset_index() # 将原来索引变为一列数据
 players
 
-temp = players_new.reset_index(drop=True) # 删除原来索引
+temp = df.reset_index(drop=True) # 删除原来索引
 temp
 ```
 
@@ -214,8 +214,6 @@ DataFrame数据有三种获取方式
 1. 直接使用行列索引，直接索引支持切片操作。
 
 ```python
-import pandas as pd
-
 data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
 players = data.set_index('Name')
 
@@ -237,12 +235,12 @@ players[0:3][0:6]
 
 ```python
 arr1 = players['Salary'].values
-print(type(arr))
-print(arr.shape)
+print(type(arr1))
+print(arr1.shape)
 
 arr2 = players['Salary'].to_numpy()
-print(type(arr))
-print(arr.shape)
+print(type(arr2))
+print(arr2.shape)
 ```
 
 上面两种方法得到的Numpy数组与DataFrame共享数据
@@ -452,25 +450,23 @@ df = players[['Salary']].apply(lambda x: x.max() - x.min())
 
 ## 文件读写
 
-Pandas支持复杂的文件读写操作，同时支持多种数据格式，如：CSV、json、Sql，HDF5等。
+Pandas支持复杂的文件读写操作，同时支持多种数据格式，如：CSV、json、Sql，HDF5等。使用Pandas很少手动创建数据，都是从其他环境中读取出来进行处理。
 
-[Pandas支持读写的文件类型](https://pandas.pydata.org/docs/user_guide/io.html#io-tools-text-csv-hdf5)
+CSV文件读写。CSV是一种表格文件，存储的数据格式与Excel文件类型。
 
-使用Pandas很少手动创建数据，都是从其他环境中读取出来进行处理。
-
-1. CSV文件读写。CSV是一种表格文件，存储的数据格式与Excel文件类型。
-
-`read_csv(file, usecols=None)`从CSV中读取数据
+[`read_csv(file, usecols=None)`](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv)从CSV中读取数据
 
 * `file`读取文件的路径。
 * `usecols`指定读取数据了列数，默认全部读取。
-
-[其他参数可以查阅文档](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv)
 
 ```python
 # 读取部分数据
 short_data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv", usecols=['Name', 'Age', 'Salary', 'Weight'])
 ```
+
+> [!warning]
+>
+> `read_csv`调用的对象是Pandas库，`to_csv`调用的对象是Series和DataFramed。
 
 `to_csv(file, columns=None, header=True, index=True, mode='w')`将数据保存到文件当中。
 
@@ -493,42 +489,12 @@ re_read = pd.read_csv('short_data.csv')
 
 # 直接追加数据追加后会多一行
 short_data.to_csv('short_data.csv', index=False, mode='a')
-re_read = pd.read_csv('short_data.csv')
 
 # 不写入索引行书正常
 short_data.to_csv('short_data.csv', index=False, mode='a', header=False)
-re_read = pd.read_csv('short_data.csv')
 ```
 
-> [!warning]
->
-> `read_csv`调用的对象是Pandas库，`to_csv`调用的对象是Series和DataFramed。
-
-2. HDF5文件读写。HDF5文件是一种二进制文件，用于存储和组织大量数据的文件格式。
-
-`to_hdf(file, key, format=None)`保存为HDF5文件，
-
-* `file`文件保存的路径。
-
-* `key`必要参数，指定保存的数据页，类似与Excel中的sheet的概念。
-* `format`文件保存格式，通常选择为`tabel`，否则保存时可能会报错。
-
-```python
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv") 
-
-# 保存HDF5格式 key存储标识符，可以指定为任意一列，也可以指定为数据本身。
-data.to_hdf('data.h5', key='sheet1', format='table')
-```
-
-`read_hdf`读取HDF5文件。读取时需要指定key
-
-```python
-data = pd.read_hdf('data.h5', 'sheet1')
-```
-
-> [!warning]
->
-> 首次hdf5文件时，需要安装pytables包。
+[Pandas支持读写的文件类型](https://pandas.pydata.org/docs/user_guide/io.html#io-tools-text-csv-hdf5)
 
 ## 缺失值处理
 
@@ -575,6 +541,7 @@ print(clear_movies.shape)
 score = movies['Meta_score']
 median = score.median()
 print(median)
+
 score.fillna(median, inplace=True)
 movies['Revenue (Millions)'] = score
 print(pd.isnull(movies).sum())
@@ -593,12 +560,10 @@ print(pd.isnull(movies).sum())
 使用`replace(to_replace, value)`将标记替换为`np.nan`，按前面的步骤处理。
 
 ```python
-import pandas as pd
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data"
 data = pd.read_csv(url, header=None)
 print(pd.isnull(data).sum())
 
-import numpy as np
 replace = data.replace(to_replace='?', value=np.nan)
 print(pd.isnull(replace).sum())
 ```
