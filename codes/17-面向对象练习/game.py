@@ -1,6 +1,8 @@
 import pygame as pg
+import utils
 import sys
-from player import Player  # 导入Player类
+from player import Player
+from utils import Delay
 
 class Game:
     _instance = None
@@ -19,11 +21,15 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.player = Player(360, 360)  # 在屏幕中心创建玩家
         self.all_sprites.add(self.player)
-        self.delay = 100
+        self.delay = Delay()
+
+    def renew(self):
+        self.delay.update()
+        self.clock.tick(60)
+        pg.display.update()
 
     def run(self):
         while True:
-            pg.display.update()
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     pg.quit()
@@ -34,12 +40,5 @@ class Game:
             
             self.screen.fill((0, 0, 0))
             self.all_sprites.draw(self.screen)
-            
-            self.clock.tick(60)
-
-            self.delay -= 1
-            if not self.delay:
-                self.delay = 100
-
-            print(self.delay)
+            self.renew()
 
