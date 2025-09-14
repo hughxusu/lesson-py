@@ -45,10 +45,7 @@ class Player(pg.sprite.Sprite):
     
     def is_ready_to_fire(self):
         current_time = pg.time.get_ticks()
-        if self.last_fire_time == 0:
-            self.last_fire_time = current_time
-            return True
-        elif current_time - self.last_fire_time >= utils.BULLET_COOL_DOWN:
+        if current_time - self.last_fire_time >= utils.BULLET_COOL_DOWN:
             self.last_fire_time = current_time
             return True
         return False

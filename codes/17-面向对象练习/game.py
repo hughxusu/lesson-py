@@ -1,6 +1,5 @@
-import pygame as pg
-import utils
 import sys
+import pygame as pg
 from player import Player
 from utils import Delay
 
@@ -19,7 +18,7 @@ class Game:
         self.clock = pg.time.Clock()
         
         self.all_sprites = pg.sprite.Group()
-        self.player = Player(360, 360)  # 在屏幕中心创建玩家
+        self.player = Player(360, 360)
         self.all_sprites.add(self.player)
         self.delay = Delay()
 

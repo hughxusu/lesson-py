@@ -20,6 +20,7 @@
     * [基本语法](docs/c-class/1-基础)
     * [面向对象的特性](docs/c-class/2-特性)
     * [异常、模块和包](docs/c-class/3-异常)
+    * [面向对象综合练习](docs/c-class/4-练习)
   * 高级特性
     * [闭包与装饰器](docs/d-other/1-装饰)
     * [生成器与迭代器](docs/d-other/2-迭代)
