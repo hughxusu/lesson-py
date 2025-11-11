@@ -1,0 +1,5 @@
+raw = input("请输入你的年龄：")
+print(type(raw))
+age = int(raw)
+print(age)
+print(type(age))
