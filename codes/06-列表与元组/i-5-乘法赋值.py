@@ -1,5 +1,4 @@
 colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 print(colors)
-del_color = colors.pop(1)
-print(del_color)
+colors *= 2
 print(colors)

@@ -1,5 +1,5 @@
 colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
+short_colors = ['purple', 'pink']
 print(colors)
-del_color = colors.pop(1)
-print(del_color)
+colors += short_colors
 print(colors)

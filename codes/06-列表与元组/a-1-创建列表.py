@@ -1,5 +1,4 @@
 colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
 print(colors)
-del_color = colors.pop(1)
-print(del_color)
-print(colors)
+students = ['Bob', 25, 'bob@web.com']
+print(students)

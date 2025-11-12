@@ -1,7 +1,4 @@
 sites = 'Google', 'Runoob', 'Wiki'
-print(sites)
-
-
 a, b, c = sites
 print(a)
 print(b)

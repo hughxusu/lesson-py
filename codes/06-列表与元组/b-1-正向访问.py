@@ -1,4 +1,4 @@
 colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
-print(colors)
-colors[1] = 'purple'
-print(colors)
+print(colors[0])
+print(colors[1])
+print(colors[0].upper())
