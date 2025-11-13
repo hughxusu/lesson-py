@@ -1,6 +1,6 @@
-sites = ['Google', 'Wiki', 'Weibo', 'Runoob', 'Baidu', 'Taobao']
+sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao']
 colors = ('red', 'blue', 'yellow')
-message = 'hello, python'
+message = '故园东望路漫漫，双袖龙钟泪不干。'
 
 print(len(sites))
 print(len(colors))

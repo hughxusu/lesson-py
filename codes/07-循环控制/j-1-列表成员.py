@@ -1,4 +1,4 @@
-sites = ['Google', 'Wiki', 'Weibo', 'Runoob', 'Baidu', 'Taobao']
+sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao']
 
 print('Wiki' in sites)
 print('Wiki' not in sites)

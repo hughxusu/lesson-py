@@ -1,5 +1,5 @@
-sites = ['Google', 'Wiki', 'Weibo', 'Runoob', 'Baidu', 'Taobao']
+sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao']
 i = 0
 while i < len(sites):
-    print(sites[i])
+    print(f'Web: {sites[i]}')
     i += 1

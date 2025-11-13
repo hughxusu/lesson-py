@@ -1,15 +1,9 @@
 sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao']
-i = 0
-while i < len(sites):
-    site = sites[i]
+for site in sites:
     if site == 'Weibo':
         break
-
     if len(site) != 4:
-        i += 1
         continue
-
-    print(f'Web: {site}')
-    i += 1
-
-print('Done')
+    print(f'Hello, {site}')
+else:
+    print('正常循环结束')
