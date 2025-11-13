@@ -8,6 +8,3 @@ person = {
 
 print('name' in person)
 print('name' not in person)
-
-
-print(len(person))
