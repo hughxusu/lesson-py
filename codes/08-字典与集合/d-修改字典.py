@@ -5,6 +5,6 @@ person = {
   'city': 'New York',
   'email': 'bob@web.com'
 }
-
+print(person)
 person['job'] = 'Manager'
 print(person)

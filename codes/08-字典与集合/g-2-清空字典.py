@@ -5,6 +5,7 @@ person = {
   'city': 'New York',
   'email': 'bob@web.com'
 }
+
 print(person)
-person['is_male'] = True
+person.clear()
 print(person)

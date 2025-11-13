@@ -7,9 +7,9 @@ elif choice == 1:
 elif choice == 2:
     print('删除用户')
 
-choice_map = {
-    0: '退出系统',
-    1: '添加用户',
-    2: '删除用户',
-}
-print(choice_map[choice])
+# choice_map = {
+#     0: '退出系统',
+#     1: '添加用户',
+#     2: '删除用户',
+# }
+# print(choice_map[choice])

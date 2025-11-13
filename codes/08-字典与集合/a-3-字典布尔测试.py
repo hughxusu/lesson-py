@@ -5,6 +5,7 @@ person = {
   'city': 'New York',
   'email': 'bob@web.com'
 }
-print(person)
-person['is_male'] = True
-print(person)
+empty = {}
+
+print(bool(person))
+print(bool(empty))

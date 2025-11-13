@@ -6,7 +6,5 @@ person = {
   'email': 'bob@web.com'
 }
 
-del person['age']
-print(person)
-
-person.clear()
+print(person.get('job', 'Manager'))
+print(person.get('is_male', True))

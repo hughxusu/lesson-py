@@ -5,6 +5,8 @@ person = {
   'city': 'New York',
   'email': 'bob@web.com'
 }
-print(person)
-person['is_male'] = True
-print(person)
+
+print(person.items())
+print('-'*50)
+for item in person.items():
+    print(f'{item[0]} = {item[1]}')

@@ -5,6 +5,8 @@ person = {
   'city': 'New York',
   'email': 'bob@web.com'
 }
-print(person)
-person['is_male'] = True
-print(person)
+
+print(person.values())
+print('-'*50)
+for value in person.values():
+    print(value)
