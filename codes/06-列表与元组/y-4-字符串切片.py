@@ -1,4 +1,4 @@
-message = '君自故乡来，应知故乡事。'
+message = '来日绮窗前，寒梅著花未？'
 sub_m = message[2:7]
 print(sub_m)
 print(type(sub_m))

@@ -1,6 +1,6 @@
 colors = ['red', 'green', 'blue', 'yellow', 'white', 'black']
-short_colors = ['purple', 'pink']
-colors_all = colors + short_colors
 print(colors)
+short_colors = ['purple', 'pink']
 print(short_colors)
+colors_all = colors + short_colors
 print(colors_all)

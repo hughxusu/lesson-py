@@ -4,8 +4,6 @@ if in_str.isdigit():
     if choice == 0:
         print('退出系统')
     elif choice == 1:
-        print('添加用户')
-    elif choice == 2:
-        print('删除用户')
+        print('添加任务')
 else:
     print('输入的不是数字')
