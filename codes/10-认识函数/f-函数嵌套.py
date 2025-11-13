@@ -4,9 +4,5 @@ def round_area(r):
 def cylinder(r, h):
     return round_area(r) * h
 
-def circular_cone(r, h):
-    return cylinder(r, h) / 3
-
-print(round_area(5))
-print(cylinder(5, 10))
-print(round_area(10) - round_area(5))
+print(f'半径为5的圆的面积是: {round_area(5)}')
+print(f'半径为5, 高为10的圆柱体体积是: {cylinder(5, 10)}')
