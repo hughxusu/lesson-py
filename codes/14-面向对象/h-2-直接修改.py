@@ -8,4 +8,6 @@ class TodoItem:
         print(f'{status}  {self.desc}')
 
 item = TodoItem('学习Python')
-print(item)
+item.show()
+item.is_completed = True
+item.show()

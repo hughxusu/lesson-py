@@ -3,9 +3,8 @@ class TodoItem:
         self.desc = desc
         self.is_completed = False
 
-    def show(self):
-        status = '✅' if self.is_completed else '⭕️'
-        print(f'{status}  {self.desc}')
+    def __str__(self):
+        return f'{'✅' if self.is_completed else '⭕️'}  {self.desc}'
 
 item = TodoItem('学习Python')
 print(item)

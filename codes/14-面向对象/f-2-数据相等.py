@@ -6,6 +6,10 @@ class TodoItem:
     def show(self):
         status = '✅' if self.is_completed else '⭕️'
         print(f'{status}  {self.desc}')
+    
+item_1 = TodoItem('学习Python')
+item_2 = TodoItem('学习Python')
+item_3 = item_1
+print(f'item_3 == item_1: {item_3 == item_1}')
+print(f'item_3 == item_2: {item_3 == item_2}')
 
-item = TodoItem('学习Python')
-print(item)
