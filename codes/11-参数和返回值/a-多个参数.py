@@ -10,12 +10,5 @@ def subtract_list(first, second):
 
 a = [1, 2, 3]
 b = [4, 5, 6]
-
-result = subtract_list(first=b, second=a)
+result = subtract_list(b, a)
 print(result)
-
-# result = subtract_list(second=a, first=b)
-# print(result)
-
-# result = subtract_list(b, second=a)
-# print(result)

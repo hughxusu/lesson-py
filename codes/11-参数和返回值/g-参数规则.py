@@ -1,8 +1,17 @@
-def all_args(first, second='yellow', *args, **kwargs):
-    print(f'first: {first}')
-    print(f'second: {second}')
-    print(f'args: {args}')
-    print(f'kwargs: {kwargs}')
+def calculate_total(pack_fee, *food_fee, delivery_fee=10, **coupon):
+    total = pack_fee + delivery_fee
+    for fee in food_fee:
+        total += fee
 
-all_args('red', a=1, b=2, c=3)
-all_args('red', 'blue', 'white', 'pink', a=1, b=2, c=3)
+    for key, value in coupon.items():
+        if key != 'discount':
+            total -= value
+
+    if 'discount' in coupon:
+        total *= coupon['discount']
+
+    return total
+
+
+result = calculate_total(5, 10, 20, first_order=5, discount=0.8)
+print(result)

@@ -1,9 +1,6 @@
-a = 1
+a = 1024
 b = a
+print(f'a=1024：{id(a)}, b=a：{id(b)}')
 
-print(f'a={a}, b={b}')
-print(f'a_id={id(a)}, b_id={id(b)}')
-
-a = 2
-print(f'a={a}, b={b}')
-print(f'a_id={id(a)}, b_id={id(b)}')
+a = 2048
+print(f'a=2048：{id(a)}, b=a：{id(b)}')

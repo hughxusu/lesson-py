@@ -6,5 +6,5 @@ def circle(r):
 
 length, area = circle(5)
 
-print(length)
-print(area)
+print(f'length={length}')
+print(f'area={area}')
