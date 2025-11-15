@@ -7,9 +7,3 @@ result = map(square, arr)
 
 print(type(result))
 print(list(result))
-
-# 使用 lambda 函数替代
-result = map(lambda x: x ** 2, arr)
-
-print(type(result))
-print(list(result))

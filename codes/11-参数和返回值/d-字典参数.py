@@ -9,7 +9,5 @@ def create_employee(name, **kwargs):
 
     return employee
 
-employee = create_employee(
-    'Bob', age=25, job='dev', email='bob@example.com'
-)
+employee = create_employee('Bob', age=25, job='dev', email='bob@example.com')
 print(employee)
