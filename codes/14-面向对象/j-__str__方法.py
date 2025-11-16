@@ -4,7 +4,7 @@ class TodoItem:
         self.is_completed = False
 
     def __str__(self):
-        return f'{'✅' if self.is_completed else '⭕️'}  {self.desc}'
+        return f'{"✅" if self.is_completed else "⭕️"}  {self.desc}'
 
 item = TodoItem('学习Python')
 print(item)

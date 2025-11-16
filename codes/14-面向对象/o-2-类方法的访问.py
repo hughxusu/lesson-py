@@ -7,7 +7,7 @@ class TodoItem:
         TodoItem.item_count += 1
 
     def __str__(self):
-        return f'{'✅' if self.is_completed else '⭕️'}  {self.desc}'
+        return f'{"✅" if self.is_completed else "⭕️"}  {self.desc}'
 
     @classmethod
     def get_item_count(cls):
