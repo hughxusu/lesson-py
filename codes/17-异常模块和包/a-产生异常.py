@@ -1,1 +1,1 @@
-print(5/0)
+f = open('todolist.pkl', 'rb')

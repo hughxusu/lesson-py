@@ -1,4 +1,4 @@
 try:
-    print(5/0)
-except ZeroDivisionError:
-    print("You can't divide by zero!")
+    f = open('todolist.pkl', 'rb')
+except FileNotFoundError:
+    print('File not found!')
