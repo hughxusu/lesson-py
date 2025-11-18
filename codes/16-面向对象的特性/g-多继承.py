@@ -66,17 +66,17 @@ class PortfolioInvestment(FixedDeposit, Fund):
         """显示组合投资信息"""
         print(f"=== 组合投资信息 ===")
         print(f"总投资本金：{self.total_principal}元，投资年限：{self.years}年")
-        print(f"\n资产配置：")
+        print(f"资产配置：")
         print(f"  定期存款：{self.fixed_ratio*100:.1f}% ({self.fixed_principal:.2f}元)")
         print(f"  基金：{self.fund_ratio*100:.1f}% ({self.fund_principal:.2f}元)")
-        print(f"\n定期存款部分：")
+        print(f"定期存款部分：")
         FixedDeposit.show_info(self)
         print(f"基金部分：")
         Fund.show_info(self)
         
         # 计算并显示收益
         total, profit = self.calculate_return()
-        print(f"\n收益预测：")
+        print(f"收益预测：")
         print(f"  定期存款到期金额：{self.fixed_principal * (1 + self.rate) ** self.years:.2f}元")
         print(f"  基金预期金额：{self.fund_principal * (1 + self.expected_return - self.management_fee) ** self.years:.2f}元")
         print(f"  组合总金额：{total:.2f}元")
