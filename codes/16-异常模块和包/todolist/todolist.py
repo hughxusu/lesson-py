@@ -1,14 +1,10 @@
+import pickle
 from todoitem import TodoItem
+# from todoitem import * 
 
 class TodoList:
-    __instance = None
-    def __new__(cls, *args, **kwargs):
-        if cls.__instance is None:
-            cls.__instance = super().__new__(cls)
-        return cls.__instance
-
     def __init__(self):
-        self.__items = []
+        self.__items = []            
         self.__cmds = ['add', 'del', 'ok', 'undo', 'edit']
 
     def __parse_cmd(self, raw, is_cmd=True):
@@ -107,13 +103,31 @@ class TodoList:
                 self.__items[index].desc = args[0].strip()
                 print('任务修改成功。')
 
+    def __items_to_pkl(self):
+        items = [item.__dict__ for item in self.__items]
+        f = open('todoitems.pkl', 'wb')
+        pickle.dump(items, f)
+        f.close()
+
+    def __pkl_to_items(self):
+        try:
+            f = open('todoitems.pkl', 'rb')
+            items = pickle.load(f)
+            self.__items = [TodoItem.from_dict(item) for item in items]
+            f.close()
+        except Exception:
+            f = open('todoitems.pkl', 'wb')
+            f.close()
+
     def run(self):
+        self.__pkl_to_items()
         print('=' * 100)
         print('欢迎使用任务清单')
         self.__short_info()
         while True:
             raw = input('').strip()
             if raw == 'exit':
+                self.__items_to_pkl()
                 break
             elif raw == 'help':
                 self.__help()
