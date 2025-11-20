@@ -11,10 +11,10 @@ def time_it(func):
 
 
 @time_it
-def work():
+def calculate_total():
     total = 0
     for i in range(1000000):
         total += i
-    print(total)
+    print(f'total = {total}')
 
-work()
+calculate_total()

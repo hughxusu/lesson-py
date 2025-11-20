@@ -5,15 +5,12 @@ class CountCalls:
         
     def __call__(self, *args, **kwargs):
         self.count += 1
-        print(f"{self.func.__name__} has been called {self.count} times")
+        print(f"{self.func.__name__} 函数调用 {self.count} 次:", end='\t')
         return self.func(*args, **kwargs)
 
 @CountCalls
-def fib(n):
-    a, b = 0, 1
-    for i in range(n):
-        a, b = b, a + b
-    return a
+def greet(first, last):
+    return f"Hello, {first.title()} {last.title()}"
 
-print(fib(5))
-print(fib(3))
+print(greet("john", "doe"))
+print(greet("alice", "smith"))

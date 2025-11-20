@@ -3,7 +3,7 @@ def count_calls(func):
     def wrapper(name):
         nonlocal count
         count += 1
-        print(f"{func.__name__} has been called {count} times")
+        print(f"{func.__name__} 函数调用 {count} 次:", end='\t')
         func(name)
     return wrapper	
 

@@ -1,16 +1,12 @@
 class Ratio(object):
-    def __init__(self):
-        self.__value = 0
+    def __init__(self, value=0):
+        self.__value = value    
 
     @property
     def percent(self):
         return self.__value * 100
       
-    @property
-    def is_half_percent(self): # 可以添加一系列辅助属性
-      	return self.__value >= 0.5
-    
-    @percent.setter
+    @percent.setter 
     def percent(self, value):
         if value > 100:
             self.__value = 1
@@ -20,8 +16,8 @@ class Ratio(object):
             self.__value = value / 100
                
 ratio = Ratio()
-print(ratio.percent)
+print(f'当前百分比为: {ratio.percent}%')
 ratio.percent = 44
-print(ratio.percent)
+print(f'当前百分比为: {ratio.percent}%')
 ratio.percent = 120
-print(ratio.percent)
+print(f'当前百分比为: {ratio.percent}%')

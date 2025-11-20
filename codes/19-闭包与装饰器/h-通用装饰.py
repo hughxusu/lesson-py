@@ -3,16 +3,13 @@ def count_calls(func):
     def wrapper(*args, **kwargs):
         nonlocal count
         count += 1
-        print(f"{func.__name__} has been called {count} times")
+        print(f"{func.__name__} 函数调用 {count} 次:", end='\t')
         return func(*args, **kwargs)
     return wrapper
 
 @count_calls
-def fib(n):
-    a, b = 0, 1
-    for i in range(n):
-        a, b = b, a + b
-    return a
+def greet(first, last):
+    return f"Hello, {first.title()} {last.title()}"
 
-print(fib(5))
-print(fib(3))
+print(greet("john", "doe"))
+print(greet("alice", "smith"))
