@@ -28,7 +28,7 @@
     * [上下文管理器与拷贝](docs/d-other/3-拷贝)
 
 * Python常用库
-  * [安装包与虚拟环境](docs/e-usage/1-环境.md)
+  * [配置开发环境](docs/e-usage/1-环境.md)
   * [Numpy](docs/e-usage/2-numpy.md)
   * [Matplotlib](docs/e-usage/3-matplotlib.md)
   * [Pandas](docs/e-usage/4-pandas.md)
