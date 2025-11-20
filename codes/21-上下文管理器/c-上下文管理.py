@@ -1,3 +1,10 @@
+msg = '''
+新妆宜面下朱楼，
+深锁春光一院愁。
+行到中庭数花朵，
+蜻蜓飞上玉搔头。
+'''
+
 class File(object):
     # 初始化方法
     def __init__(self, file_name, file_model):
@@ -19,5 +26,5 @@ class File(object):
 
 
 # 使用with管理文件
-with File("demo.txt", "w") as file:
-    file.write("hello world")
+with File("和乐天春词.txt", "w") as file:
+    file.write(msg)
