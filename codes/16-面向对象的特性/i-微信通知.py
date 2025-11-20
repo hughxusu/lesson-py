@@ -21,7 +21,7 @@ class EmailNotification(Notification):
 
     def send(self):
         print(f'调用【邮箱】api接口向{self.email}发送 📧')
-        print('-'*50)
+        print('-' * 50)
         msg = f'用户，您好：\n'
         msg += self.get_note()
         msg += f'\n\n'
@@ -36,7 +36,7 @@ class SmsNotification(Notification):
 
     def send(self):
         print(f'调用【短信】api接口向{self.phone}发送短信 📱')
-        print('-'*50)
+        print('-' * 50)
         msg = f'【中国联通】'
         msg += self.get_note()
         print(msg)
@@ -49,7 +49,7 @@ class WXNotification(Notification):
 
     def send(self):
         print(f'调用【微信】api接口向{self.wxid}推送消息 📱')
-        print('-'*50)
+        print('-' * 50)
         msg = self.get_note()
         print(msg)
 

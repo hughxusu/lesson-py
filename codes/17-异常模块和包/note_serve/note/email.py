@@ -1,4 +1,4 @@
-from base import Notification
+from .base import Notification
 
 class EmailNotification(Notification):
     def __init__(self, user, account_balance, monthly_bill, email):
@@ -7,7 +7,7 @@ class EmailNotification(Notification):
 
     def send(self):
         print(f'调用【邮箱】api接口向{self.email}发送 📧')
-        print('-'*50)
+        print('-' * 50)
         msg = f'用户，您好：\n'
         msg += self.get_note()
         msg += f'\n\n'
