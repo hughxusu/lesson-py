@@ -6,7 +6,7 @@ def my_generator(n):
         
 g = my_generator(3)
 print(g)
-print(next(g))
-print(next(g))
-print(next(g))
-print(next(g))
+print(f'当前元素为: {next(g)}')
+print(f'当前元素为: {next(g)}')
+print(f'当前元素为: {next(g)}')
+# print(next(g))

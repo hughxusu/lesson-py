@@ -24,7 +24,7 @@
     * [面向对象综合练习](docs/c-class/5-练习)
   * 高级特性
     * [闭包与装饰器](docs/d-other/1-装饰)
-    * [生成器与迭代器](docs/d-other/2-迭代)
+    * [迭代器与生成器](docs/d-other/2-迭代)
     * [上下文管理器与拷贝](docs/d-other/3-拷贝)
 
 * Python常用库
@@ -35,4 +35,3 @@
   * [软件测试](docs/e-usage/5-unitest.md)
 
 * [附录](docs/附录.md)
-    

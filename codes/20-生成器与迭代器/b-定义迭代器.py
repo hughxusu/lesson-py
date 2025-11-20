@@ -27,7 +27,10 @@ class FibonacciIterator:
         return next_value           
 
 
-fib_iter = FibonacciIterator(10) 
+fib_iter = FibonacciIterator(10)
 
+result = []
 for num in fib_iter:
-    print(num)
+    result.append(num)
+
+print(result)

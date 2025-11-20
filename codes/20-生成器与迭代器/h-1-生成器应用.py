@@ -9,7 +9,8 @@ def fibonacci(num):
         current_index += 1
         yield result
 
-
-fib = fibonacci(5)
+fib = fibonacci(10)
+result = []
 for value in fib:
-    print(value)
+    result.append(value)
+print(result)
