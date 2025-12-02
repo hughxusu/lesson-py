@@ -401,21 +401,17 @@ print(col.ndim)
 print(col.shape)
 ```
 
-> [!attention]
+> [!warning]
 >
 > 1. 对列数据进行切片，切片后数组的形状为`(length,)`，切片后的数据都会以行向量存储。
 > 2. 数组切片操作保存到新变量中是引用数据。`reshape`也是引用数据。
 
 ```python
 sub_x = x[:2, :3]
-print(sub_x)
 print(x)
+print(sub_x)
 
 sub_x[0, 0] = 100
-print(sub_x)
-print(x)
-
-x[0, 0] = 0
 print(x)
 print(sub_x)
 ```
@@ -425,8 +421,8 @@ print(sub_x)
 ```python
 sub_x = x[:2, :3].copy()
 sub_x[0, 0] = 100
-print(sub_x)
 print(x)
+print(sub_x)
 ```
 
 ### 数组合并
@@ -449,17 +445,19 @@ w = np.concatenate([a, y.reshape(1, -1)]) # 需要修改y的形状
 print(w)
 ```
 
-> [!attention]
+> [!warning]
 >
 > `concatenate`合并后的数组不是引用数据，是将数据拷贝后生成新的数组，修改原数组或新数组中的数据彼此间不受影响。
->
-> 判断操作是不是引用操作主要看操作结果是否是原数组的子集，如果是子集一般为引用操作，如果不是子集一般为拷贝操作。
 
 ```python
 w[0, 0] = 100
 print(w)
-print(x)
+print(a)
 ```
+
+> [!warning]
+>
+> 判断操作是不是引用操作主要看操作结果是否是原数组的子集，如果是子集一般为引用操作，如果不是子集一般为拷贝操作。
 
 `vstack`将数组在垂直方向拼接，`hstack`将数组在水平方向进行合并。这两个方法支持，矩阵和向量间的操作，但要求数据对齐。
 
@@ -484,21 +482,22 @@ print(x1, x2, x3)
 w1, w2 = np.split(x, [5])
 print(w1, w2)
 
-x1[0] = 100
-print(x1)
+w1[0] = 100
 print(x)
+print(x1)
+print(w1)
 
 a = np.arange(16).reshape(4, 4)
-a1, a2 = np.split(a, [2])  # 在水平方向上分割矩阵
+a1, a2, a3 = np.split(a, [2, 3])  # 在水平方向上分割矩阵
 print(a)
 print(a1)
-print(a2)
+print(f'a2={a2}')
+print(f'a2={a3}')
 
-a1, a2, a3 = np.split(a, [2, 3], axis=1) # 在垂直方向上进行分割
+a1, a2= np.split(a, [2], axis=1) # 在垂直方向上进行分割
 print(a)
 print(a1)
 print(a2)
-print(a3)
 ```
 
 `vsplit`在垂直方向进行分割，`hsplit`在水平方向上进行分割。
@@ -514,6 +513,8 @@ print(right)
 
 # 获取最后一列，并转换为一维数组
 x, y = np.hsplit(a, [-1])
+print(a)
+print(y)
 y = y[:, 0] 
 print(y)
 ```
@@ -557,7 +558,7 @@ double = np.array(2 * i for i in l)
 
 %%time
 double = 2 * l # Numpy支持向量与常数的运算操作
-print(double)
+print(double[:10])
 ```
 
 Numpy中将数组作为向量和矩阵进行运算称为通用函数（Universal Function），通用函数的主要目的是对NumPy数组中的值执行更快的重复操作。
@@ -717,8 +718,8 @@ print(np.std(big_array)) # 求标准差
 
 ```python
 x = np.random.normal(0, 1, size=1000000)
-print(np.argmin(x)) # 获得最小值位置索引
-print(np.argmax(x)) # 获得最大值位置索引
+print(f'min value index is {np.argmin(x)}') # 获得最小值位置索引
+print(f'max value index is {np.argmax(x)}') # 获得最大值位置索引
 ```
 
 ### 数组排序
@@ -749,10 +750,10 @@ print(np.sort(x, axis=0)) # 沿着水平方向进行排序
 排序中的索引
 
 ```python
+np.random.seed(666)
 x = np.arange(16)
 np.random.shuffle(x)
 print(x)
-
 print(np.argsort(x)) # 返回排序后数字的索引值，对矩阵同样成立
 ```
 
