@@ -107,17 +107,17 @@ players.index[0] = 'Avery Bradley' # 报错不能修改单个值
 index = players.index.tolist() # 将index转换为list
 index[0] = 'Avery Bradley'
 players.index = index
-players
+players.head()
 ```
 
 2. `index`的设置与重置。设置与重置的操作只针对`index`，`columns`没有该操作。`set_index`可以将某一列数据设置为索引。同时可以设置多重索引。
 
 ```python
 df = players.set_index('Name') # 将球员的名字设置为索引
-df
+df.head()
 
 df = players.set_index(['Name', 'Team'])
-df
+df.head()
 ```
 
 > [!warning]
@@ -128,10 +128,10 @@ df
 
 ```python
 players = df.reset_index() # 将原来索引变为一列数据
-players
+players.head()
 
 temp = df.reset_index(drop=True) # 删除原来索引
-temp
+temp.head()
 ```
 
 ### Series
@@ -144,7 +144,7 @@ salary = players_new['Salary']
 
 print(type(salary))
 print(salary.index)
-salary
+salary.head()
 ```
 
 Series数据类型中没有`columns`属性
@@ -202,7 +202,8 @@ area = pd.Series(area_dict)
 df = pd.DataFrame({'population': population, 'area': area})
 
 # 通过NumPy二维数组创建。
-pd.DataFrame(np.random.rand(3, 2), columns=['foo', 'bar'], index=['a', 'b', 'c'])
+mat = np.random.rand(3, 2)
+df = pd.DataFrame(mat, columns=['foo', 'bar'], index=['a', 'b', 'c'])
 ```
 
 ## 数据读取与修改
@@ -211,25 +212,25 @@ pd.DataFrame(np.random.rand(3, 2), columns=['foo', 'bar'], index=['a', 'b', 'c']
 
 DataFrame数据有三种获取方式
 
+> [!attention]
+>
+> 索引方式为先列后行（与Numpy相反），直接索引不支持Numpy类似的操作。
+
 1. 直接使用行列索引，直接索引支持切片操作。
 
 ```python
 data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
 players = data.set_index('Name')
 
-players['Salary'] # 获取一列数据，返回Series数据类型
-players[['Salary', 'Team', 'Number']] # 获取多列数据，返回DataFramed数据类型
+players['Salary'].head() # 获取一列数据，返回Series数据类型
+players[['Salary', 'Team', 'Number']].head() # 获取多列数据，返回DataFramed数据类型
 players['Salary']['Avery Bradley']
 
 players['Avery Bradley'] # 直接获取一行数据报错
 
-players['Salary'][0:6]
+players['Salary'][0:6].head()
 players[0:3][0:6]
 ```
-
-> [!attention]
->
-> 索引方式为先列后行（与Numpy相反），直接索引不支持Numpy类似的操作。
 
 获取列数据，并将其转换为Numpy数据类型
 
@@ -237,23 +238,25 @@ players[0:3][0:6]
 arr1 = players['Salary'].values
 print(type(arr1))
 print(arr1.shape)
+print(arr1[0:5])
 
 arr2 = players['Salary'].to_numpy()
 print(type(arr2))
 print(arr2.shape)
+print(arr2[0:5])
 ```
 
 上面两种方法得到的Numpy数组与DataFrame共享数据
 
 ```python
-arr1[0] = 2000000
-players
+arr1[0] = 200
+players.head()
 
-arr2[0] = 3000000
-players
+arr2[0] = 400
+players.head()
 ```
 
-2. 结合`loc`和`iloc`使用索引，可以先行后列进行索引，支持切片操作。
+2. 结合`loc`和`iloc`使用索引，可以先行后列进行索引，支持切片操作。无法直接使用索引或切片操作
 
 ```python
 players[2, 2]
@@ -272,23 +275,23 @@ sub_df = players.loc['Avery Bradley': 'R.J. Hunter', ['Salary', 'Team', 'Number'
 
 ```python
 item = players.iloc[0, 0]
-sub_df = players.iloc[0: 10, 0:2]
+sub_df = players.iloc[0: 5, 0:2]
 ```
 
 3. 混合索引，`loc`、`iloc`和直接索引。
 
 ```python
 # 使用loc和iloc混合索引数据
-sub_df = players.iloc[0: 10].loc[:, ['Salary', 'Team', 'Number']]
+sub_df = players.iloc[0: 5].loc[:, ['Salary', 'Team', 'Number']]
 
 # iloc和直接索引
-sub_ser = players.iloc[0: 10]['Salary']
+sub_ser = players.iloc[0: 5]['Salary']
 print(type(sub_ser)) # 只取一列则是Series数据类型
 
-sub_df = players.iloc[0: 10][['Salary', 'Team', 'Number']]
+sub_df = players.iloc[0: 5][['Salary', 'Team', 'Number']]
 
 # 注意：只获取前两行数据不会获取前十行前两列数据
-sub_df = players.iloc[0: 10][0:2]
+sub_df = players.iloc[0: 5][0:2]
 ```
 
 > [!attention]
@@ -314,14 +317,14 @@ sub_df = salary.iloc[0:5]
 修改单个数据应该使用`loc`和`iloc`方法，使用直接索引会产生警告。
 
 ```python
-players.loc['Avery Bradley', 'Salary'] = 1000000
+players.loc['Avery Bradley', 'Salary'] = 1000
 ```
 
 修改一列数据可以使用索引
 
 ```python
-players['Salary'] = 1000000
-players.Salary = 2000000
+players['Salary'] = 2000
+players.Salary = 4000
 ```
 
 ### 数据排序
@@ -349,7 +352,7 @@ df = players.sort_index(ascending=False)
 
 ### 统计运算
 
-`describe`综合分析，能够自动得出多统计结果，包括count、mean、std、min、max等，count表示数据量（数据行数）
+`describe`综合分析，能够自动得出多统计结果，包括count、mean、std、min、max等，count表示数据量（数据行数），只计算数值列。
 
 ```python
 data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
@@ -541,9 +544,9 @@ print(clear_movies.shape)
 score = movies['Meta_score']
 median = score.median()
 print(median)
+print(pd.isnull(movies).sum())
 
 score.fillna(median, inplace=True)
-movies['Revenue (Millions)'] = score
 print(pd.isnull(movies).sum())
 ```
 
