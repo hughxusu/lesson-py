@@ -35,6 +35,7 @@ import matplotlib.pyplot as plt # 常用的绘图工具
 x = np.linspace(0, 10, 100)
 y = np.sin(x)
 
+plt.figure(figsize=(10, 8))
 plt.plot(x, y)
 plt.show()
 ```
@@ -75,8 +76,8 @@ plt.axis([-1, 11, -2, 2])
 4. 添加标签
 
 ```python
-plt.xlabel('x axis')
-plt.ylabel('y value')
+plt.xlabel('x轴')
+plt.ylabel('y轴')
 ```
 
 解决中文显示问题
