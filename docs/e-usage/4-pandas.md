@@ -593,6 +593,8 @@ count = len(movies_after_2000)
 print(f"2000年及以后上映的电影数量: {count}")
 ```
 
+* `to_numeric`将数据转换为数值型，`errors='coerce'`如果数据不存在转换为`Nan`（Not a number），是Numpy的数据类型，计算时会被忽略。
+
 > [!note]
 >
 > 计算所有电影的平均时长（分钟），超过120分钟的电影数量，小于120分钟的电影数量。
@@ -624,7 +626,9 @@ short_movies = df[df['Runtime_Minutes'] < 120]
 print(f"小于120分钟的电影数量: {len(short_movies)}")
 ```
 
-> [!note]
+* `apply`是对当列的数据，每个元素应用函数。
+
+> [!Note]
 >
 > 统计IMDB_Rating在`[8, 9]`内的电影数量。
 
@@ -644,6 +648,8 @@ most_prolific_director = director_counts.index[0]
 most_prolific_count = director_counts.iloc[0]
 print(f"\n拍摄电影数量最多的导演: {most_prolific_director}")
 ```
+
+* `value_counts`对这一列进行频次统计，即每个导演出现的次数。
 
 > [!note]
 >
