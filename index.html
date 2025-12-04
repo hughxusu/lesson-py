@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Python编程语言</title>
@@ -11,8 +12,10 @@
   <!-- 样式 -->
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5080785_dxnej8jlp5.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
   <div id="app"></div>
   <script>
@@ -34,32 +37,40 @@
       // 设置高亮文本框样式
       'flexible-alerts': {
         note: {
-          label: "思考",
-          className: 'note_self'
+          className: 'note_',
+          icon: 'iconfont icinfo-circle',
         },
-        tip: {
-          label: "练习",
-          className: 'tip_self'
+
+        thinking: {
+          className: 'thinking',
+          icon: 'iconfont icquestion-circle',
         },
+
+        practice: {
+          className: 'practice',
+          icon: 'iconfont icedit-square',
+        },
+
         warning: {
-          label: "提示",
-          className: 'warning_self'
+          className: 'warning',
+          icon: 'iconfont icerror'
         },
-        attention: {
-          label: "注意",
-          className: "attention_self"
+
+        alert: {
+          className: "alert_",
+          icon: "iconfont icstop"
         }
       },
 
       copyCode: {
-        buttonText : '复制',
-        errorText  : '错误',
+        buttonText: '复制',
+        errorText: '错误',
         successText: '成功'
       },
 
       latex: {
-        inlineMath   : [['$', '$'], ['\\(', '\\)']], // default
-        displayMath  : [['$$', '$$']],               // default
+        inlineMath: [['$', '$'], ['\\(', '\\)']], // default
+        displayMath: [['$$', '$$']],               // default
       },
 
       mermaidConfig: {
@@ -102,4 +113,5 @@
   <!-- 返回顶部 -->
   <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
 </body>
+
 </html>

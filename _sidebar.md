@@ -32,5 +32,6 @@
   * [Numpy](docs/e-usage/2-numpy.md)
   * [Matplotlib](docs/e-usage/3-matplotlib.md)
   * [Pandas](docs/e-usage/4-pandas.md)
+  * [Seaborn](docs/e-usage/5-seaborn.md)
 
 * [附录](docs/附录.md)
