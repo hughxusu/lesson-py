@@ -80,16 +80,16 @@
       plugins: [
         function (hook, vm) {
           hook.doneEach(function () {
-            let think = document.querySelector('.think .title')
-            think.innerHTML = think.innerHTML.replace('Think', '思考')
-            let tip = document.querySelector('.tip .title')
-            tip.innerHTML = tip.innerHTML.replace('Tip', '练习')
-            let alert = document.querySelector('.alert_ .title')
-            alert.innerHTML = alert.innerHTML.replace('Alert', '注意')
-            let warning = document.querySelector('.warning .title')
-            warning.innerHTML = warning.innerHTML.replace('Warning', '提示')
-            let note = document.querySelector('.note_ .title')
-            note.innerHTML = note.innerHTML.replace('Note', '要点')
+            let el = document.querySelector('.think .title')
+            el.innerHTML = el.innerHTML.replace('Think', '思考')
+            el = document.querySelector('.tip .title')
+            el.innerHTML = el.innerHTML.replace('Tip', '练习')
+            el = document.querySelector('.alert_ .title')
+            el.innerHTML = el.innerHTML.replace('Alert', '注意')
+            el = document.querySelector('.warning .title')
+            el.innerHTML = el.innerHTML.replace('Warning', '提示')
+            el = document.querySelector('.note_ .title')
+            el.innerHTML = el.innerHTML.replace('Note', '要点')
           })
         }
       ]
