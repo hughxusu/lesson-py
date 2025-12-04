@@ -38,27 +38,27 @@
       'flexible-alerts': {
         note: {
           className: 'note_',
-          icon: 'iconfont icinfo-circle',
+          icon: 'iconfont icbulb',
         },
 
-        thinking: {
-          className: 'thinking',
+        think: {
+          className: 'think',
           icon: 'iconfont icquestion-circle',
         },
 
-        practice: {
-          className: 'practice',
+        tip: {
+          className: 'tip',
           icon: 'iconfont icedit',
         },
 
         warning: {
           className: 'warning',
-          icon: 'iconfont icerror'
+          icon: 'iconfont icinfo-circle'
         },
 
         alert: {
           className: "alert_",
-          icon: "iconfont icstop"
+          icon: "iconfont icerror"
         }
       },
 
@@ -75,7 +75,15 @@
 
       mermaidConfig: {
         querySelector: ".mermaid"
-      }
+      },
+
+      plugins: [
+        function (hook, vm) {
+          hook.afterEach(function (html) {
+            return html.replace(/Think/g, '思考').replace(/Tip/g, '练习').replace(/Alert/g, '注意').replace(/Warning/g, '提示').replace(/Note/g, '要点')
+          })
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->

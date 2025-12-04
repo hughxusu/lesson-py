@@ -20,16 +20,15 @@
     font-weight: bold !important;
 } 
 
-.iconfont.icinfo-circle {
-    font-size: 18px;
-    line-height: 18px;
+.iconfont.icbulb {
+    font-size: 19px;
+    line-height: 19px;
 }
 
-.thinking {
+.think {
     border-left-color: #722ed1 !important;
 } 
-
-.thinking .title {
+.think .title {
     color: #722ed1;
     font-weight: bold !important;
 } 
@@ -39,11 +38,11 @@
     line-height: 18px;
 }
 
-.practice {
+.tip {
     border-left-color: #52c41a !important;
 } 
 
-.practice .title {
+.tip .title {
     color: #52c41a;
     font-weight: bold !important;
 } 
@@ -61,9 +60,9 @@
     font-weight: bold !important;
 } 
 
-.iconfont.icerror {
-    font-size: 19px;    
-    line-height: 19px;
+.iconfont.icinfo-circle {
+    font-size: 18px;    
+    line-height: 18px;
 } 
 
 .alert_ {
@@ -72,10 +71,11 @@
 
 .alert_ .title {
     color: #ff4d4f;
+    font-weight: bold !important;
 } 
 
-.iconfont.icstop {
-    font-size: 18px;
-    line-height: 18px;
+.iconfont.icerror {
+    font-size: 19px;
+    line-height: 19px;
 } 
 

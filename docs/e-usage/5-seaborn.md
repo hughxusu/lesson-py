@@ -28,20 +28,23 @@ import seaborn as sns
 
 ## 数据可视化
 
-> [!thinking]
+> [!think]
 >
 > 
 
 * 对于单变量的数据，可以采⽤直⽅图或核密度曲线来展示数据。
 * 对于双变量来说，散点图、⼆维直⽅图、核密度估计图形等。
 
-> [!practice]
+
+
+> [!tip]
+
+
+
+> [!note]
 
 > [!warning]
 
+
+
 > [!alert]
-
-> [!note]
->
-> 
-
