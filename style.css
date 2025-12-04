@@ -12,11 +12,11 @@
 }
 
 .note_ {
-    border-left-color: #13c2c2 !important;
+    border-left-color: #1890ff !important;
 }
 
 .note_ .title {
-    color: #13c2c2;
+    color: #1890ff;
     font-weight: bold !important;
 } 
 
@@ -48,9 +48,9 @@
     font-weight: bold !important;
 } 
 
-.iconfont.icedit-square {
-    font-size: 18px;
-    line-height: 18px;
+.iconfont.icedit {
+    font-size: 19px;
+    line-height: 19px;
 }
 
 .warning {
@@ -58,11 +58,12 @@
 } 
 .warning .title {
     color: #faad14;
+    font-weight: bold !important;
 } 
 
 .iconfont.icerror {
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 19px;    
+    line-height: 19px;
 } 
 
 .alert_ {
