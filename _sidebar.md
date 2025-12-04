@@ -32,6 +32,5 @@
   * [Numpy](docs/e-usage/2-numpy.md)
   * [Matplotlib](docs/e-usage/3-matplotlib.md)
   * [Pandas](docs/e-usage/4-pandas.md)
-  * [软件测试](docs/e-usage/6-unitest.md)
 
 * [附录](docs/附录.md)
