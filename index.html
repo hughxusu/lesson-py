@@ -80,16 +80,30 @@
       plugins: [
         function (hook, vm) {
           hook.doneEach(function () {
-            let el = document.querySelector('.think .title')
-            el.innerHTML = el.innerHTML.replace('Think', '思考')
-            el = document.querySelector('.tip .title')
-            el.innerHTML = el.innerHTML.replace('Tip', '练习')
-            el = document.querySelector('.alert_ .title')
-            el.innerHTML = el.innerHTML.replace('Alert', '警告')
-            el = document.querySelector('.warning .title')
-            el.innerHTML = el.innerHTML.replace('Warning', '注意')
-            el = document.querySelector('.note_ .title')
-            el.innerHTML = el.innerHTML.replace('Note', '要点')
+            let thinks = document.querySelectorAll('.think .title')
+            thinks.forEach(el => {
+              if (el) el.innerHTML = el.innerHTML.replace('Think', '思考')
+            })
+
+            let tips = document.querySelectorAll('.tip .title')
+            tips.forEach(el => {
+              if (el) el.innerHTML = el.innerHTML.replace('Tip', '练习')
+            })
+          
+            let alerts = document.querySelectorAll('.alert_ .title')
+            alerts.forEach(el => {
+              if (el) el.innerHTML = el.innerHTML.replace('Alert', '警告')
+            })
+          
+            let warnings = document.querySelectorAll('.warning .title')
+            warnings.forEach(el => {
+              if (el) el.innerHTML = el.innerHTML.replace('Warning', '注意')
+            })
+
+            let notes = document.querySelectorAll('.note_ .title')
+            notes.forEach(el => {
+              if (el) el.innerHTML = el.innerHTML.replace('Note', '要点')
+            })
           })
         }
       ]
