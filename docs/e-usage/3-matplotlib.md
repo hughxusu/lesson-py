@@ -115,7 +115,7 @@ plt.grid(True, linestyle='--', alpha=0.5) # alphab表示网格线透明度
 plt.savefig("test.png") # 保存图片到指定路径
 ```
 
-> [!warning]
+> [!alert]
 >
 > `plt.show()` 会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
 
