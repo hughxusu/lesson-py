@@ -11,8 +11,8 @@ def add_two_arr(first, second):
         raise NotSameLengthError()
 
     results = []
-    for i in first:
-        result = first[i] + scond[i]
+    for i, item in enumerate(first):
+        result = item + second[i]
         results.append(result)
     return results
 
