@@ -13,7 +13,7 @@
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
   <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5080785_z3a1g8vkvr.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
@@ -39,26 +39,31 @@
         note: {
           className: 'note_',
           icon: 'iconfont icbulb',
+          label: '要点'
         },
 
         think: {
           className: 'think',
           icon: 'iconfont icquestion-circle',
+          label: '思考'
         },
 
         tip: {
           className: 'tip',
           icon: 'iconfont icedit',
+          label: '练习'
         },
 
         warning: {
           className: 'warning',
-          icon: 'iconfont icinfo-circle'
+          icon: 'iconfont icinfo-circle',
+          label: '注意'
         },
 
         alert: {
           className: "alert_",
-          icon: "iconfont icerror"
+          icon: "iconfont icerror",
+          label: '警告'
         }
       },
 
@@ -80,16 +85,26 @@
       plugins: [
         function (hook, vm) {
           hook.doneEach(function () {
-            let el = document.querySelector('.think .title')
-            el.innerHTML = el.innerHTML.replace('Think', '思考')
-            el = document.querySelector('.tip .title')
-            el.innerHTML = el.innerHTML.replace('Tip', '练习')
-            el = document.querySelector('.alert_ .title')
-            el.innerHTML = el.innerHTML.replace('Alert', '警告')
-            el = document.querySelector('.warning .title')
-            el.innerHTML = el.innerHTML.replace('Warning', '注意')
-            el = document.querySelector('.note_ .title')
-            el.innerHTML = el.innerHTML.replace('Note', '要点')
+            function setChinese(els, en, zh) {
+              els.forEach(el => {
+                if (el) el.innerHTML = el.innerHTML.replace(en, zh)
+              })
+            }
+
+            let els = document.querySelectorAll('.think .title')
+            setChinese(els, 'Think', '思考')
+
+            els = document.querySelectorAll('.tip .title')
+            setChinese(els, 'Tip', '练习')
+
+            els = document.querySelectorAll('.alert_ .title')
+            setChinese(els, 'Alert', '警告')
+
+            els = document.querySelectorAll('.warning .title')
+            setChinese(els, 'Warning', '注意')
+
+            els = document.querySelectorAll('.note_ .title')
+            setChinese(els, 'Note', '要点')
           })
         }
       ]

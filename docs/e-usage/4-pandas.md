@@ -96,7 +96,7 @@ print(type(players.columns))
 
 1. 修改行列索引值。
 
-> [!attention]
+> [!alert]
 >
 > DataFrame修改`index`或`columns`的操作，不能修改单个值，只能整体全部修改。
 
@@ -122,7 +122,7 @@ df.head()
 
 > [!warning]
 >
-> 设置多个索引的操作将数据变为了基于MutiIndex的DataFrame数据结构。
+> 设置多个索引的操作，将数据变为了基于MutiIndex的DataFrame数据结构。
 
 `reset_index`将原来的索引删除或变为一列数据。
 
@@ -212,7 +212,7 @@ df = pd.DataFrame(mat, columns=['foo', 'bar'], index=['a', 'b', 'c'])
 
 DataFrame数据有三种获取方式
 
-> [!attention]
+> [!alert]
 >
 > 索引方式为先列后行（与Numpy相反），直接索引不支持Numpy类似的操作。
 
@@ -294,7 +294,7 @@ sub_df = players.iloc[0: 5][['Salary', 'Team', 'Number']]
 sub_df = players.iloc[0: 5][0:2]
 ```
 
-> [!attention]
+> [!alert]
 >
 > 老版本中存在`ix`索引，在新版本中已经弃用。
 
@@ -580,7 +580,7 @@ df = pd.read_csv("imdb_top_1000.csv")
 df.head()
 ```
 
-> [!note]
+> [!tip]
 >
 > 统计2000年及以后上映的电影数量。
 >
@@ -595,7 +595,7 @@ print(f"2000年及以后上映的电影数量: {count}")
 
 * `to_numeric`将数据转换为数值型，`errors='coerce'`如果数据不存在转换为`Nan`（Not a number），是Numpy的数据类型，计算时会被忽略。
 
-> [!note]
+> [!tip]
 >
 > 计算所有电影的平均时长（分钟），超过120分钟的电影数量，小于120分钟的电影数量。
 >
@@ -628,7 +628,7 @@ print(f"小于120分钟的电影数量: {len(short_movies)}")
 
 * `apply`是对当列的数据，每个元素应用函数。
 
-> [!Note]
+> [!tip]
 >
 > 统计IMDB_Rating在`[8, 9]`内的电影数量。
 
@@ -638,7 +638,7 @@ count_8_to_9 = len(rating_8_to_9)
 print(f"\nIMDB评分在[8,9]区间内的电影数量: {count_8_to_9}")
 ```
 
-> [!note]
+> [!tip]
 >
 > 统计拍摄电影数量最多的导演，并输出该导演的电影数。
 
@@ -651,7 +651,7 @@ print(f"\n拍摄电影数量最多的导演: {most_prolific_director}")
 
 * `value_counts`对这一列进行频次统计，即每个导演出现的次数。
 
-> [!note]
+> [!tip]
 >
 > 统计所有电影的票房总（Gross），并计算平均票房。
 >
