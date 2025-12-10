@@ -5,7 +5,7 @@
 * Numpy支持常见的数组和矩阵操作。
 * Numpy支持数值计算任务。
 
-<img src="../../images/libs/8dd3ae17b2db7ffc8da11e2f5d85a082.jpeg" style="zoom:75%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/8dd3ae17b2db7ffc8da11e2f5d85a082.jpeg" style="zoom:70%;" />
 
 > [!note]
 >
@@ -655,7 +655,7 @@ b = np.ones((3, 5))  # 第二维：4≠5，且都不是1
 
 几种广播的形式
 
-<img src="../../images/libs/2471360-20210724091537666-1277824522.png" style="zoom: 70%;" />
+<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/2471360-20210724091537666-1277824522.png" style="zoom: 70%;" />
 
 ### 矩阵运算
 
