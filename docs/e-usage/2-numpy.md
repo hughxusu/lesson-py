@@ -5,6 +5,12 @@
 * Numpy支持常见的数组和矩阵操作。
 * Numpy支持数值计算任务。
 
+<img src="../../images/libs/8dd3ae17b2db7ffc8da11e2f5d85a082.jpeg" style="zoom:75%;" />
+
+> [!note]
+>
+> 高维的张量和矩阵之间是可以相互转换的，而张量的计算是以矩阵的计算为基础。
+
 安装Numpy
 
 ```shell
