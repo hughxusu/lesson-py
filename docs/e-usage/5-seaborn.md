@@ -78,5 +78,14 @@ sns.jointplot(x=x, y=y, kind='kde')
 
 ## 其他常用图像
 
-### 关系图
+1. 关系图
+   * [`relplot()`](https://seaborn.pydata.org/generated/seaborn.relplot.html)绘制两个变量间的关系，散点图或折线图。
+2. 分类图
+   * [`boxplot()`](https://seaborn.pydata.org/generated/seaborn.boxplot.html)箱线图。
+   * [`violinplot()`](https://seaborn.pydata.org/generated/seaborn.violinplot.html)小提琴图。
+3. 矩阵图
+   * [`heatmap()`](https://seaborn.pydata.org/generated/seaborn.heatmap.html)绘制热力图。
+   * [`clustermap()`](https://seaborn.pydata.org/generated/seaborn.clustermap.html)绘制热力图，常用于显示相关性矩阵或数据表。
+4. 多变量组合图
+   * [`pairplot()`](https://seaborn.pydata.org/generated/seaborn.pairplot.html)绘制数据集中所有数值变量两两关系的散点矩阵图。
 
