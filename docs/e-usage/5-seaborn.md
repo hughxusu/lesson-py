@@ -35,3 +35,48 @@ import seaborn as sns
 * 对于单变量的数据，可以采⽤直⽅图或核密度曲线来展示数据。
 * 对于双变量来说，散点图、⼆维直⽅图、核密度估计图形等。
 
+### 单变量数据分布
+
+[`displot()`](https://seaborn.pydata.org/generated/seaborn.displot.html#seaborn-displot)函数用于绘制单变量数据分布
+
+```python
+np.random.seed(666)
+data = np.random.normal(size=1000)
+ax = sns.displot(data, kde=True, bins=30)
+```
+
+* `data`表示需要绘制的数据。
+* `kde`表示是否绘制⾼斯核密度估计曲线。
+* `bins`⽤于控制条形的数量。
+
+```python
+np.random.seed(666)
+data = np.random.random(size=1000)
+ax = sns.displot(data, kind='kde', rug=True)
+```
+
+* `kind='kde'`直接绘制核密度估计曲线而不显示直方图。
+* `rug`表示是否在x轴上显示数据点位。
+
+### 双变量数据分布
+
+[`jointplot`](https://seaborn.pydata.org/generated/seaborn.jointplot.html#seaborn.jointplot)函数用于绘制双变量数据分布
+
+```python
+x, y = np.random.normal(size=(2, 1000))
+sns.jointplot(x=x, y=y)
+```
+
+默认绘制的分布图为散点图，参数`kind`可以控制绘图的类型。
+
+```py
+sns.jointplot(x=x, y=y, kind='hex')
+sns.jointplot(x=x, y=y, kind='kde')
+```
+
+* `kind='hex'`绘制二维直方图；`kind='kde'`可以绘制密度曲线。
+
+## 其他常用图像
+
+### 关系图
+
