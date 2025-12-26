@@ -33,5 +33,6 @@
   * [Matplotlib](docs/e-usage/3-matplotlib.md)
   * [Pandas](docs/e-usage/4-pandas.md)
   * [Seaborn](docs/e-usage/5-seaborn.md)
+  * [数据分析综合实践](docs/e-usage/6-分析.md)
 
 * [附录](docs/附录.md)
