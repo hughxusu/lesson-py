@@ -4,8 +4,6 @@
 
 **[代码仓库](https://github.com/hughxusu/lesson-py)**
 
-[![Cloud Studio Template](https://cs-res.codehub.cn/common/assets/icon-badge.svg)](https://cloudstudio.net/courses/28406379812667392)
-
 ## 课程目标
 
 学习Python编程语言，以及相关应用。
