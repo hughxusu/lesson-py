@@ -7,3 +7,4 @@ print(f'b=2048：{id(b)}')
 print(f'c=1024：{id(c)}')
 
 
+
