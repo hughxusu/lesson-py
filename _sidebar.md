@@ -27,7 +27,8 @@
     * [闭包与装饰器](docs/d-other/1-装饰)
     * [迭代器与生成器](docs/d-other/2-迭代)
     * [上下文管理器](docs/d-other/3-上下文)
-    * [拷贝](docs/d-other/3-上下文)
+    * [拷贝](docs/d-other/4-拷贝)
+    * [注解](docs/d-other/5-注解)
 
 * Python常用库
   * [配置开发环境](docs/e-usage/1-环境.md)
