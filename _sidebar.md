@@ -20,12 +20,14 @@
     * [基本语法](docs/c-class/1-基础)
     * [任务清单](docs/c-class/2-清单)
     * [面向对象的特性](docs/c-class/3-特性)
-    * [异常、模块和包](docs/c-class/4-异常)
-    * [面向对象综合练习](docs/c-class/5-练习)
+    * [异常](docs/c-class/4-异常)
+    * [模块和包](docs/c-class/5-包)
+    * [面向对象综合练习](docs/c-class/6-练习)
   * 高级特性
     * [闭包与装饰器](docs/d-other/1-装饰)
     * [迭代器与生成器](docs/d-other/2-迭代)
-    * [上下文管理器与拷贝](docs/d-other/3-拷贝)
+    * [上下文管理器](docs/d-other/3-上下文)
+    * [拷贝](docs/d-other/3-上下文)
 
 * Python常用库
   * [配置开发环境](docs/e-usage/1-环境.md)
