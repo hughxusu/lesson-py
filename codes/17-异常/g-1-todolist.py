@@ -1,6 +1,18 @@
 import pickle
-from todoitem import TodoItem
-# from todoitem import * 
+
+class TodoItem:
+    def __init__(self, desc):
+        self.desc = desc
+        self.is_completed = False
+
+    def __str__(self):
+        return f'{"✅" if self.is_completed else "⭕️"}-{self.desc}'
+
+    @classmethod
+    def from_dict(cls, item_dict):
+        item = cls(item_dict['desc'])
+        item.is_completed = item_dict['is_completed']
+        return item
 
 class TodoList:
     def __init__(self):
@@ -147,3 +159,6 @@ class TodoList:
                     self.__edit_item(args)
                 else:
                     print('命令格式错误，请输入正确的命令。')
+
+todo_list = TodoList()
+todo_list.run()
