@@ -1,9 +1,7 @@
-person: dict[str, str | int] = {
-  'name': 'Bob',
-  'age': 25,
-  'job': 'Dev',
-  'city': 'New York',
-  'email': 'bob@web.com'
-}
-print(person)
+type Numeric = int | float
 
+index: Numeric = 6
+print(index)
+
+pi: Numeric = 3.14
+print(pi)
