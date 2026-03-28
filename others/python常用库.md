@@ -181,45 +181,6 @@ print p.sub(func, s)
 print p.sub(func, s, 1)         # 最多替换一次
 ```
 
-#### 方式二
-
-直接使用
-
-```python
-result = re.match(r'<h1>(.*)</h1>','<h1>匹配分组</h1>')
-# group参数表示体出第一个括号的信息，1表示第一个出现的()
-result.group(1) 
-```
-
-### re模块的高级用法
-
-```python
-# search在字符串中搜索，搜索到匹配的第一个后就不在搜索
-s = '<html><h1>itcast</h1></html>'
-re.search(r"itcast", s) # 匹配
-re.search(r"^itcast$", s) # 不匹配，表示必须以i开始
-
-s = 'itcast</h1></html>itheima</h1>'
-re.search(r'\w+</h1>', s) # 搜索到第一个停止
-
-# findall 查找出所有匹配结果
-re.findall(r'\w+</h1>', s) # 结果为数组
-
-# sub 替换 1.php目标，2.python替换为的内容，3.要替换的文本
-re.sub(r'php', 'python', 'itcast python cpp php python php')
-re.sub(r'\d+', '50', 'python=1000, php=0')
-
-def replace(result):
-    r = int(result.group()) + r
-    return str(r)
-
-re.sub(r'\d+', replace, 'python=1000, php=0') # sub第二个参数可以是函数
-
-# split 以特定字符分割字符串
-s = 'itcast:php,python,cpp-java'
-re.split(r':|,|-', s) # 用三类符合对字符串进行分割
-```
-
 ## urllib库
 
 * 生成request实例，用于模拟http请求，包括请求头、请求内容等。可以用于Post和Get请求
