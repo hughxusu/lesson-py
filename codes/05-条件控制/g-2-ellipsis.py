@@ -7,6 +7,3 @@ elif choice == 2:
     ...
 else:
     print('功能选择不存在')
-
-
-
