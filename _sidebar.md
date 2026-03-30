@@ -22,7 +22,7 @@
     * [面向对象的特性](docs/c-class/3-特性)
     * [异常](docs/c-class/4-异常)
     * [模块和包](docs/c-class/5-包)
-    * [常用的标准库类](docs/c-class/6-标准库.md)
+    * [标准库的常用类](docs/c-class/6-标准库.md)
     * [面向对象综合练习](docs/c-class/7-练习)
   * 高级特性
     * [闭包与装饰器](docs/d-other/1-装饰)
