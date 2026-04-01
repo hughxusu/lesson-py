@@ -10,3 +10,11 @@ print(
         'tommy@qq.com'
     ).group()
 )
+
+ret = re.match(
+    "<(?P<name1>[a-zA-Z1-6]+)><(?P<name2>[a-zA-Z1-6]+)>.*</(?P=name2)></(?P=name1)>", 
+    "<html><h1>www.apple.cn</h1></html>"
+)
+print(ret.group())
+print(ret.group('name1'))
+print(ret.group('name2'))
