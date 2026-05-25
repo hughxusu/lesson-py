@@ -5,9 +5,9 @@ export default withMermaid({
   title: "Python语言与AI编程实践",
   description: "Python语言与AI编程实践",
   ignoreDeadLinks: true,
-  base: '/lesson-index/',
+  base: '/lesson-py/',
   head: [
-    ['link', { rel: 'icon', href: '/lesson-index/logo_icon.jpeg' }],
+    ['link', { rel: 'icon', href: '/lesson-py/logo_icon.jpeg' }],
   ],
   themeConfig: {
     sidebar: [
