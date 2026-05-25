@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习
-      link: /README
+      link: "docs/home.md"
 features:
   - title: Python语法
     details: 循序渐进掌握Python核心语法，理解Python设计哲学，掌握编程思维。

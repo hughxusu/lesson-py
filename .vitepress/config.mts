@@ -95,8 +95,8 @@ export default withMermaid({
     //   { text: 'Examples', link: '/markdown-examples' }
     // ],
 
-    // socialLinks: [
-    //   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    // ]
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/hughxusu/lesson-py' }
+    ]
   }
 })
