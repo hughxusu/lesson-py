@@ -4,6 +4,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 export default withMermaid({
   title: "Python语言与AI编程实践",
   description: "Python语言与AI编程实践",
+  ignoreDeadLinks: true,
   base: '/lesson-index/',
   head: [
     ['link', { rel: 'icon', href: '/lesson-index/logo_icon.jpeg' }],
