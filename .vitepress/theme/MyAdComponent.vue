@@ -1,6 +1,6 @@
 <template>
   <div class="custom-ad-container">
-    <a href="https://your-link.com" target="_blank" rel="noopener noreferrer">
+    <a href="https://u.jd.com/cGVf6WV" target="_blank" rel="noopener noreferrer">
       <img src="/ad.jpg" alt="京东Apple旗舰店广告" />
       <p class="ad-text">京东Apple旗舰店 <br /> 正品保障，极速配送</p>
     </a>
