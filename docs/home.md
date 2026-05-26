@@ -2,8 +2,6 @@
 
 **本站网址**：https://hughxusu.github.io/lesson-py/
 
-**代码仓库**：[GitHub链接]
-
 ## 课程目标
 
 学习Python编程语言及其相关应用，重点培养代码阅读能力与AI辅助开发能力。
