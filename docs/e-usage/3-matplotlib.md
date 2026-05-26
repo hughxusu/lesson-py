@@ -42,7 +42,7 @@ plt.show()
 
 ### Matplotlib图像结构
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/anatomy.png" style="zoom:50%;" />
+<img src="./assets/anatomy.png" style="zoom:50%;" />
 
 ## 绘制单幅图像
 

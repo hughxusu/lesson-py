@@ -78,7 +78,9 @@ export default withMermaid({
         text: '附录',
         collapsed: true,
         items: [
-          { text: '附录', link: '/docs/附录.md' },
+          { text: '运算符优先级表', link: '/docs/f-appendix/a-运算符.md' },
+          { text: 'Python中常用的标准库', link: '/docs/f-appendix/b-标准库.md' },
+          { text: '类函数重写', link: '/docs/f-appendix/c-重写.md' },
         ]
       }
     ],

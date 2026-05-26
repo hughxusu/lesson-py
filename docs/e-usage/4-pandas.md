@@ -21,7 +21,7 @@ d-->f(机器学习)
 * 有表头的概念。
 * 表格数据中可能包含异常值。
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/creating_dataframe1.png" style="zoom:65%;" />
+<img src="./assets/creating_dataframe1.png" style="zoom:65%;" />
 
 在拥有16GB内存的计算机上，pandas可以轻松处理数百万行、数十个列的数据集：
 
@@ -558,7 +558,7 @@ print(pd.isnull(movies).sum())
 
 [测试数据集](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data)
 
-<img src="https://raw.githubusercontent.com/hughxusu/lesson-py/develop/images/libs/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
+<img src="./assets/Xnip2024-05-30_17-38-45.jpg" style="zoom:80%;" />
 
 使用`replace(to_replace, value)`将标记替换为`np.nan`，按前面的步骤处理。
 
