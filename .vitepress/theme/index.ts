@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import MyAdComponent from './MyAdComponent.vue'
+import SidebarToggle from './SidebarToggle.vue'
 import './custom.css'
 
 export default {
@@ -10,7 +11,10 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       // 使用 aside-ads-after 插槽，将其注入到右侧栏广告位
-      'aside-ads-after': () => h(MyAdComponent)
+      'aside-ads-after': () => h(MyAdComponent),
+
+      // 2. 干净优雅地注入新封装的边栏开关组件
+      'nav-bar-content-before': () => h(SidebarToggle)
     })
   }
 }
