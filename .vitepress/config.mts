@@ -6,6 +6,9 @@ export default withMermaid({
   description: "Python语言与AI编程实践",
   ignoreDeadLinks: true,
   base: '/lesson-py/',
+  markdown: {
+    math: true,
+  },
   head: [
     ['link', { rel: 'icon', href: '/lesson-py/logo_icon.jpeg' }],
   ],
