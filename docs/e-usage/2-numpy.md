@@ -7,7 +7,7 @@
 
 <img src="./assets/8dd3ae17b2db7ffc8da11e2f5d85a082.jpeg" style="zoom:70%;" />
 
-> [!note]
+> [!important]
 >
 > 高维的张量和矩阵之间是可以相互转换的，而张量的计算是以矩阵的计算为基础。
 
@@ -141,7 +141,7 @@ Numpy中创建数组的函数一般都包含`shape`和`dtype`两个参数：
 * `shape`接受数字和元组类型，用于控制数组的形状。
 * `dtype`用于控制数据的类型，不同创建数组函数默认值有差异，不一定都是`float`类型。
 
-> [!note]
+> [!important]
 >
 > `ndarray`是Numpy的数组类型，习惯统称为数组，但其支持多个维度：
 >
@@ -425,7 +425,7 @@ print(x)
 print(sub_x)
 ```
 
-> [!note]
+> [!important]
 >
 > 常见的视图操作：基本切片、转置（Transpose）、改变数组形状`reshape`和**部分情况下的数据类型转换**。
 
@@ -458,7 +458,7 @@ w = np.concatenate([a, y.reshape(1, -1)]) # 需要修改y的形状
 print(w)
 ```
 
-> [!note]
+> [!important]
 >
 > `concatenate`合并后的数组不是视图，是将数据复制后生成新的数组。
 
@@ -468,7 +468,7 @@ print(w)
 print(a)
 ```
 
-> [!note]
+> [!important]
 >
 > 判断操作是不是引用操作主要看操作结果是否是原数组的**连续子集**，如果是**连续子集**一般为创建视图，如果不是一般为创建数据副本。
 
@@ -687,7 +687,7 @@ print(a.dot(inv_a)) # 原局长和逆矩阵矩阵乘法得到单位阵
 print(inv_a.dot(a))
 ```
 
-> [!alert]
+> [!caution]
 >
 > 1. 矩阵间的符号运算，要求两个矩阵的形状相同或满足广播机制。
 > 2. 矩阵间的数学运算，要求矩阵满足数学运算的条件。
@@ -856,7 +856,7 @@ col = [True, False, True, True]
 print(w[1:3, col])
 ```
 
-> [!note]
+> [!important]
 >
 > 使用布尔数组（掩码）从原数组中筛选元素的操作，常被称为“布尔索引”或“掩码索引”。掩码的形状与原数组相同或满足广播机制。
 

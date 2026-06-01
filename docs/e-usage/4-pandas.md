@@ -96,7 +96,7 @@ print(type(players.columns))
 
 1. 修改行列索引值。
 
-> [!alert]
+> [!caution]
 >
 > DataFrame修改`index`或`columns`的操作，不能修改单个值，只能整体全部修改。
 
@@ -212,7 +212,7 @@ df = pd.DataFrame(mat, columns=['foo', 'bar'], index=['a', 'b', 'c'])
 
 DataFrame数据有三种获取方式
 
-> [!alert]
+> [!caution]
 >
 > 索引方式为先列后行（与Numpy相反），直接索引不支持Numpy类似的操作。
 
@@ -294,7 +294,7 @@ sub_df = players.iloc[0: 5][['Salary', 'Team', 'Number']]
 sub_df = players.iloc[0: 5][0:2]
 ```
 
-> [!alert]
+> [!caution]
 >
 > 老版本中存在`ix`索引，在新版本中已经弃用。
 

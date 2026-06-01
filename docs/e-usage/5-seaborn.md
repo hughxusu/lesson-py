@@ -28,7 +28,7 @@ import seaborn as sns
 
 ## 数据可视化
 
-> [!think]
+> [!tip]
 >
 > 对于一组数据，未知其分布形式，如果了解其分布状态？
 
