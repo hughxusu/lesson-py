@@ -1,5 +1,4 @@
 command = ["move", "10", "20"]
-# command = ["drop", "sword", "shield"]
 
 match command:
     case ["quit"]:
