@@ -5,5 +5,6 @@ person = {
     'city': 'New York',
     'email': 'bob@web.com'
 }
-for i in enumerate(person):
-    print(i)
+
+for index, item in enumerate(person, start=2):
+    print(index, item)
