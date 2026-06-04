@@ -1,4 +1,4 @@
-def create_student(name, std_id, *, email=None, phone=None, is_active=True):
+def create_student(name, std_id, *, email, phone, is_active):
     student = {
         'name': name,
         'std_id': std_id,
@@ -8,7 +8,7 @@ def create_student(name, std_id, *, email=None, phone=None, is_active=True):
     }
     return student
 
-student = create_student('张三', '1001', phone='13800000000', is_active=False)
+student = create_student('张三', '1001', email='zhangsan@example.com', phone='13800000000', is_active=False)
 print(student)
 
 

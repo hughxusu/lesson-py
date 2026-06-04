@@ -14,8 +14,8 @@ b = [4, 5, 6]
 result = subtract_list(first=b, second=a)
 print(result)
 
-# result = subtract_list(second=a, first=b)
-# print(result)
+result = subtract_list(second=a, first=b)
+print(result)
 
-# result = subtract_list(b, second=a)
-# print(result)
+result = subtract_list(b, second=a)
+print(result)
