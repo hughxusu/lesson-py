@@ -1,6 +1,6 @@
 import pickle
 
-f = open('cars.pkl', 'rb')
+f = open('汽车.pkl', 'rb')
 cars = pickle.load(f)
 f.close()
 print(cars)

@@ -224,3 +224,7 @@ node_modules
 .DS_Store
 *.local
 package-lock.json/
+cars.json
+cars.pkl
+汽车.json
+汽车.pkl

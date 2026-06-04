@@ -1,6 +1,6 @@
 import json
 
-f = open('cars.json', 'r', encoding='utf-8')
+f = open('汽车.json', 'r', encoding='utf-8')
 cars = json.load(f)
 f.close()
 print(cars)
