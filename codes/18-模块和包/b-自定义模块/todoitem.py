@@ -1,5 +1,3 @@
-# __all__ = ['TodoItem']
-
 class TodoItem:
     def __init__(self, desc):
         self.desc = desc
@@ -14,16 +12,16 @@ class TodoItem:
         item.is_completed = item_dict['is_completed']
         return item
 
-# item = TodoItem('学习Python')
-# print(item)
-# item.is_completed = True
-# print(item)
+item = TodoItem('学习Python')
+print(item)
+item.is_completed = True
+print(item)
 
-# print(f'todoItem.py = {__name__}')
+print(f'当前文件名为 = {__name__}')
 
-if __name__ == '__main__':
-    item = TodoItem('学习Python')
-    print(item)
-    item.is_completed = True
-    print(item)
+# if __name__ == '__main__':
+#     item = TodoItem('学习Python')
+#     print(item)
+#     item.is_completed = True
+#     print(item)
 

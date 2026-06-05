@@ -1,6 +1,4 @@
-from note import email, sms, wx, serve
-# from note import *
-# from note import serve
+from note import *
 
 email_note = email.EmailNotification('张三', 100, 84, 'zs@example.com')
 sms_note = sms.SmsNotification('张三', 100, 84, '13800001234')
