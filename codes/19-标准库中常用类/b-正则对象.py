@@ -1,5 +1,6 @@
 import re
 
+# 匹配一个或多个数字
 result = re.compile(r'\d+')
 print(result)
 print(type(result))
