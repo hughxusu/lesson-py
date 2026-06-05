@@ -12,5 +12,3 @@ class TodoItem:
 
 item = TodoItem('学习Python')
 print(f'item.__is_completed: {item.__is_completed}')
-
-# item.__is_completed = True

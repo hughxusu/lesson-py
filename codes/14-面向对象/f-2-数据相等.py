@@ -6,6 +6,11 @@ class TodoItem:
     def show(self):
         status = '✅' if self.is_completed else '⭕️'
         print(f'{status}  {self.desc}')
+
+    def __eq__(self, other):
+        if not isinstance(other, TodoItem):
+            return False
+        return self.desc == other.desc and self.is_completed == other.is_completed
     
 item_1 = TodoItem('学习Python')
 item_2 = TodoItem('学习Python')

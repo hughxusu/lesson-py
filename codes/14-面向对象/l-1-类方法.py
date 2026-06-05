@@ -19,6 +19,7 @@ class TodoItem:
 
 
 item1 = TodoItem('学习Python')
+print(f'item1.get_item_count: {item1.get_item_count()}')
 item1.set_item_count(10)
 print(f'item1.get_item_count: {item1.get_item_count()}')
 print(f'TodoItem.item_count: {TodoItem.item_count}')
