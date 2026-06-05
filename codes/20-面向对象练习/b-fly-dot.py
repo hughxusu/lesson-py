@@ -1,51 +1,3 @@
-# 面向对象综合练习
-
-[pygame](https://www.pygame.org/news)是一款专门为开发和2D电子游戏的开源软件包，支持Windows、Linux和Mac OS等操作系统。它是在SDL（Simple DirectMedia Layer）的基础上开发而成。安装pygame
-
-```python
-pip install pygame
-```
-
-## pygame基本使用
-
-游戏的基本流程
-
-```python
-import pygame as pg
-
-pg.init()
-window = pg.display.set_mode((800, 600))
-clock = pg.time.Clock()
-is_running = True
-
-while is_running:
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            is_running = False
-
-    clock.tick(60)
-    pg.display.update()
-    
-pg.quit()
-```
-
-* `pg.init()`和`pg.quit()`分别表示：初始化和结束游戏
-* `pg.display.set_mode((800, 600))`创建一个游戏区域。
-* `while is_running:`游戏本身是一个死循环。
-* `pg.event.get()`获取游戏中的事件，如：点击鼠标、按按钮。
-* `clock = pg.time.Clock()`创建时钟对象跟踪时间。
-* `clock.tick(60)`定义游戏的帧率。
-* `pg.display.update()`刷新屏幕显示的内容。
-
-### `Sprite`类
-
-* `pg.sprite.Sprite`继承精灵类
-  * 覆盖`self.image`属性，框架会在自动重绘时自动调用该属性。
-  * 覆盖`self.rect`属性，用于重绘值标注元素的位置。
-  * 重写`def update(self, keys)`方法，重绘时会自动调用该方法。
-* `utils.get_screen_rect()`获取窗口边界，让坦克在窗口范围内。
-
-```python
 import pygame as pg
 
 # 定义小圆点精灵类
@@ -101,11 +53,3 @@ while is_running:
     pg.display.update()
     
 pg.quit()
-```
-
-## 练习
-
-1. 使用pygame完成一个贪吃蛇的小游戏。
-
-
-
