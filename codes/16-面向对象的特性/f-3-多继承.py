@@ -54,7 +54,7 @@ class MultiChannelNotifier(EmailNotification, SmsNotification):
         SmsNotification.send(self)
         print('=' * 50)
 
-d = MultiChannelNotifier('张三', 100, 84, 'zhangsan@example.com', '13800001234')
+d = MultiChannelNotifier('李四', 100, 128, 'zhangsan@example.com', '13800001234')
 d.send()
 
 

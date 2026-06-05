@@ -9,7 +9,6 @@ class TodoList:
 
     def __init__(self):
         self.__items = []
-        self.__cmds = ['add', 'del', 'ok', 'undo', 'edit']
 
 todo1 = TodoList()
 todo2 = TodoList()

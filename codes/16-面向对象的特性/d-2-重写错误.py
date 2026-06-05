@@ -21,6 +21,6 @@ class FixedDeposit(Investment):
         print(f'{name}-本金：{self.principal}元，年限：{self.years}，利率：{self.rate}')
 
 fixed = FixedDeposit(10000, 3, 0.05)
-fixed.show_info()
+# fixed.show_info()
 
-# fixed.show_info('定期存款')
+fixed.show_info('定期存款')

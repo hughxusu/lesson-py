@@ -23,7 +23,6 @@ class MultiChannelNotifier(EmailNotification, SmsNotification):
         
 note = MultiChannelNotifier()
 print(MultiChannelNotifier.__mro__)
-print(note.name)
 
 
 
