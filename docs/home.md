@@ -30,7 +30,8 @@
 ### 参考书
 | 书名                                                         | 图书馆索书号  |
 | ------------------------------------------------------------ | ------------- |
-| [Python编程（第3版）](https://book.douban.com/subject/36365320/) | 无            |
+| [Python编程：从入门到实践(第3版)](https://book.douban.com/subject/36365320/) | 无            |
+| [Python编程：从新手到高手](https://book.douban.com/subject/37454087/) | 无            |
 | [Python工匠](https://book.douban.com/subject/35723705/)      | TP311.561/587 |
 | [Python数据科学手册](https://book.douban.com/subject/27667378/) | TP312/Y430    |
 | [程序员数学](https://book.douban.com/subject/35689348/)      | TP311.1/420   |
