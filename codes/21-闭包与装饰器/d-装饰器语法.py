@@ -9,7 +9,7 @@ def count_calls(func):
 
 @count_calls
 def greet():
-    print(f"Hello, world")
+    print(f"Hello, python!")
 
 greet()
 greet()
