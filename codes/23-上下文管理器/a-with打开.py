@@ -5,6 +5,5 @@ msg = '''
 辜负香衾事早朝。
 '''
 
-f = open("为有.txt", "w")
-f.write(msg)
-f.close()
+with open('为有.txt', 'w') as f:
+    f.write(msg)

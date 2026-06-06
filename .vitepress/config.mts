@@ -60,9 +60,8 @@ export default withMermaid({
         items: [
           { text: '闭包与装饰器', link: '/docs/d-other/1-装饰' },
           { text: '迭代器与生成器', link: '/docs/d-other/2-迭代' },
-          { text: '上下文管理器', link: '/docs/d-other/3-上下文' },
-          { text: '拷贝', link: '/docs/d-other/4-拷贝' },
-          { text: '类型注解', link: '/docs/d-other/5-注解' },
+          { text: '上下文管理器与拷贝', link: '/docs/d-other/3-上下文' },
+          { text: '类型注解', link: '/docs/d-other/4-注解' },
         ]
       },
       {

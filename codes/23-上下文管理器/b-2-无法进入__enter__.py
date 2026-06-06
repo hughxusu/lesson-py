@@ -1,15 +1,8 @@
-msg = '''
-新妆宜面下朱楼，
-深锁春光一院愁。
-行到中庭数花朵，
-蜻蜓飞上玉搔头。
-'''
-
 class File(object):
     # 初始化方法
     def __init__(self, file_name, file_model):
         # 定义变量保存文件名和打开模式
-        self.file_name = file_name
+        self.file_name = file_name 
         self.file_model = file_model
 
     # 上文方法

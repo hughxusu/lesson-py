@@ -1,10 +1,3 @@
-msg = '''
-新妆宜面下朱楼，
-深锁春光一院愁。
-行到中庭数花朵，
-蜻蜓飞上玉搔头。
-'''
-
 class File(object):
     # 初始化方法
     def __init__(self, file_name, file_model):
