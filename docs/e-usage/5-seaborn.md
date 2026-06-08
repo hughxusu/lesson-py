@@ -89,3 +89,7 @@ sns.jointplot(x=x, y=y, kind='kde')
 4. 多变量组合图
    * [`pairplot()`](https://seaborn.pydata.org/generated/seaborn.pairplot.html)绘制数据集中所有数值变量两两关系的散点矩阵图。
 
+## 练习
+
+1. 绘制nba.csv文件中薪水、身高和体重的分布曲线。
+
