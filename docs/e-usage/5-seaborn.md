@@ -93,3 +93,15 @@ sns.jointplot(x=x, y=y, kind='kde')
 
 1. 绘制nba.csv文件中薪水、身高和体重的分布曲线。
 
+### 数据分析练习
+
+数据来源：[Netflix 电影与电视节目数据](https://www.kaggle.com/datasets/shivamb/netflix-shows/data)
+
+1. 数据导入与概览：读取CSV文件，输出数据的维度（行数、列数）、列名、各列的数据类型，并显示前 5 行数据以了解数据结构。
+2. 缺失值统计与可视化：计算每一列的缺失值数量及缺失比例。使用 seaborn 绘制热力图（Heatmap）可视化缺失值的分布情况。
+3. 缺失值处理策略：
+   1. 对于country（国家）、cast（演员）、director（导演）列的缺失值，填充为"Unknown"。
+   2. 对于 rating（分级）、duration（时长）列的缺失值，如果数量极少（<1%），则直接删除对应的行。
+
+4. 时间类型转换：将date_added（上架日期）列转换为标准的datetime格式。如果是无法解析的格式，需进行清洗或处理异常值
+5. 时间特征提取：从date_added中提取年份和月份，分别创建两个新列year_added（上架年份）和month_added（上架月份）。
