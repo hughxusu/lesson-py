@@ -19,11 +19,11 @@ import matplotlib.pyplot as plt # 常用的绘图工具
 1. 组织要绘制的数据x和y。
 1. 创建画布，可省略。
 
-`plt.figure(figsize=(), dpi=) `  figsize: 指定图的长宽；dpi: 图像的清晰度
+`plt.figure(figsize=(), dpi=)`figsize: 指定图的长宽；dpi: 图像的清晰度
 
 2. 绘制图像
 
-`plt.plot(x, y) `x轴坐标（数组），y轴坐标（数组）x轴和y轴数据必须一致
+`plt.plot(x, y)`x轴坐标（数组），y轴坐标（数组）x轴和y轴数据必须一致
 
 3. 显示图像
 
@@ -61,15 +61,11 @@ plt.show()
 plt.plot(x, cosy, color='r', linestyle='--')
 ```
 
-[可以选择的颜色](https://matplotlib.org/stable/users/explain/colors/colors.html#colors-def)和[可以选择的线条样式](https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html)
+* [可以选择的颜色](https://matplotlib.org/stable/users/explain/colors/colors.html#colors-def)和[可以选择的线条样式](https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html)
 
 3. 设置坐标范围
 
 ```python
-plt.xlim(-5, 15)
-plt.ylim(0, 1.5)
-
-# 使用axis条件坐标范围
 plt.axis([-1, 11, -2, 2])
 ```
 
@@ -80,14 +76,14 @@ plt.xlabel('x轴')
 plt.ylabel('y轴')
 ```
 
-解决中文显示问题
+5. 解决中文显示问题
 
 ```python
 plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
 plt.rcParams['axes.unicode_minus'] = False
 ```
 
-5. 添加图示
+6. 添加图示
 
 ```python
 plt.plot(x, y, label='sin(x)')
@@ -97,19 +93,19 @@ plt.legend() # 绘图前要显示调用图示显示
 
 [`plt.legend(loc)`中的`loc`可以调整图例的位置](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html#matplotlib.pyplot.legend)
 
-6. 添加标题
+7. 添加标题
 
 ```python
 plt.title('sin & cos')
 ```
 
-7. 添加网格显示
+8. 添加网格显示
 
 ```python
 plt.grid(True, linestyle='--', alpha=0.5) # alphab表示网格线透明度
 ```
 
-8. 图像保存
+9. 图像保存
 
 ```python
 plt.savefig("test.png") # 保存图片到指定路径
@@ -117,9 +113,9 @@ plt.savefig("test.png") # 保存图片到指定路径
 
 > [!caution]
 >
-> `plt.show()` 会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
+> `plt.show()`会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
 
-9. 显示图像
+10. 显示图像
 
 ```python
 plt.show()
@@ -139,22 +135,9 @@ plt.scatter(x, y) # 绘制散点图的函数
 plt.show()
 ```
 
-2. 绘制不同数据的散点图
+2. 散点图绘制特征数据，模拟正态分布
 
 ```python
-cosy = np.cos(x)
-plt.scatter(x, cosy, color='r')
-```
-
-散点图绘制特征数据，模拟正态分布
-
-```python
-x = np.random.normal(0, 1, 100)
-y = np.random.normal(0, 1, 100)
-
-plt.scatter(x, y)
-plt.show()
-
 x = np.random.normal(0, 1, 10000)
 y = np.random.normal(0, 1, 10000)
 
@@ -162,5 +145,8 @@ plt.scatter(x, y, alpha=0.1)
 plt.show()
 ```
 
+## 练习
 
+1. 以远点为圆心，1~5为半径绘制5个同心圆。
+2. 随机生成5个点，点的范围是[1, 2]，绘制以圆心为原点，到这个5个点的向量，向量有红色箭头表示。
 
