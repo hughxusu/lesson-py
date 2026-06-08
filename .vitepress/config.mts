@@ -73,7 +73,6 @@ export default withMermaid({
           { text: 'Matplotlib', link: '/docs/e-usage/3-matplotlib.md' },
           { text: 'Pandas', link: '/docs/e-usage/4-pandas.md' },
           { text: 'Seaborn', link: '/docs/e-usage/5-seaborn.md' },
-          { text: '数据分析综合实践', link: '/docs/e-usage/6-分析.md' },
         ]
       },
       {
@@ -98,11 +97,5 @@ export default withMermaid({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hughxusu/lesson-py' }
     ]
-
-    // https://vitepress.dev/reference/default-theme-config
-    // nav: [
-    //   { text: 'Home', link: '/' },
-    //   { text: 'Examples', link: '/markdown-examples' }
-    // ],
   }
 })
