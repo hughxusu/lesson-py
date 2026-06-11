@@ -95,7 +95,8 @@ export default withMermaid({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/hughxusu/lesson-py' }
+      { icon: 'github', link: 'https://github.com/hughxusu/lesson-py' },
+      { icon: 'bilibili', link: 'https://www.bilibili.com/video/BV1EWE96wEkC/?share_source=copy_web&vd_source=aa661569ff3138d0b604d53a96184bf2' }
     ]
   }
 })
