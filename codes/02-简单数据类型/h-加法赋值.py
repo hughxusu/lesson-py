@@ -1,4 +1,4 @@
-num = 4
+num = 3
 print(f'num 的值为: {num}')
-num += 2
+num += 4
 print(f'num 加 4 后的结果为: {num}')
