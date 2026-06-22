@@ -1,4 +1,4 @@
-sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao']
+sites = ['Google', 'Wiki', 'Weibo', 'Baidu', 'Taobao', 'Trae']
 i = 0
 while i < len(sites):
     site = sites[i]
