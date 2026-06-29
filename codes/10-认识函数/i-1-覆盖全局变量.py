@@ -6,5 +6,5 @@ def round_area(r):
     return area
 
 result = round_area(1)
-print(f'半径为5的圆的面积是: {result}')
+print(f'半径为1的圆的面积是: {result}')
 print(f'全局变量 pi = {pi}')
