@@ -102,5 +102,5 @@ sns.jointplot(x=x, y=y, kind='kde')
 3. 缺失值处理策略：
    1. 对于country（国家）、cast（演员）、director（导演）列的缺失值，填充为"Unknown"。
    2. 对于 rating（分级）、duration（时长）列的缺失值，如果数量极少（<1%），则直接删除对应的行。
-4. 时间类型转换：将date_added（上架日期）列转换为标准的datetime格式。如果是无法解析的格式，需进行清洗或处理异常。
+4. 时间类型转换：将date_added（上架日期）列转换为标准的datetime格式。如果是无法解析的格式，需进行清洗或处理异常值。
 5. 时间特征提取：从date_added中提取年份和月份，分别创建两个新列year_added（上架年份）和month_added（上架月份）。
