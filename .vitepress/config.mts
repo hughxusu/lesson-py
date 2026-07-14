@@ -45,7 +45,7 @@ export default withMermaid({
         text: '面向对象',
         collapsed: true,
         items: [
-          { text: '基本语法', link: '/docs/c-class/1-基础' },
+          { text: '面向对象的基本语法', link: '/docs/c-class/1-基础' },
           { text: '任务清单', link: '/docs/c-class/2-清单' },
           { text: '面向对象的特性', link: '/docs/c-class/3-特性' },
           { text: '异常', link: '/docs/c-class/4-异常' },
