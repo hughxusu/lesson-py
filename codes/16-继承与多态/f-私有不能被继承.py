@@ -7,5 +7,8 @@ class FixedDeposit(Investment):
     def __init__(self, principal, years):
         super().__init__(principal, years)
 
+    def __str__(self):
+        return f'定期存款：本金{self.__principal}元，年限{self.__years}年'
+
 fixed = FixedDeposit(10000, 3)
-print(f'本金：{fixed.__principal}元，年限：{fixed.__years}')
+print(fixed)
