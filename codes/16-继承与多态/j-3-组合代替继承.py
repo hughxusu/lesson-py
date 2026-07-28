@@ -76,6 +76,12 @@ class NotificationService:
 email_note = EmailNotification('张三', 100, 84, 'zs@example.com')
 sms_note = SmsNotification('张三', 100, 84, '13800001234')
 wx_note = WXNotification('张三', 100, 84, 'zs-wx')
+# email_note.send()
+# print('=' * 50)
+# sms_note.send()
+# print('=' * 50)
+# wx_note.send()
+
 
 service = NotificationService()
 service.add_notification(email_note)
