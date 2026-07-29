@@ -1,5 +1,5 @@
-from todolist import TodoList
+from todoitem import TodoItem
 
 if __name__ == '__main__':
-    todo_list = TodoList()
-    todo_list.run()
+    item = TodoItem('学习C++')
+    print(item)
