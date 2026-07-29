@@ -12,12 +12,12 @@ class TodoItem:
         item.is_completed = item_dict['is_completed']
         return item
 
-item = TodoItem('学习Python')
-print(item)
-item.is_completed = True
-print(item)
+# item = TodoItem('学习Python')
+# print(item)
+# item.is_completed = True
+# print(item)
 
-print(f'当前文件名为 = {__name__}')
+# print(f'当前文件名为 = {__name__}')
 
 # if __name__ == '__main__':
 #     item = TodoItem('学习Python')
