@@ -12,4 +12,4 @@ def greet(first, last):
     print(f"Hello, {first.title()} {last.title()}")
 
 greet("john", "doe")
-greet("alice", "smith")
+greet(last="alice", first="smith")
