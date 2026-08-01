@@ -11,5 +11,5 @@ def count_calls(func):
 def greet(first, last):
     return f"Hello, {first.title()} {last.title()}"
 
-print(greet("john", "doe"))
+print(greet("john", "apple"))
 print(greet("alice", "smith"))
