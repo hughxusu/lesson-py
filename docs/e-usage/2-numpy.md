@@ -7,10 +7,6 @@
 
 <img src="./assets/8dd3ae17b2db7ffc8da11e2f5d85a082.jpeg" style="zoom:70%;" />
 
-> [!important]
->
-> 高维的张量和矩阵之间是可以相互转换的，而张量的计算是以矩阵的计算为基础。
-
 安装Numpy
 
 ```shell
@@ -219,7 +215,7 @@ print(y.size)
 
 > [!warning]
 >
-> Numpy中的数据在内存中都是一维连续存储的，`shape`属性只是标注数据的形状。
+> `shape`属性只是标注数据的形状，并不是Numpy中的数据的真正存储方式。
 
 ## 数据操作
 
