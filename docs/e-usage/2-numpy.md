@@ -417,7 +417,7 @@ print(x + 1)
 
 > [!warning]
 >
-> 这里虽然使用的数学符号，但是调用的是Numpy的函数，Numpy重写了这些符号的操作函数，方便程序员使用。[符号操作重写的方法](附录.md)
+> 这里虽然使用的数学符号，但是调用的是Numpy的函数，Numpy重写了这些符号的操作函数，方便程序员使用。[符号操作重写的方法](../f-appendix/c-重写.md)
 
 通用函数常见的[数学函数](https://numpy.org/doc/stable/reference/routines.math.html)
 
