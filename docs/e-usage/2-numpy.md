@@ -228,11 +228,15 @@ print(y.size)
 ```python
 x = np.arange(10)
 print(x.ndim)
+print(x.shape)
 
 w = x.reshape(2, 5)
 print(w.ndim)
 
 w = x.reshape(10, -1) # -1会根据数据数量和行数自动计算合适的列数。
+print(w)
+
+w = x.reshape(1, -1) 
 print(w)
 ```
 
