@@ -32,7 +32,7 @@ $$
 \text{Total}=\text{rows}\times\text{columns}\times\text{bytes}=1,000,000\times10\times8=80\text{MB}
 $$
 
-[Pandas学习网站](https://www.geeksforgeeks.org/pandas-tutorial/?ref=outind)
+[示例数据网站](https://www.geeksforgeeks.org/pandas-tutorial/?ref=outind)
 
 ## Pandas数据结构
 
