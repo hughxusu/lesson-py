@@ -21,11 +21,11 @@ import matplotlib.pyplot as plt # 常用的绘图工具
 
 `plt.figure(figsize=(), dpi=)`figsize: 指定图的长宽；dpi: 图像的清晰度
 
-2. 绘制图像
+3. 绘制图像
 
 `plt.plot(x, y)`x轴坐标（数组），y轴坐标（数组）x轴和y轴数据必须一致
 
-3. 显示图像
+4. 显示图像
 
 `plt.show()`
 
@@ -91,7 +91,7 @@ plt.plot(x, cosy, color='r', linestyle='--', label='cos(x)')
 plt.legend() # 绘图前要显示调用图示显示
 ```
 
-[`plt.legend(loc)`中的`loc`可以调整图例的位置](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html#matplotlib.pyplot.legend)
+* [`plt.legend(loc)`中的`loc`可以调整图例的位置](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html#matplotlib.pyplot.legend)
 
 7. 添加标题
 
@@ -114,12 +114,6 @@ plt.savefig("test.png") # 保存图片到指定路径
 > [!caution]
 >
 > `plt.show()`会释放figure资源，如果在显示图像之后保存图片将只能保存空图片。
-
-10. 显示图像
-
-```python
-plt.show()
-```
 
 ## 散点图
 
