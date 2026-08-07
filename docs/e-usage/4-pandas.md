@@ -80,7 +80,7 @@ print(players.values)
 
 * 当数据中有多重类型是，`values`返回的Numpy数据类型是`object_`。
 
-DataFrame的整体查询`head()`和`tail`可以查询头部和尾部的数据，默认是5条数据。
+DataFrame的整体查询`head()`和`tail()`可以查询头部和尾部的数据，默认是5条数据。
 
 ```python
 players.head()
