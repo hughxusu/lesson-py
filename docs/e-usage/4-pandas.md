@@ -348,8 +348,10 @@ print(pd.isnull(movies).sum())
 使用[IMDB Movies Dataset](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows)完成如下练习
 
 ```python
+import pandas as pd
+
 df = pd.read_csv("imdb_top_1000.csv")
-df.head()
+print(df.head())
 ```
 
 1. 统计2000年及以后上映的电影数量。
